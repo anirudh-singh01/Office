@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Email</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        
+        /* Layout */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .logo {
+            height: 24px;
+            width: 110px;
+        }
+        
+        .banner {
+            height: 3px;
+            background-color: #7E45AF;
+        }
+        
+        /* Typography */
+        .title {
+            text-align: center;
+            padding: 20px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #111C24;
+        }
+        
+        .divider {
+            height: 1px;
+            background-color: #111C24;
+            margin: 0 30px;
+        }
+        
+        .section-heading {
+            font-size: 18px;
+            font-weight: bold;
+            color: #111C24;
+            margin-bottom: 15px;
+        }
+        
+        .section-text {
+            color: #111C24;
+            line-height: 1.4;
+            margin-bottom: 15px;
+        }
+        
+        /* Content layout */
+        .content-section {
+            padding: 20px 30px;
+        }
+        
+        .two-column {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .column-left {
+            flex: 0 0 47%;
+        }
+        
+        .column-right {
+            flex: 1;
+        }
+        
+        /* Visual elements */
+        .image-placeholder {
+            width: 100%;
+            height: 146px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+        }
+        
+        /* Buttons and links */
+        .button {
+            color: #316ACA;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .button:hover {
+            text-decoration: underline;
+        }
+        
+        .primary-button {
+            display: inline-block;
+            background-color: #7E45AF;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 11.5px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .primary-button:hover {
+            background-color: #6a3a8f;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px 30px;
+            border-top: 3px solid #7E45AF;
+        }
+        
+        .footer-links {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: #646E81;
+            text-decoration: none;
+            font-size: 9px;
+            margin: 0 7px;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer-copyright {
+            color: #646E81;
+            font-size: 7.5px;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 600px) {
+            .two-column {
+                flex-direction: column;
+            }
+            
+            .column-left,
+            .column-right {
+                flex: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://online.synopsys.com/rs/367-MRV-360/images/logo-purple-2x.png" alt="Synopsys Logo" class="logo">
+        </div>
+        
+        <div class="banner"></div>
+        
+        <div class="title">Email Title Here</div>
+        
+        <div class="divider"></div>
+        
+        <div class="content-section">
+            <div class="two-column">
+                <div class="column-left">
+                    <div class="image-placeholder"></div>
+                </div>
+                <div class="column-right">
+                    <div class="section-heading">Header Text</div>
+                    <div class="section-text">
+                        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical.
+                    </div>
+                    <a href="#" class="button">Tertiary Button ›</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+        </div>
+        
+        <div class="content-section" style="text-align: center;">
+            <a href="#" class="primary-button">Primary Button</a>
+        </div>
+        
+        <div class="footer">
+            <div class="footer-links">
+                <a href="https://em.synopsys.com/MzY3LU1SVi0zNjAAAAGcXVkUB1PXevdiXDtW-dxBpdy4ZVKt06E1xHfFPZ1EjS5YxspUH2kXgKpYNPHkamCAWO0Kug4=" target="_blank">About</a> |
+                <a href="https://em.synopsys.com/MzY3LU1SVi0zNjAAAAGcXVkUB8XKit4W94BdZqKuuoiNev0C3Pq6yWf4GXIGFk8WNsBpRnprN5Fv6jxuMAyAq_7ac4w=" target="_blank">Privacy</a> |
+                <a href="https://em.synopsys.com/MzY3LU1SVi0zNjAAAAGcXVkUB6IktONPdL9G484Gn7Dh2lkYaCsbj3pJWlAAbeGNLKHCA_4UKGiT18d422BK-eDUkqQ=" target="_blank">Manage Subscription</a>
+            </div>
+            <div class="footer-copyright">
+                © 2025 Synopsys, Inc. All Rights Reserved
+            </div>
+        </div>
+    </div>
+</body>
+</html>

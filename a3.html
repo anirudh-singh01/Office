@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Email</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        
+        /* Layout */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .logo {
+            height: 24px;
+            width: 110px;
+        }
+        
+        .banner {
+            height: 3px;
+            background-color: #7E45AF;
+        }
+        
+        /* Event header */
+        .event-header {
+            padding: 20px 30px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        
+        .event-header-column {
+            flex: 1;
+        }
+        
+        .event-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #111C24;
+            margin-bottom: 15px;
+        }
+        
+        .event-name::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: #7E45AF;
+            margin-top: 10px;
+        }
+        
+        .event-date {
+            font-weight: bold;
+            color: black;
+            margin-bottom: 10px;
+        }
+        
+        .event-location {
+            color: #111C24;
+            margin-bottom: 10px;
+        }
+        
+        /* Buttons */
+        .primary-button {
+            display: inline-block;
+            background-color: #7E45AF;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 11.5px;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .primary-button:hover {
+            background-color: #6a3a8f;
+        }
+        
+        /* Typography */
+        .divider {
+            height: 1px;
+            background-color: #111C24;
+            margin: 0 30px;
+        }
+        
+        .section-heading {
+            font-size: 18px;
+            font-weight: bold;
+            color: #111C24;
+            margin-bottom: 15px;
+        }
+        
+        .section-heading::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: #7E45AF;
+            margin-top: 10px;
+        }
+        
+        /* Content layout */
+        .content-section {
+            padding: 20px 30px;
+        }
+        
+        .two-column {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .column-left {
+            flex: 0 0 47%;
+        }
+        
+        .column-right {
+            flex: 1;
+        }
+        
+        /* Visual elements */
+        .image-placeholder {
+            width: 100%;
+            height: 146px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+        }
+        
+        /* Event details */
+        .event-details h3 {
+            font-size: 18px;
+            font-weight: bold;
+            color: #111C24;
+            margin-bottom: 15px;
+        }
+        
+        .event-details p {
+            color: #111C24;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+        
+        .event-links {
+            font-size: 9px;
+        }
+        
+        .event-links a {
+            color: black;
+            text-decoration: none;
+        }
+        
+        .event-links a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Speakers grid */
+        .speakers-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .speaker-card {
+            text-align: center;
+        }
+        
+        .speaker-image {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+        }
+        
+        .speaker-name {
+            font-weight: bold;
+            color: #111C24;
+            margin-bottom: 8px;
+        }
+        
+        .speaker-title {
+            font-size: 10.5px;
+            color: #111C24;
+            margin-bottom: 8px;
+        }
+        
+        .speaker-company {
+            font-size: 10.5px;
+            color: #111C24;
+            font-style: italic;
+        }
+        
+        /* Agenda table */
+        .agenda-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .agenda-table td {
+            padding: 15px;
+            vertical-align: top;
+        }
+        
+        .agenda-time {
+            width: 23%;
+            background-color: #F0F0F4;
+            font-weight: bold;
+            color: black;
+        }
+        
+        .agenda-item {
+            width: 77%;
+            background-color: #F0F0F4;
+            color: black;
+        }
+        
+        .agenda-table tr:nth-child(even) .agenda-time,
+        .agenda-table tr:nth-child(even) .agenda-item {
+            background-color: white;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px 30px;
+            border-top: 3px solid #7E45AF;
+        }
+        
+        .footer-links {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: #646E81;
+            text-decoration: none;
+            font-size: 9px;
+            margin: 0 7px;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer-copyright {
+            color: #646E81;
+            font-size: 7.5px;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 600px) {
+            .event-header {
+                flex-direction: column;
+            }
+            
+            .two-column {
+                flex-direction: column;
+            }
+            
+            .column-left,
+            .column-right {
+                flex: none;
+            }
+            
+            .speakers-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .agenda-table {
+                font-size: 14px;
+            }
+            
+            .agenda-time,
+            .agenda-item {
+                display: block;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://online.synopsys.com/rs/367-MRV-360/images/logo-purple-2x.png" alt="Synopsys Logo" class="logo">
+        </div>
+        
+        <div class="banner"></div>
+        
+        <div class="event-header">
+            <div class="event-header-column">
+                <div class="event-name">Event Name Here</div>
+            </div>
+            <div class="event-header-column">
+                <div class="event-date">Date Goes here</div>
+                <div class="event-location">Location Goes here</div>
+            </div>
+            <div class="event-header-column" style="text-align: right;">
+                <a href="#" class="primary-button">Primary Button</a>
+            </div>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <div class="content-section">
+            <div class="two-column">
+                <div class="column-left">
+                    <div class="image-placeholder"></div>
+                </div>
+                <div class="column-right">
+                    <div class="event-details">
+                        <h3>Date Goes Here</h3>
+                        <p>Venue Name</p>
+                        <p>Example Address Line 1</p>
+                        <p>Example Address Line 2</p>
+                        <div class="event-links">
+                            <a href="#" target="_blank">Add to Calendar</a> | 
+                            <a href="#" target="_blank">View Map</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <p>Fill out the event details above. The fields for date, venue, address, etc. are suggestions; feel free to include whatever information you believe to be relevant. Use the Calendar link to add a .ics file. Add a map link to help your user see where the event is being held. Use this text area to briefly describe the event. Delete the sections of this email that aren't needed.</p>
+        </div>
+        
+        <div class="content-section">
+            <div class="section-heading">Featured Speakers</div>
+            <div class="speakers-grid">
+                <div class="speaker-card">
+                    <div class="speaker-image"></div>
+                    <div class="speaker-name">First Last Name</div>
+                    <div class="speaker-title">Job Title</div>
+                    <div class="speaker-company">Company</div>
+                </div>
+                <div class="speaker-card">
+                    <div class="speaker-image"></div>
+                    <div class="speaker-name">First Last Name</div>
+                    <div class="speaker-title">Job Title</div>
+                    <div class="speaker-company">Company</div>
+                </div>
+                <div class="speaker-card">
+                    <div class="speaker-image"></div>
+                    <div class="speaker-name">First Last Name</div>
+                    <div class="speaker-title">Job Title</div>
+                    <div class="speaker-company">Company</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <div class="section-heading">Agenda</div>
+            <table class="agenda-table">
+                <tr>
+                    <td class="agenda-time">12:00 a.m.</td>
+                    <td class="agenda-item">Event agenda item goes here. Please keep it brief.</td>
+                </tr>
+                <tr>
+                    <td class="agenda-time">12:00 a.m.</td>
+                    <td class="agenda-item">Event agenda item goes here. Please keep it brief.</td>
+                </tr>
+                <tr>
+                    <td class="agenda-time">12:00 a.m.</td>
+                    <td class="agenda-item">Event agenda item goes here. Please keep it brief.</td>
+                </tr>
+                <tr>
+                    <td class="agenda-time">12:00 a.m.</td>
+                    <td class="agenda-item">Event agenda item goes here. Please keep it brief.</td>
+                </tr>
+                <tr>
+                    <td class="agenda-time">12:00 a.m.</td>
+                    <td class="agenda-item">Event agenda item goes here. Please keep it brief.</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="footer">
+            <div class="footer-links">
+                <a href="https://em.synopsys.com/MzY3LU1SVi0zNjAAAAGcXVYMd4bcxt6HTMYhz8FBFB4MckKBa0Sr81S-YTCNFJZmK3vw_Bib6-rx2EkuXzcLwmS8OF4=" target="_blank">About</a> |
+                <a href="https://em.synopsys.com/MzY3LU1SVi0zNjAAAAGcXVYMd5-DaEyE0k4DFv6GpjaMI_JOU1IfS2Y0a63XjE4hw9JJ-zsRNYkudAhUp0TX6ftTO8g=" target="_blank">Privacy</a> |
+                <a href="https://em.synopsys.com/MzY3LU1SVi0zNjAAAAGcXVYMd82Z0Kfw3XBKBu3LrzZFUOTQ5WlPfd_xudmExHre3VGh2lqdtqLfda9DQE7W1aczKbM=" target="_blank">Manage Subscription</a>
+            </div>
+            <div class="footer-copyright">
+                © 2025 Synopsys, Inc. All Rights Reserved
+            </div>
+        </div>
+    </div>
+</body>
+</html>

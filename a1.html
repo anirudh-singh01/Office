@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Email</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        
+        /* Layout */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .logo {
+            height: 24px;
+            width: 110px;
+        }
+        
+        .banner {
+            height: 3px;
+            background-color: #7E45AF;
+        }
+        
+        /* Typography */
+        .title {
+            text-align: center;
+            padding: 20px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #111C24;
+        }
+        
+        .divider {
+            height: 1px;
+            background-color: #111C24;
+            margin: 0 30px;
+        }
+        
+        .section-heading,
+        .section-header {
+            font-size: 18px;
+            font-weight: bold;
+            color: #111C24;
+            margin-bottom: 15px;
+        }
+        
+        .section-header::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: #7E45AF;
+            margin-top: 10px;
+        }
+        
+        .section-text {
+            color: #111C24;
+            line-height: 1.4;
+            margin-bottom: 15px;
+        }
+        
+        /* Content layout */
+        .content-section {
+            padding: 20px 30px;
+        }
+        
+        .two-column {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .column-left {
+            flex: 0 0 47%;
+        }
+        
+        .column-right {
+            flex: 1;
+        }
+        
+        /* Visual elements */
+        .image-placeholder {
+            width: 100%;
+            height: 146px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+        }
+        
+        /* Buttons and links */
+        .button {
+            color: #316ACA;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .button:hover {
+            text-decoration: underline;
+        }
+        
+        /* Text blocks */
+        .text-block {
+            margin-bottom: 20px;
+        }
+        
+        .text-block h3 {
+            font-size: 16px;
+            font-weight: bold;
+            color: black;
+            margin-bottom: 10px;
+        }
+        
+        .text-block p {
+            color: #333;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px 30px;
+            border-top: 3px solid #7E45AF;
+        }
+        
+        .footer-links {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: #646E81;
+            text-decoration: none;
+            font-size: 9px;
+            margin: 0 7px;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer-copyright {
+            color: #646E81;
+            font-size: 7.5px;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 600px) {
+            .two-column {
+                flex-direction: column;
+            }
+            
+            .column-left,
+            .column-right {
+                flex: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://online.synopsys.com/rs/367-MRV-360/images/logo-purple-2x.png" alt="Synopsys Logo" class="logo">
+        </div>
+        
+        <div class="banner"></div>
+        
+        <div class="title">Email Title Here</div>
+        
+        <div class="divider"></div>
+        
+        <div class="content-section">
+            <div class="two-column">
+                <div class="column-left">
+                    <div class="image-placeholder"></div>
+                </div>
+                <div class="column-right">
+                    <div class="section-heading">Header Text</div>
+                    <div class="section-text">
+                        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical.
+                    </div>
+                    <a href="#" class="button">Tertiary Button ›</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <p>This is some sample text.</p>
+        </div>
+        
+        <div class="content-section">
+            <div class="section-header">This is a Section Headline</div>
+        </div>
+        
+        <div class="content-section">
+            <div class="text-block">
+                <h3>Header Text Recommend One to Two Lines of Text</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisching elit.</p>
+                <a href="#" class="button">Tertiary Button ›</a>
+            </div>
+            
+            <div class="text-block">
+                <h3>Header Text Recommend One to Two Lines of Text</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisching elit.</p>
+                <a href="#" class="button">Tertiary Button ›</a>
+            </div>
+            
+            <div class="text-block">
+                <h3>Header Text Recommend One to Two Lines of Text</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisching elit.</p>
+                <a href="#" class="button">Tertiary Button ›</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="footer-links">
+                <a href="https://em.synopsys.com/MzY3LU1SVi0zNjAAAAGcXU15UtCRst4hsFq1z4yDHaXFbyfykT7tnoC3AQK8tyz2TaIPWuqJ2bBNE-y5MpAK6F8YdEw=" target="_blank">About</a> |
+                <a href="https://em.synopsys.com/MzY3LU1SVi0zNjAAAAGcXU15Uunx8a4Ut7oaSWEBuRgfZfVMKDdJh1aDLKGNFtSA2Ku3mWwiCIBDIk67dfiKJ4ElaJU=" target="_blank">Privacy</a> |
+                <a href="https://em.synopsys.com/MzY3LU1SVi0zNjAAAAGcXU15Us0Kr1mDOuicRhNlKRFUelw1DEF7__zFNyKZ2le_NNKxv9-p5KXp50dJIRfgleGH5DE=" target="_blank">Manage Subscription</a>
+            </div>
+            <div class="footer-copyright">
+                © 2025 Synopsys, Inc. All Rights Reserved
+            </div>
+        </div>
+    </div>
+</body>
+</html>
