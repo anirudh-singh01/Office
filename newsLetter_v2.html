@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SolvNetPlus Newsletter - August 2025</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .newsletter-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border: 2px dashed #ccc;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .logo {
+            text-align: center;
+            color: #8B5A96;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .purple-line {
+            height: 2px;
+            background-color: #8B5A96;
+            margin: 0 auto 20px;
+            width: 80%;
+        }
+        .header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .newsletter-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        .date {
+            font-size: 18px;
+            color: #333;
+        }
+        .black-line {
+            height: 1px;
+            background-color: #333;
+            margin: 20px 0;
+        }
+        .featured-image {
+            width: 100%;
+            height: 200px;
+            background-color: #e0e0e0;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 14px;
+        }
+        .intro-text {
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .hotfix-section {
+            margin-top: 30px;
+        }
+        .hotfix-header {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .hotfix-accent {
+            height: 3px;
+            background-color: #8B5A96;
+            width: 100px;
+            margin-bottom: 25px;
+        }
+        .hotfix-entry {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+        }
+        .hotfix-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .hotfix-separator {
+            width: 2px;
+            height: 20px;
+            background-color: #8B5A96;
+            margin: 0 10px;
+        }
+        .hotfix-image {
+            width: 100%;
+            height: 150px;
+            background-color: #e0e0e0;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 14px;
+        }
+        .hotfix-description-title {
+            font-weight: bold;
+            color: #333;
+            margin: 15px 0 10px 0;
+        }
+        .hotfix-description-text {
+            line-height: 1.5;
+            color: #666;
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+        .learn-more {
+            text-align: right;
+            color: #8B5A96;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+        
+        /* Winners Section Styles */
+        .winners-section {
+            margin-top: 30px;
+        }
+        .winners-header {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .winners-accent {
+            height: 3px;
+            background-color: #8B5A96;
+            width: 100px;
+            margin-bottom: 25px;
+        }
+        .winners-profiles {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .winner-profile {
+            text-align: center;
+            flex: 1;
+        }
+        .profile-frame {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #87CEEB, #DDA0DD);
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .profile-base {
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 20px solid #8B5A96;
+            margin: 0 auto 15px;
+        }
+        .profile-name {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        .profile-category {
+            color: #666;
+            font-size: 12px;
+        }
+        
+        /* Article Section Styles */
+        .article-section {
+            margin-top: 30px;
+        }
+        .article-header {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .article-accent {
+            height: 3px;
+            background-color: #8B5A96;
+            width: 100px;
+            margin-bottom: 25px;
+        }
+        .article-table {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        .table-header {
+            background-color: white;
+            display: flex;
+            padding: 15px;
+            font-weight: bold;
+            color: #333;
+            border-bottom: 1px solid #ddd;
+        }
+        .table-row {
+            background-color: #F0E6FF;
+            display: flex;
+            padding: 15px;
+            color: #333;
+        }
+        .col-rank {
+            width: 50px;
+            font-weight: bold;
+        }
+        .col-number {
+            width: 200px;
+        }
+        .col-title {
+            flex: 1;
+        }
+        
+        /* General Text Styles */
+        .general-text {
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+        
+        /* Signature Section Styles */
+        .signature-section {
+            text-align: center;
+            margin: 40px 0;
+        }
+        .signature-image {
+            width: 60px;
+            height: 60px;
+            background-color: #e0e0e0;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 12px;
+        }
+        .signature-accent {
+            height: 2px;
+            background-color: #8B5A96;
+            width: 60px;
+            margin: 0 auto 15px;
+        }
+        .signature-name {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+        .signature-title {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        /* Footer Styles */
+        .footer {
+            margin-top: 40px;
+        }
+        .footer-line {
+            height: 2px;
+            background-color: #8B5A96;
+            margin-bottom: 20px;
+        }
+        .footer-links {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .footer-links a {
+            color: #8B5A96;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .footer-copyright {
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="newsletter-container">
+        <!-- Header Section -->
+        <div class="logo">SolvNetPlus</div>
+        <div class="purple-line"></div>
+        
+        <div class="header-section">
+            <div class="newsletter-title">SolvNetPlus Newsletter</div>
+            <div class="date">August, 2025</div>
+        </div>
+        
+        <div class="black-line"></div>
+        
+        <!-- Featured Image -->
+        <div class="featured-image">[Featured Image Placeholder]</div>
+        
+        <!-- Introductory Text -->
+        <div class="intro-text">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        </div>
+        
+        <div class="black-line"></div>
+        
+        <!-- Hotfix Section -->
+        <div class="hotfix-section">
+            <div class="hotfix-header">KI Aug 2025 Hotfix - Important Enhancements</div>
+            <div class="hotfix-accent"></div>
+            
+            <!-- Hot Fix 1 -->
+            <div class="hotfix-entry">
+                <div class="hotfix-title">
+                    Hot Fix 1
+                    <div class="hotfix-separator"></div>
+                    Title of Hot Fix
+                </div>
+                <div class="hotfix-image">[Hotfix Image Placeholder]</div>
+                <div class="hotfix-description-title">Description of Hotfix ------</div>
+                <div class="hotfix-description-text">"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."</div>
+                <div class="hotfix-description-text">"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is..."</div>
+                <div class="learn-more">... Learn More</div>
+            </div>
+            
+            <!-- Hot Fix 2 -->
+            <div class="hotfix-entry">
+                <div class="hotfix-title">
+                    Hot Fix 2
+                    <div class="hotfix-separator"></div>
+                    Title of Hot Fix
+                </div>
+                <div class="hotfix-image">[Hotfix Image Placeholder]</div>
+                <div class="hotfix-description-title">Description of Hotfix ------</div>
+                <div class="hotfix-description-text">"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."</div>
+                <div class="hotfix-description-text">"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is..."</div>
+                <div class="learn-more">... Learn More</div>
+            </div>
+            
+            <!-- Hot Fix 1 (Second Instance) -->
+            <div class="hotfix-entry">
+                <div class="hotfix-title">
+                    Hot Fix 1
+                    <div class="hotfix-separator"></div>
+                    Title of Hot Fix
+                </div>
+                <div class="hotfix-image">[Hotfix Image Placeholder]</div>
+                <div class="hotfix-description-title">Description of Hotfix ------</div>
+                <div class="hotfix-description-text">"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."</div>
+                <div class="hotfix-description-text">"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is..."</div>
+                <div class="learn-more">... Learn More</div>
+            </div>
+        </div>
+        
+        <div class="black-line"></div>
+        
+        <!-- Q3 FY25 Winners Section -->
+        <div class="winners-section">
+            <div class="winners-header">Q3 FY25 Winners</div>
+            <div class="winners-accent"></div>
+            
+            <div class="winners-profiles">
+                <div class="winner-profile">
+                    <div class="profile-frame">
+                        <div class="profile-image">[Kenneth Hung]</div>
+                    </div>
+                    <div class="profile-base"></div>
+                    <div class="profile-name">Kenneth Hung</div>
+                    <div class="profile-category">Top Published Volume</div>
+                </div>
+                
+                <div class="winner-profile">
+                    <div class="profile-frame">
+                        <div class="profile-image">[Deeksha Sharma]</div>
+                    </div>
+                    <div class="profile-base"></div>
+                    <div class="profile-name">Deeksha Sharma</div>
+                    <div class="profile-category">Quality</div>
+                </div>
+                
+                <div class="winner-profile">
+                    <div class="profile-frame">
+                        <div class="profile-image">[Lucy Yue]</div>
+                    </div>
+                    <div class="profile-base"></div>
+                    <div class="profile-name">Lucy Yue</div>
+                    <div class="profile-category">Popularity</div>
+                </div>
+                
+                <div class="winner-profile">
+                    <div class="profile-frame">
+                        <div class="profile-image">[Mukul Pingley]</div>
+                    </div>
+                    <div class="profile-base"></div>
+                    <div class="profile-name">Mukul Pingley</div>
+                    <div class="profile-category">Reviewed Volume</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="black-line"></div>
+        
+        <!-- Top Voted Article Section -->
+        <div class="article-section">
+            <div class="article-header">Top Voted Article of Q3 FY25</div>
+            <div class="article-accent"></div>
+            
+            <div class="article-table">
+                <div class="table-header">
+                    <div class="col-rank">1</div>
+                    <div class="col-number">#Article Number</div>
+                    <div class="col-title">Article Title Article Title Article Title Article Title</div>
+                </div>
+                <div class="table-row">
+                    <div class="col-rank">2</div>
+                    <div class="col-number">#12345678910</div>
+                    <div class="col-title">Article Title Article Title Article Title Article Title</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="black-line"></div>
+        
+        <!-- General Text Block -->
+        <div class="general-text">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        </div>
+        
+        <!-- Signature Section -->
+        <div class="signature-section">
+            <div class="signature-image">[Profile Image]</div>
+            <div class="signature-accent"></div>
+            <div class="signature-name">Sumeet Agrawala</div>
+            <div class="signature-title">Full Designation Full Designnation</div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-line"></div>
+            <div class="footer-links">
+                <a href="#">About</a> | <a href="#">Privacy</a> | <a href="#">Manage Subscription</a>
+            </div>
+            <div class="footer-copyright">
+                © 2025 Synopsys, Inc. All Rights Reserved
+            </div>
+        </div>
+    </div>
+</body>
+</html>
