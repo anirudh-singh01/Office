@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SolvNetPlus Newsletter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+            line-height: 1.4;
+        }
+
+        .newsletter-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Dashed border lines on left and right */
+        .newsletter-container::before,
+        .newsletter-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: repeating-linear-gradient(
+                to bottom,
+                #ccc 0,
+                #ccc 5px,
+                transparent 5px,
+                transparent 10px
+            );
+        }
+
+        .newsletter-container::before {
+            left: -10px;
+        }
+
+        .newsletter-container::after {
+            right: -10px;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            padding: 30px 40px 20px;
+        }
+
+        .brand-name {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .brand-solvnet {
+            color: #333;
+        }
+
+        .brand-plus {
+            color: #8a2be2;
+        }
+
+        .header-line {
+            height: 3px;
+            background-color: #8a2be2;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        /* Title and Date Section */
+        .title-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            border-bottom: none;
+        }
+
+        .newsletter-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .newsletter-date {
+            font-size: 18px;
+            color: #000;
+        }
+
+        /* Content Placeholder */
+        .content-placeholder {
+            margin: 30px 40px;
+            height: 200px;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+        }
+
+        .placeholder-text {
+            color: #888;
+            font-size: 18px;
+            font-style: italic;
+        }
+
+        /* Body Text */
+        .body-text {
+            padding: 0 40px 30px;
+            text-align: justify;
+            line-height: 1.6;
+            color: #000;
+            font-size: 16px;
+        }
+
+        .bottom-line {
+            height: 1px;
+            background-color: #000;
+            margin: 0 40px 30px;
+        }
+
+        /* Hotfix Section */
+        .hotfix-section {
+            padding: 0 40px 30px;
+        }
+
+        .hotfix-header {
+            margin-bottom: 20px;
+        }
+
+        .hotfix-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 15px;
+        }
+
+        .hotfix-header-line {
+            height: 4px;
+            background-color: #8a2be2;
+            width: 200px;
+            margin-bottom: 15px;
+        }
+
+        .hotfix-separator {
+            height: 1px;
+            background-color: #000;
+            margin-bottom: 30px;
+        }
+
+        .hotfix-entry {
+            margin-bottom: 40px;
+        }
+
+        .hotfix-title-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .hotfix-number {
+            font-weight: bold;
+            color: #8a2be2;
+            font-size: 18px;
+            margin-right: 15px;
+        }
+
+        .hotfix-vertical-line {
+            width: 2px;
+            height: 20px;
+            background-color: #8a2be2;
+            margin-right: 15px;
+        }
+
+        .hotfix-entry-title {
+            font-size: 18px;
+            color: #000;
+            font-weight: normal;
+        }
+
+        .hotfix-content-placeholder {
+            height: 200px;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .hotfix-description h4 {
+            font-size: 16px;
+            color: #000;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .hotfix-description p {
+            color: #000;
+            line-height: 1.5;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .learn-more {
+            text-align: right;
+            margin-top: 15px;
+        }
+
+        .learn-more span {
+            color: #888;
+            margin-right: 5px;
+        }
+
+        .learn-more-link {
+            color: #8a2be2;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .learn-more-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Winners Section */
+        .winners-section {
+            padding: 0 40px 30px;
+        }
+
+        .section-header {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 15px;
+        }
+
+        .section-underline {
+            height: 4px;
+            background-color: #8a2be2;
+            width: 200px;
+            margin-bottom: 15px;
+        }
+
+        .winners-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .winner-profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .winner-image-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin-bottom: 15px;
+        }
+
+        .winner-image-placeholder {
+            width: 100%;
+            height: 100%;
+            background-color: #e0e0e0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            z-index: 2;
+        }
+
+        .octagonal-frame {
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            width: calc(100% + 16px);
+            height: calc(100% + 16px);
+            background: linear-gradient(45deg, #87CEEB, #B0E0E6);
+            clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+            z-index: 1;
+        }
+
+        .winner-pedestal {
+            width: 80px;
+            height: 15px;
+            background-color: #8a2be2;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .winner-info {
+            text-align: center;
+        }
+
+        .winner-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 5px;
+        }
+
+        .winner-award {
+            font-size: 14px;
+            color: #888;
+            font-style: italic;
+        }
+
+        .section-separator {
+            height: 1px;
+            background-color: #000;
+            margin: 0 40px 30px;
+        }
+
+        /* Articles Section */
+        .articles-section {
+            padding: 0 40px 30px;
+        }
+
+        .articles-table {
+            width: 100%;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .table-header, .table-row {
+            display: grid;
+            grid-template-columns: 1fr 3fr 1fr;
+            gap: 10px;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .table-header {
+            font-weight: bold;
+            color: #000;
+            background-color: #f8f8f8;
+        }
+
+        .header-cell {
+            text-align: left;
+        }
+
+        .table-row {
+            color: #000;
+            font-size: 16px;
+        }
+
+        .table-row:last-child {
+            border-bottom: none;
+        }
+
+        .table-cell {
+            text-align: left;
+            padding: 8px;
+        }
+
+        .article-number {
+            background-color: #f0f0f0;
+            padding: 8px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .article-title {
+            background-color: white;
+            padding: 8px;
+        }
+
+        .author-name {
+            background-color: #f0f0f0;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .concluding-info {
+            margin-top: 20px;
+            text-align: center;
+            color: #888;
+            font-size: 16px;
+        }
+
+        .concluding-link {
+            color: #8a2be2;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .concluding-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Final Section */
+        .final-section {
+            padding: 0 40px 30px;
+        }
+
+        .recap-section {
+            margin-bottom: 30px;
+        }
+
+        .recap-content {
+            text-align: justify;
+            line-height: 1.6;
+            color: #000;
+            font-size: 16px;
+        }
+
+        .recap-content p {
+            margin-bottom: 15px;
+        }
+
+        .article-links {
+            margin-top: 20px;
+            padding-left: 20px;
+        }
+
+        .article-link-item {
+            margin-bottom: 15px;
+        }
+
+        .article-link-item strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .link-indent {
+            padding-left: 20px;
+        }
+
+        .article-link {
+            color: #8a2be2;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .article-link:hover {
+            text-decoration: underline;
+        }
+
+        .highlights-section {
+            margin-bottom: 30px;
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .highlight-placeholder {
+            height: 150px;
+            background-color: #e0e0e0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ddd;
+        }
+
+        .author-section {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .author-profile {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .author-image-placeholder {
+            width: 100%;
+            height: 100%;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .author-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 5px;
+        }
+
+        .author-underline {
+            height: 3px;
+            background-color: #8a2be2;
+            width: 150px;
+            margin: 0 auto 10px;
+        }
+
+        .author-designation {
+            font-size: 16px;
+            color: #888;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .footer-separator {
+            height: 1px;
+            background-color: #8a2be2;
+            margin-bottom: 15px;
+        }
+
+        .footer-links {
+            margin-bottom: 15px;
+        }
+
+        .footer-link {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 10px;
+        }
+
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+
+        .footer-divider {
+            color: #333;
+            margin: 0 5px;
+        }
+
+        .copyright {
+            font-size: 14px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="newsletter-container">
+        <!-- Header Section -->
+        <div class="header">
+            <div class="brand-name">
+                <span class="brand-solvnet">SolvNet</span><span class="brand-plus">Plus</span>
+            </div>
+            <div class="header-line"></div>
+        </div>
+
+        <!-- Title and Date Section -->
+        <div class="title-section">
+            <div class="newsletter-title">SolvNetPlus Newsletter</div>
+            <div class="newsletter-date">August, 2025</div>
+        </div>
+
+        <!-- Content Placeholder -->
+        <div class="content-placeholder">
+            <div class="placeholder-text">Content Placeholder</div>
+        </div>
+
+        <!-- Body Text -->
+        <div class="body-text">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        </div>
+
+        <!-- Bottom Separator -->
+        <div class="bottom-line"></div>
+
+        <!-- Hotfix Section -->
+        <div class="hotfix-section">
+            <div class="hotfix-header">
+                <h2 class="hotfix-title">KI Aug 2025 Hotfix - Important Enhancements</h2>
+                <div class="hotfix-header-line"></div>
+            </div>
+            <div class="hotfix-separator"></div>
+
+            <!-- Hot Fix 1 -->
+            <div class="hotfix-entry">
+                <div class="hotfix-title-bar">
+                    <span class="hotfix-number">Hot Fix 1</span>
+                    <div class="hotfix-vertical-line"></div>
+                    <span class="hotfix-entry-title">Title of Hot Fix</span>
+                </div>
+                <div class="hotfix-content-placeholder">
+                    <div class="placeholder-text">Hotfix Content Placeholder</div>
+                </div>
+                <div class="hotfix-description">
+                    <h4>Description of Hotfix -----</h4>
+                    <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</p>
+                    <p>There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is...</p>
+                    <div class="learn-more">
+                        <span>...</span>
+                        <a href="#" class="learn-more-link">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hot Fix 2 -->
+            <div class="hotfix-entry">
+                <div class="hotfix-title-bar">
+                    <span class="hotfix-number">Hot Fix 2</span>
+                    <div class="hotfix-vertical-line"></div>
+                    <span class="hotfix-entry-title">Title of Hot Fix</span>
+                </div>
+                <div class="hotfix-content-placeholder">
+                    <div class="placeholder-text">Hotfix Content Placeholder</div>
+                </div>
+                <div class="hotfix-description">
+                    <h4>Description of Hotfix -----</h4>
+                    <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</p>
+                    <p>There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is...</p>
+                    <div class="learn-more">
+                        <span>...</span>
+                        <a href="#" class="learn-more-link">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hot Fix 3 -->
+            <div class="hotfix-entry">
+                <div class="hotfix-title-bar">
+                    <span class="hotfix-number">Hot Fix 3</span>
+                    <div class="hotfix-vertical-line"></div>
+                    <span class="hotfix-entry-title">Title of Hot Fix</span>
+                </div>
+                <div class="hotfix-content-placeholder">
+                    <div class="placeholder-text">Hotfix Content Placeholder</div>
+                </div>
+                <div class="hotfix-description">
+                    <h4>Description of Hotfix -----</h4>
+                    <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</p>
+                    <p>There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is...</p>
+                    <div class="learn-more">
+                        <span>...</span>
+                        <a href="#" class="learn-more-link">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Winners Section -->
+        <div class="winners-section">
+            <div class="section-header">
+                <h2 class="section-title">Q3 FY25 Winners</h2>
+                <div class="section-underline"></div>
+            </div>
+
+            <div class="winners-grid">
+                <div class="winner-profile">
+                    <div class="winner-image-container">
+                        <div class="winner-image-placeholder">
+                            <div class="placeholder-text">Photo</div>
+                        </div>
+                        <div class="octagonal-frame"></div>
+                    </div>
+                    <div class="winner-pedestal"></div>
+                    <div class="winner-info">
+                        <div class="winner-name">Kenneth Hung</div>
+                        <div class="winner-award">Top Published Volume</div>
+                    </div>
+                </div>
+
+                <div class="winner-profile">
+                    <div class="winner-image-container">
+                        <div class="winner-image-placeholder">
+                            <div class="placeholder-text">Photo</div>
+                        </div>
+                        <div class="octagonal-frame"></div>
+                    </div>
+                    <div class="winner-pedestal"></div>
+                    <div class="winner-info">
+                        <div class="winner-name">Deeksha Sharma</div>
+                        <div class="winner-award">Quality</div>
+                    </div>
+                </div>
+
+                <div class="winner-profile">
+                    <div class="winner-image-container">
+                        <div class="winner-image-placeholder">
+                            <div class="placeholder-text">Photo</div>
+                        </div>
+                        <div class="octagonal-frame"></div>
+                    </div>
+                    <div class="winner-pedestal"></div>
+                    <div class="winner-info">
+                        <div class="winner-name">Lucy Yue</div>
+                        <div class="winner-award">Popularity</div>
+                    </div>
+                </div>
+
+                <div class="winner-profile">
+                    <div class="winner-image-container">
+                        <div class="winner-image-placeholder">
+                            <div class="placeholder-text">Photo</div>
+                        </div>
+                        <div class="octagonal-frame"></div>
+                    </div>
+                    <div class="winner-pedestal"></div>
+                    <div class="winner-info">
+                        <div class="winner-name">Mukul Pingley</div>
+                        <div class="winner-award">Reviewed Volume</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-separator"></div>
+
+            <!-- Articles Section -->
+            <div class="articles-section">
+                <div class="section-header">
+                    <h2 class="section-title">Top Voted Article of Q3FY25</h2>
+                    <div class="section-underline"></div>
+                </div>
+
+                <div class="articles-table">
+                    <div class="table-header">
+                        <div class="header-cell">#Article Number</div>
+                        <div class="header-cell">Article Title Article Title Article...</div>
+                        <div class="header-cell">Author Name</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell article-number">1</div>
+                        <div class="table-cell article-title">Article Title Article Title Article...</div>
+                        <div class="table-cell author-name">Author Name</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell article-number">#12345678910</div>
+                        <div class="table-cell article-title">Article Title Article Title Article...</div>
+                        <div class="table-cell author-name">Author Name</div>
+                    </div>
+                </div>
+
+                <div class="concluding-info">
+                    <span>To read about award program and all Q3FY25 winners, please refer here - </span>
+                    <a href="#" class="concluding-link">Knowledge Recognition Program Q3FY25 Winners final ppt.pptx</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Section -->
+        <div class="final-section">
+            <!-- RECAP Section -->
+            <div class="recap-section">
+                <div class="section-header">
+                    <h2 class="section-title">RECAP: SolvNetPlus Modernization 28 June Release</h2>
+                    <div class="section-underline"></div>
+                </div>
+                <div class="recap-content">
+                    <p>This release delivered several enhancements to bring efficiency in knowledge workflows and to enhance customer experience!</p>
+                    <p>You can go through these 2 articles to know more about these recent updates:</p>
+                    <div class="article-links">
+                        <div class="article-link-item">
+                            <strong>Improved Customer Experience:</strong>
+                            <div class="link-indent">
+                                <a href="#" class="article-link">SolvNetPlus Community Enhancement Notification</a>
+                            </div>
+                        </div>
+                        <div class="article-link-item">
+                            <strong>Efficient Knowledge Workflows:</strong>
+                            <div class="link-indent">
+                                <a href="#" class="article-link">SolvNetPlus Knowledge Workflow (Internal) Enhancement Update</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Highlights Section -->
+            <div class="highlights-section">
+                <div class="section-header">
+                    <h2 class="section-title">Highlights</h2>
+                    <div class="section-underline"></div>
+                </div>
+                <div class="highlights-grid">
+                    <div class="highlight-placeholder">
+                        <div class="placeholder-text">Highlight Content 1</div>
+                    </div>
+                    <div class="highlight-placeholder">
+                        <div class="placeholder-text">Highlight Content 2</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Author Signature Block -->
+            <div class="author-section">
+                <div class="author-profile">
+                    <div class="author-image-placeholder">
+                        <div class="placeholder-text">Photo</div>
+                    </div>
+                </div>
+                <div class="author-name">Sumeet Agrawala</div>
+                <div class="author-underline"></div>
+                <div class="author-designation">Full Designation Full Designation</div>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                <div class="footer-separator"></div>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">About</a>
+                    <span class="footer-divider">|</span>
+                    <a href="#" class="footer-link">Privacy</a>
+                    <span class="footer-divider">|</span>
+                    <a href="#" class="footer-link">Manage Subscription</a>
+                </div>
+                <div class="copyright">
+                    ©2025 Synopsys, Inc. All Rights Reserved
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

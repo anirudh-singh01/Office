@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SolvNetPlus Newsletter — August 2025</title>
+<style>
+  :root{
+    --purple:#6a4bd1;           /* accent */
+    --text:#333;
+    --muted:#777;
+    --line:#e6e6e6;
+    --bg:#ffffff;
+    --placeholder:#e9e9ee;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:#f6f6f8;
+    font-family: Arial, Helvetica, sans-serif;
+    color:var(--text);
+  }
+  .page{
+    width: 520px;
+    margin: 24px auto 40px;
+    background: var(--bg);
+    border: 2px dashed #cfcfd6;
+    padding: 0 12px 28px;
+    position: relative;
+  }
+  /* Top brand */
+  .brand{
+    text-align:center;
+    font-weight:700;
+    letter-spacing:.2px;
+    margin: 10px 0 8px;
+    color:#888;
+  }
+  .brand span{
+    color:var(--purple);
+    font-weight:800;
+  }
+  .rule{
+    height:3px;
+    background: var(--line);
+    border-top:3px solid var(--purple);
+    margin: 6px 0 12px;
+  }
+  /* Header title/date */
+  .head-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding: 8px 8px 0;
+    font-size: 16px;
+    font-weight:700;
+  }
+  .date{
+    color:#555;
+    font-weight:700;
+  }
+  .hero{
+    margin: 14px 8px 10px;
+    height: 150px;
+    background: var(--placeholder);
+    border-radius: 2px;
+  }
+  .para{
+    margin: 6px 8px 16px;
+    line-height: 1.35;
+    font-size: 12px;
+    color:#545454;
+    border-bottom:1px solid var(--line);
+    padding-bottom: 14px;
+  }
+  /* Section Heading */
+  .section{
+    margin: 10px 8px 0;
+  }
+  .section h3{
+    font-size:14px;
+    margin: 0 0 10px;
+    font-weight:800;
+  }
+  .title-accent{
+    display:inline-block;
+    border-bottom:3px solid var(--purple);
+    padding-bottom:2px;
+  }
+  /* Hotfix list */
+  .hotfix{
+    margin: 0 0 22px;
+  }
+  .hf-head{
+    display:flex;
+    gap:10px;
+    align-items:center;
+    margin-bottom:8px;
+    font-size:12px;
+    font-weight:700;
+  }
+  .hf-no{
+    position:relative;
+    padding-left:16px;
+    color:#222;
+  }
+  .hf-no::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:2px;
+    bottom:2px;
+    width:4px;
+    background:var(--purple);
+  }
+  .hf-box{
+    background: var(--placeholder);
+    height: 110px;
+    border-radius:2px;
+    margin: 4px 0 8px;
+  }
+  .hf-desc{
+    margin: 0;
+    padding-right: 56px;
+    color:#565656;
+    font-size: 11.5px;
+    line-height:1.45;
+    position:relative;
+  }
+  .learn{
+    position:absolute;
+    right:0;
+    bottom:0;
+    font-size:11px;
+    color:#7b7b85;
+  }
+  .learn em{color:#6b6b76; font-style:normal;}
+  /* Winners row */
+  .winners{
+    padding-top: 6px;
+  }
+  .avatar-row{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 6px;
+  }
+  .avatar{
+    text-align:center;
+    font-size: 11px;
+  }
+  .hex{
+    width: 100%;
+    height: 76px;
+    background: conic-gradient(from 0deg, #bfe2ff, #6ec5ff, #bfe2ff);
+    clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
+    padding: 8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .hex-inner{
+    width: 72%;
+    height: 72%;
+    background:#f7f7fb;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#999;
+    font-weight:700;
+  }
+  .name{margin-top:6px; font-weight:700; font-size:11px;}
+  .tag{color:#7a7a86; font-size:10px; font-style:italic;}
+  /* Top Voted table */
+  .table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top: 8px;
+    font-size:12px;
+  }
+  .table th, .table td{
+    border:1px solid var(--line);
+    padding:8px 10px;
+    text-align:left;
+  }
+  .table th{
+    background:#f7f7fb;
+    font-weight:800;
+  }
+  .table .idx{
+    width:30px;
+    text-align:center;
+    font-weight:700;
+  }
+  .note{
+    margin: 8px 0 0;
+    font-size: 10.5px;
+    color:#6c6c76;
+  }
+  /* Recap */
+  .bullet-links{
+    margin:8px 0;
+    padding-left:0;
+    list-style:none;
+  }
+  .bullet-links li{
+    position:relative;
+    padding-left:12px;
+    margin: 6px 0;
+    font-size:12px;
+  }
+  .bullet-links li::before{
+    content:"";
+    width:6px;height:6px;border-radius:50%;
+    background:var(--purple);
+    position:absolute;left:0;top:6px;
+  }
+  .inline-links a{ color:var(--purple); text-decoration:none; border-bottom:1px dotted var(--purple)}
+  .inline-links a:hover{ text-decoration:underline }
+  /* Highlights */
+  .highlight-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 10px 0;
+  }
+  .ph-lg{
+    background:var(--placeholder);
+    height: 150px;
+    border-radius:2px;
+  }
+  .sign{
+    display:flex;
+    align-items:center;
+    flex-direction:column;
+    margin: 8px 0 0;
+  }
+  .sig-blob{
+    width:46px; height:46px;
+    background:#dedeee;
+    border-radius:50%;
+  }
+  .sig-name{
+    margin-top:6px;
+    font-size:12px;
+    font-weight:700;
+  }
+  .sig-title{
+    font-size:10px;
+    color:#7a7a86;
+    font-style:italic;
+  }
+  /* Footer */
+  .footer-rule{
+    border-top:3px solid var(--purple);
+    margin: 14px 0 10px;
+  }
+  .footer-links{
+    display:flex;
+    justify-content:center;
+    gap:22px;
+    font-size:12px;
+    color:#6c6c76;
+  }
+  .copyright{
+    text-align:center;
+    font-size:10.5px;
+    color:#8b8b94;
+    margin-top:8px;
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="brand">SolvNet<span>Plus</span></div>
+    <div class="rule"></div>
+
+    <div class="head-row">
+      <div>SolvNetPlus Newsletter</div>
+      <div class="date">August, 2025</div>
+    </div>
+
+    <div class="hero"></div>
+
+    <div class="para">
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+      industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and 
+      scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into 
+      electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of 
+      Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like 
+      Aldus PageMaker including versions of Lorem Ipsum.
+    </div>
+
+    <!-- Hotfix Section -->
+    <div class="section">
+      <h3><span class="title-accent">KI Aug 2025 Hotfix - Important Enhancements</span></h3>
+
+      <!-- Hotfix 1 -->
+      <div class="hotfix">
+        <div class="hf-head">
+          <div class="hf-no">Hot Fix 1</div>
+          <div>Title of Hot Fix</div>
+        </div>
+        <div class="hf-box"></div>
+        <p class="hf-desc">
+          <strong>Description of Hotfix —</strong><br/>
+          “Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit…”<br/>
+          “There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is …”
+          <span class="learn">… <em>Learn More</em></span>
+        </p>
+      </div>
+
+      <!-- Hotfix 2 -->
+      <div class="hotfix">
+        <div class="hf-head">
+          <div class="hf-no">Hot Fix 2</div>
+          <div>Title of Hot Fix</div>
+        </div>
+        <div class="hf-box" style="height:80px"></div>
+        <p class="hf-desc">
+          <strong>Description of Hotfix —</strong><br/>
+          “Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit…”<br/>
+          “There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is …”
+          <span class="learn">… <em>Learn More</em></span>
+        </p>
+      </div>
+
+      <!-- Hotfix 3 -->
+      <div class="hotfix">
+        <div class="hf-head">
+          <div class="hf-no">Hot Fix 3</div>
+          <div>Title of Hot Fix</div>
+        </div>
+        <div class="hf-box" style="height:120px"></div>
+        <p class="hf-desc">
+          <strong>Description of Hotfix —</strong><br/>
+          “Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit…”<br/>
+          “There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is …”
+          <span class="learn">… <em>Learn More</em></span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Winners -->
+    <div class="section winners">
+      <h3><span class="title-accent">Q3 FY25 Winners</span></h3>
+      <div class="avatar-row">
+        <div class="avatar">
+          <div class="hex"><div class="hex-inner">IMG</div></div>
+          <div class="name">Kenneth Hung</div>
+          <div class="tag">Top Published Volume</div>
+        </div>
+        <div class="avatar">
+          <div class="hex"><div class="hex-inner">IMG</div></div>
+          <div class="name">Deeksha Sharma</div>
+          <div class="tag">Quality</div>
+        </div>
+        <div class="avatar">
+          <div class="hex"><div class="hex-inner">IMG</div></div>
+          <div class="name">Lucy Yue</div>
+          <div class="tag">Popularity</div>
+        </div>
+        <div class="avatar">
+          <div class="hex"><div class="hex-inner">IMG</div></div>
+          <div class="name">Mukul Pingley</div>
+          <div class="tag">Reviewed Volume</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top voted table -->
+    <div class="section">
+      <h3><span class="title-accent">Top Voted Article of Q3FY25</span></h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="idx">#</th>
+            <th>#Article Number</th>
+            <th>Article Title Article Title Article Title …</th>
+            <th>Author Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="idx">1</td>
+            <td>#Article Number</td>
+            <td>Article Title Article Title Article Title Article …</td>
+            <td>Author Name</td>
+          </tr>
+          <tr>
+            <td class="idx">2</td>
+            <td>#12345678910</td>
+            <td>Article Title Article Title Article Title Article …</td>
+            <td>Author Name</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="note">
+        To read about award program and all Q3FY25 winners, please refer here – <u>Knowledge Recognition Program Q3FY25 Winners final ppt.pptx</u>
+      </div>
+    </div>
+
+    <!-- Recap -->
+    <div class="section">
+      <h3><span class="title-accent">RECAP: SolvNetPlus Modernization 28 June Release</span></h3>
+      <div class="para" style="border:0; padding-bottom:0; margin-bottom:6px">
+        This release delivered several enhancements to bring efficiency in knowledge workflows and to enhance
+        customer experience! 
+      </div>
+      <div class="para" style="border:0; padding-bottom:0; margin-bottom:0">
+        You can go through these 2 articles to know more about these recent updates:
+      </div>
+      <ul class="bullet-links inline-links">
+        <li>Improved Customer Experience: <a href="#">SolvNetPlus Community Enhancement Notification</a></li>
+        <li>Efficient Knowledge Workflows: <a href="#">SolvNetPlus Knowledge Workflow (Internal) Enhancement Update</a></li>
+      </ul>
+    </div>
+
+    <!-- Highlights -->
+    <div class="section">
+      <h3><span class="title-accent">Highlights</span></h3>
+      <div class="highlight-grid">
+        <div class="ph-lg"></div>
+        <div class="ph-lg"></div>
+      </div>
+      <div class="sign">
+        <div class="sig-blob"></div>
+        <div class="sig-name">Sumeet Agrawala</div>
+        <div class="sig-title">Full Designation Full Designation</div>
+      </div>
+    </div>
+
+    <div class="footer-rule"></div>
+    <div class="footer-links">
+      <span>About</span>
+      <span>Privacy</span>
+      <span>Manage Subscription</span>
+    </div>
+    <div class="copyright">
+      © 2025 Synopsys, Inc. All Rights Reserved
+    </div>
+  </div>
+</body>
+</html>
