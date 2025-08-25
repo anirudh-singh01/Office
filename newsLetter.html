@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SolvNetPlus Newsletter</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SolvNetPlus Newsletter</title>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,7 +13,7 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', Arial, sans-serif;
             background-color: #ffffff;
             color: #333333;
             line-height: 1.6;
@@ -21,17 +22,18 @@
         .newsletter-container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 30px;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
 
         .logo {
             font-size: 32px;
-            font-weight: bold;
+            font-weight: 700;
+            font-family: 'Roboto', Arial, sans-serif;
             margin-bottom: 30px;
         }
 
@@ -40,44 +42,47 @@
         }
 
         .logo-plus {
-            color: #6a4c93;
+            color: #7E45AF;
         }
 
         .header-line {
             height: 4px;
-            background-color: #6a4c93;
-            margin-bottom: 25px;
+            background-color: #7E45AF;
+            margin-bottom: 30px;
         }
 
         .title-section {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 20px;
+            margin-bottom: 35px;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 20px;
         }
 
         .newsletter-title {
             font-size: 24px;
-            font-weight: bold;
+            font-weight: 700;
+            font-family: 'Roboto', Arial, sans-serif;
             color: #333333;
         }
 
         .newsletter-date {
             font-size: 18px;
-            font-weight: bold;
+            font-weight: 700;
+            font-family: 'Roboto', Arial, sans-serif;
             color: #333333;
         }
 
         .separator-line {
             height: 1px;
             background-color: #333333;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
         .main-content {
             text-align: center;
+            margin-bottom: 40px;
         }
 
         .image-placeholder {
@@ -85,13 +90,15 @@
             max-width: 500px;
             height: 300px;
             background-color: #e0e0e0;
-            margin: 0 auto 30px auto;
+            margin: 0 auto 40px auto;
             border: 1px solid #e0e0e0;
         }
 
         .content-text {
             text-align: left;
             font-size: 16px;
+            font-weight: 400;
+            font-family: 'Roboto', Arial, sans-serif;
             line-height: 1.6;
             color: #333333;
             max-width: 100%;
@@ -99,75 +106,74 @@
 
         /* Part 2: Hotfix Styles */
         .hotfix-header {
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         .hotfix-main-title {
             font-size: 24px;
-            font-weight: bold;
+            font-weight: 700;
+            font-family: 'Roboto', Arial, sans-serif;
             color: #333333;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .hotfix-accent-line {
             height: 4px;
-            background-color: #6a4c93;
+            background-color: #7E45AF;
             width: 100%;
         }
 
         .hotfix-header-lines {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
         .hotfix-thin-line {
             height: 1px;
             background-color: #333333;
             width: 100%;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
         }
 
         .hotfix-purple-line {
-            height: 4px;
-            background-color: #6a4c93;
-            width: 300px;
+            height: 3px;
+            background-color: #7E45AF;
+            width: 60px;
         }
 
         .hotfix-section {
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         .hotfix-item {
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         .hotfix-title {
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             font-size: 18px;
+            font-weight: 600;
+            font-family: 'Roboto', Arial, sans-serif;
             position: relative;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 15px;
         }
 
-        .hotfix-title::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            height: 4px;
-            background-color: #6a4c93;
-            width: 120px;
-        }
+
 
         .hotfix-number {
-            font-weight: bold;
+            font-weight: 700;
+            font-family: 'Roboto', Arial, sans-serif;
             color: #333333;
         }
 
         .hotfix-separator {
-            margin: 0 10px;
-            color: #333333;
+            border-right: 3px solid #7E45AF;
+            padding: 3px 9px 0 0;
+            height: 30px;
+            display: flex;
+            align-items: center;
         }
 
         .hotfix-item-title {
@@ -175,45 +181,56 @@
         }
 
         .hotfix-image-placeholder {
-            width: 100%;
-            height: 250px;
+            width: auto;
+            max-width: 100%;
+            height: auto;
             background-color: #e0e0e0;
             border: 1px solid #e0e0e0;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            object-fit: contain;
+            display: block;
+            box-sizing: border-box;
         }
 
 
 
         .hotfix-description-header {
             font-size: 16px;
-            font-weight: bold;
+            font-weight: 600;
+            font-family: 'Roboto', Arial, sans-serif;
             color: #333333;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .hotfix-description-text {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .hotfix-description-text p {
             font-size: 14px;
+            font-weight: 400;
+            font-family: 'Roboto', Arial, sans-serif;
             color: #333333;
             line-height: 1.6;
-            margin-bottom: 8px;
+            margin-bottom: 15px;
         }
 
         .hotfix-learn-more {
             text-align: right;
             font-size: 14px;
-            color: #333333;
+            font-weight: 400;
             font-style: italic;
-            margin-top: 10px;
+            font-family: 'Roboto', Arial, sans-serif;
+            color: #333333;
+            margin-top: 15px;
         }
 
         .learn-more-link {
-            color: #6a4c93;
+            color: #7E45AF;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 600;
+            font-family: 'Roboto', Arial, sans-serif;
         }
 
         .learn-more-link:hover {
@@ -225,32 +242,33 @@
             height: 1px;
             background-color: #333333;
             width: 100%;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         .winners-section {
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
 
         .winners-title {
             font-size: 24px;
-            font-weight: bold;
+            font-weight: 700;
+            font-family: 'Roboto', Arial, sans-serif;
             color: #333333;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .winners-accent-line {
-            height: 4px;
-            background-color: #6a4c93;
-            width: 100%;
-            margin-bottom: 40px;
+            height: 3px;
+            background-color: #7E45AF;
+            width: 60px;
+            margin-bottom: 50px;
         }
 
         .winners-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-bottom: 40px;
+            gap: 30px;
+            margin-bottom: 50px;
         }
 
         .winner-profile {
@@ -260,7 +278,7 @@
         .winner-image-frame {
             width: 80px;
             height: 80px;
-            margin: 0 auto 15px;
+            margin: 0 auto 20px;
             background: linear-gradient(135deg, #ADD8E6, #87CEEB);
             clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
             position: relative;
@@ -276,7 +294,7 @@
             height: 0;
             border-left: 20px solid transparent;
             border-right: 20px solid transparent;
-            border-top: 15px solid #6a4c93;
+            border-top: 15px solid #7E45AF;
         }
 
         .winner-image-placeholder {
@@ -284,54 +302,61 @@
             height: 100%;
             background-color: #ADD8E6;
             clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            object-fit: cover;
         }
 
         .winner-name {
             font-size: 16px;
-            font-weight: bold;
+            font-weight: 600;
+            font-family: 'Roboto', Arial, sans-serif;
             color: #333333;
-            margin-bottom: 5px;
+            margin-bottom: 15px;
         }
 
         .winner-category {
             font-size: 14px;
-            color: #333333;
+            font-weight: 400;
             font-style: italic;
+            font-family: 'Roboto', Arial, sans-serif;
+            color: #333333;
+            margin-bottom: 0;
         }
 
         .section-separator {
             height: 1px;
             background-color: #333333;
-            margin: 40px 0;
+            margin: 50px 0;
         }
 
         .top-article-section {
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         .top-article-title {
             font-size: 20px;
-            font-weight: bold;
+            font-weight: 700;
+            font-family: 'Roboto', Arial, sans-serif;
             color: #333333;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .top-article-accent-line {
-            height: 4px;
-            background-color: #6a4c93;
-            width: 200px;
-            margin-bottom: 30px;
+            height: 3px;
+            background-color: #7E45AF;
+            width: 60px;
+            margin-bottom: 35px;
         }
 
         .article-list {
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
         .article-item {
             display: flex;
-            align-items: center;
+            align-items: stretch;
             margin-bottom: 0;
             border: 1px solid #e0e0e0;
+            min-height: 80px;
         }
 
         .article-item:nth-child(odd) {
@@ -344,9 +369,10 @@
 
         .article-number {
             font-size: 18px;
-            font-weight: bold;
+            font-weight: 700;
+            font-family: 'Roboto', Arial, sans-serif;
             color: #333333;
-            padding: 12px 15px;
+            padding: 20px 25px;
             min-width: 50px;
             text-align: center;
             border-right: 1px solid #e0e0e0;
@@ -359,52 +385,78 @@
 
         .article-number-box {
             background-color: transparent;
-            padding: 12px 15px;
+            padding: 20px 25px;
             font-size: 16px;
+            font-weight: 400;
+            font-family: 'Roboto', Arial, sans-serif;
             color: #333333;
             min-width: 150px;
             border-right: 1px solid #e0e0e0;
             display: flex;
             align-items: center;
+            height: 100%;
         }
 
         .article-title-box {
             background-color: transparent;
-            padding: 12px 15px;
+            padding: 20px 25px;
             font-size: 16px;
+            font-weight: 400;
+            font-family: 'Roboto', Arial, sans-serif;
             color: #333333;
             flex: 1;
             border-right: 1px solid #e0e0e0;
             display: flex;
             align-items: center;
+            height: 100%;
         }
 
         .article-author-box {
             background-color: transparent;
-            padding: 12px 15px;
+            padding: 20px 25px;
             font-size: 16px;
+            font-weight: 400;
+            font-family: 'Roboto', Arial, sans-serif;
             color: #333333;
             min-width: 120px;
+            border-right: 1px solid #e0e0e0;
             display: flex;
             align-items: center;
+            height: 100%;
+        }
+
+        .article-category-box {
+            background-color: transparent;
+            padding: 20px 25px;
+            font-size: 16px;
+            font-weight: 400;
+            font-family: 'Roboto', Arial, sans-serif;
+            color: #333333;
+            min-width: 100px;
+            display: flex;
+            align-items: center;
+            height: 100%;
         }
 
         .footer-disclaimer {
-            margin-top: 40px;
-            padding: 20px 0;
+            margin-top: 50px;
+            padding: 25px 0;
             border-top: 1px solid #e0e0e0;
         }
 
         .footer-disclaimer p {
             font-size: 14px;
+            font-weight: 400;
+            font-family: 'Roboto', Arial, sans-serif;
             color: #333333;
             line-height: 1.6;
         }
 
         .disclaimer-link {
-            color: #6a4c93;
+            color: #7E45AF;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 600;
+            font-family: 'Roboto', Arial, sans-serif;
         }
 
         .disclaimer-link:hover {
@@ -413,48 +465,54 @@
 
         /* Part 4: RECAP, Highlights, Author Profile, and Footer Styles */
         .recap-section {
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
 
         .recap-title {
             font-size: 24px;
-            font-weight: bold;
+            font-weight: 700;
+            font-family: 'Roboto', Arial, sans-serif;
             color: #333333;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .recap-accent-line {
-            height: 4px;
-            background-color: #6a4c93;
-            width: 250px;
+            height: 3px;
+            background-color: #7E45AF;
+            width: 60px;
         }
 
         .recap-content {
             text-align: left;
             font-size: 16px;
+            font-weight: 400;
+            font-family: 'Roboto', Arial, sans-serif;
             line-height: 1.6;
             color: #333333;
             max-width: 100%;
         }
 
         .recap-articles {
-            margin-top: 20px;
+            margin-top: 25px;
         }
 
         .recap-article {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
         .recap-article-label {
-            font-weight: bold;
+            font-weight: 600;
+            font-family: 'Roboto', Arial, sans-serif;
             color: #333333;
-            margin-right: 10px;
+            margin-right: 15px;
             display: inline-block;
         }
 
         .recap-article-link {
-            color: #6a4c93;
+            color: #7E45AF;
             text-decoration: none;
+            font-weight: 400;
+            font-family: 'Roboto', Arial, sans-serif;
         }
 
         .recap-article-link:hover {
@@ -462,27 +520,28 @@
         }
 
         .highlights-section {
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
 
         .highlights-title {
             font-size: 24px;
-            font-weight: bold;
+            font-weight: 700;
+            font-family: 'Roboto', Arial, sans-serif;
             color: #333333;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .highlights-accent-line {
-            height: 4px;
-            background-color: #6a4c93;
-            width: 120px;
-            margin-bottom: 30px;
+            height: 3px;
+            background-color: #7E45AF;
+            width: 60px;
+            margin-bottom: 35px;
         }
 
         .highlights-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            gap: 30px;
         }
 
         .highlight-box {
@@ -490,14 +549,16 @@
             height: 200px;
             background-color: #e0e0e0;
             border: 1px solid #e0e0e0;
+            border-radius: 8px;
         }
 
         .author-section {
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
 
         .author-profile {
             text-align: center;
+            margin: 30px 0;
         }
 
         .author-image {
@@ -505,48 +566,54 @@
             height: 80px;
             background-color: #e0e0e0;
             border-radius: 50%;
-            margin: 0 auto 15px;
+            margin: 0 auto 20px;
             border: 1px solid #e0e0e0;
+            object-fit: cover;
         }
 
         .author-name {
             font-size: 18px;
-            font-weight: bold;
+            font-weight: 600;
+            font-family: 'Roboto', Arial, sans-serif;
             color: #333333;
-            margin-bottom: 5px;
+            margin-bottom: 15px;
         }
 
         .author-designation {
             font-size: 14px;
-            color: #666666;
+            font-weight: 400;
             font-style: italic;
+            font-family: 'Roboto', Arial, sans-serif;
+            color: #666666;
+            margin-bottom: 0;
         }
 
         .newsletter-footer {
-            margin-top: 40px;
-            padding: 20px 0;
-            border-top: 1px solid #e0e0e0;
+            margin-top: 50px;
+            padding: 25px 0;
         }
 
         .footer-accent-line {
             height: 4px;
-            background-color: #6a4c93;
+            background-color: #7E45AF;
             width: 100%;
+            margin-bottom: 25px;
         }
 
         .footer-nav {
             display: flex;
             justify-content: center;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 15px;
         }
 
         .footer-link {
             color: #333333;
             text-decoration: none;
-            font-weight: bold;
-            margin: 0 10px;
+            font-weight: 600;
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0 15px;
         }
 
         .footer-link:hover {
@@ -555,12 +622,14 @@
 
         .footer-separator {
             color: #333333;
-            margin: 0 5px;
+            margin: 0 15px;
         }
 
         .footer-copyright {
             text-align: center;
             font-size: 12px;
+            font-weight: 400;
+            font-family: 'Roboto', Arial, sans-serif;
             color: #666666;
         }
 
@@ -820,7 +889,17 @@
 
         <main class="main-content">
             <div class="content-text">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                <p>Welcome to the first edition of SolvNetPlus newsletter!</p>
+                
+                <p>This newsletter provides a consolidated view of recent and upcoming changes impacting your customer experience and knowledge flows. The newsletter will also recognize knowledge award program winners, top articles and highlight customer adoption and self-help successes.</p>
+                
+                <p style="margin: 30px 0;">This first edition focuses on <strong>Important hotfixes we have released on August 22 after SolvNetPlus Modernization – 28 June Release.</strong></p>
+                
+                <p style="margin: 30px 0;">And <strong style="color: #0066cc;">congratulations</strong> to all the CSG Knowledge Award Winners - Q3FY25 again!</p>
+                
+                <p>We will evolve to learn along to way to share other useful information. Thanks for your attention and</p>
+                
+                <p>If you have questions and feedback, please write to us at Knowledge-Initiative <a href="mailto:knowledge-initiative@synopsys.com" style="color: #0066cc; text-decoration: underline; font-weight: bold;">knowledge-initiative@synopsys.com</a>.</p>
             </div>
         </main>
     </div>
@@ -839,150 +918,138 @@
             <div class="hotfix-item">
                 <div class="hotfix-title">
                     <span class="hotfix-number">Hot Fix 1</span>
-                    <span class="hotfix-separator">|</span>
-                    <span class="hotfix-item-title">Title of Hot Fix</span>
+                    <span class="hotfix-separator"></span>
+                    <span class="hotfix-item-title">Custom Email Notifications</span>
                 </div>
-                <div class="hotfix-image-placeholder"></div>
-                <div class="hotfix-description-header">Description of Hotfix ------</div>
+                
                 <div class="hotfix-description-text">
-                    <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</p>
-                    <p>There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is...</p>
+                    <p>Now contains all important details including title and link.</p>
                 </div>
+                <img src="media/h1.png" alt="Hot Fix 1 Image" class="hotfix-image-placeholder">
                 <div class="hotfix-learn-more"></div>
             </div>
 
             <div class="hotfix-item">
                 <div class="hotfix-title">
                     <span class="hotfix-number">Hot Fix 2</span>
-                    <span class="hotfix-separator">|</span>
-                    <span class="hotfix-item-title">Title of Hot Fix</span>
+                    <span class="hotfix-separator"></span>
+                    <span class="hotfix-item-title">Comment box size</span>
                 </div>
-                <div class="hotfix-image-placeholder"></div>
-                <div class="hotfix-description-header">Description of Hotfix ------</div>
                 <div class="hotfix-description-text">
-                    <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</p>
-                    <p>There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is...</p>
+                    <p>Comment box size and text-limit has been increased for all actions: Send Back To Author, Reassign, Reject and Archive.</p>
                 </div>
+                <img src="media/h2.png" alt="Hot Fix 2 Image" class="hotfix-image-placeholder">
                 <div class="hotfix-learn-more"></div>
             </div>
 
             <div class="hotfix-item">
                 <div class="hotfix-title">
                     <span class="hotfix-number">Hot Fix 3</span>
-                    <span class="hotfix-separator">|</span>
-                    <span class="hotfix-item-title">Title of Hot Fix</span>
+                    <span class="hotfix-separator"></span>
+                    <span class="hotfix-item-title">Complete Article Access and Edit-Privileges</span>
                 </div>
-                <div class="hotfix-image-placeholder"></div>
-                <div class="hotfix-description-header">Description of Hotfix ------</div>
                 <div class="hotfix-description-text">
-                    <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</p>
-                    <p>There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is...</p>
+                    <p>All Reviewers (KM, TR, LR) assigned to the article have complete article access and edit-privileges.</p>
+                    <p><strong>a.</strong> The article detail section can be edited using "Edit" button on the top or pencil icons for respective section.</p>
+                    <p><strong>b.</strong> The Product L1/L2 can now be modified by reviewers themselves – No need to send it back to author.</p>
                 </div>
+                <img src="hotfix3.jpg" alt="Hot Fix 3 Image" class="hotfix-image-placeholder">
                 <div class="hotfix-learn-more"></div>
             </div>
 
             <div class="hotfix-item">
                 <div class="hotfix-title">
                     <span class="hotfix-number">Hot Fix 4</span>
-                    <span class="hotfix-separator">|</span>
-                    <span class="hotfix-item-title">Title of Hot Fix</span>
+                    <span class="hotfix-separator"></span>
+                    <span class="hotfix-item-title">change Level of Revies and Manually Choose</span>
                 </div>
-                <div class="hotfix-image-placeholder"></div>
-                <div class="hotfix-description-header">Description of Hotfix ------</div>
                 <div class="hotfix-description-text">
-                    <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</p>
-                    <p>There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is...</p>
+                    <p>Selected KMs can change level of review and manually choose TR and LR overriding system auto-assign after their approval.</p>
                 </div>
+                <img src="media/h4.png" alt="Hot Fix 4 Image" class="hotfix-image-placeholder">
                 <div class="hotfix-learn-more"></div>
             </div>
 
             <div class="hotfix-item">
                 <div class="hotfix-title">
                     <span class="hotfix-number">Hot Fix 5</span>
-                    <span class="hotfix-separator">|</span>
-                    <span class="hotfix-item-title">Title of Hot Fix</span>
+                    <span class="hotfix-separator"></span>
+                    <span class="hotfix-item-title">Approval Work Items</span>
                 </div>
-                <div class="hotfix-image-placeholder"></div>
-                <div class="hotfix-description-header">Description of Hotfix ------</div>
                 <div class="hotfix-description-text">
-                    <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</p>
-                    <p>There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is...</p>
+                    <p>All Salesforce knowledge users (authors and reviewers) can now see article approval and rejection stages in the ‘Approval Work Items’ section at the end of the article page</p>
                 </div>
+                <img src="media/h5.png" alt="Hot Fix 5 Image" class="hotfix-image-placeholder">
+                <p>Note: In the event where Reviewer sends an article back to author for correction, the approval work item of this article continues to show the same reviewer's name as this article will come back to the same reviewer once author resubmits an article. </p>
                 <div class="hotfix-learn-more"></div>
             </div>
 
             <div class="hotfix-item">
                 <div class="hotfix-title">
                     <span class="hotfix-number">Hot Fix 6</span>
-                    <span class="hotfix-separator">|</span>
-                    <span class="hotfix-item-title">Title of Hot Fix</span>
+                    <span class="hotfix-separator"></span>
+                    <span class="hotfix-item-title">Removed “Recall” option</span>
                 </div>
-                <div class="hotfix-image-placeholder"></div>
-                <div class="hotfix-description-header">Description of Hotfix ------</div>
                 <div class="hotfix-description-text">
-                    <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</p>
-                    <p>There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is...</p>
+                    <p>Removed “Recall” option altogether as it was causing confusion. 
+                        Users can use ‘Chatter’ with @name tag or teams or email to suggest change/action to latest assignee of the article by knowing it from “Assigned To” field in the Article Approval Work Items at the end of article page as shown in above point #5.
+                        </p>
                 </div>
+                <img src="media/h6.png" alt="Hot Fix 6 Image" class="hotfix-image-placeholder">
                 <div class="hotfix-learn-more"></div>
             </div>
 
             <div class="hotfix-item">
                 <div class="hotfix-title">
                     <span class="hotfix-number">Hot Fix 7</span>
-                    <span class="hotfix-separator">|</span>
-                    <span class="hotfix-item-title">Title of Hot Fix</span>
+                    <span class="hotfix-separator"></span>
+                    <span class="hotfix-item-title">Re-assign</span>
                 </div>
-                <div class="hotfix-image-placeholder"></div>
-                <div class="hotfix-description-header">Description of Hotfix ------</div>
                 <div class="hotfix-description-text">
-                    <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</p>
-                    <p>There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is...</p>
+                    <p>Reviewers can now reassign article to any salesforce active reviewer, and not just from the system reviewers list</p>
                 </div>
+                <img src="media/h7.png" alt="Hot Fix 7 Image" class="hotfix-image-placeholder">
                 <div class="hotfix-learn-more"></div>
             </div>
 
             <div class="hotfix-item">
                 <div class="hotfix-title">
                     <span class="hotfix-number">Hot Fix 8</span>
-                    <span class="hotfix-separator">|</span>
-                    <span class="hotfix-item-title">Title of Hot Fix</span>
+                    <span class="hotfix-separator"></span>
+                    <span class="hotfix-item-title">Pending Items For Your Review(New Flow)</span>
                 </div>
-                <div class="hotfix-image-placeholder"></div>
-                <div class="hotfix-description-header">Description of Hotfix ------</div>
                 <div class="hotfix-description-text">
-                    <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</p>
-                    <p>There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is...</p>
+                    <p>The pending article sections “Items to Approve” under Home Page has, for the time being separate sections for both old-flow (pre SolvNetPlus Modernization - 28 June Release) and new flow articles.</p>
                 </div>
+                <img src="media/h8.png" alt="Hot Fix 8 Image" class="hotfix-image-placeholder">
                 <div class="hotfix-learn-more"></div>
             </div>
 
             <div class="hotfix-item">
                 <div class="hotfix-title">
                     <span class="hotfix-number">Hot Fix 9</span>
-                    <span class="hotfix-separator">|</span>
-                    <span class="hotfix-item-title">Title of Hot Fix</span>
+                    <span class="hotfix-separator"></span>
+                    <span class="hotfix-item-title">Pending Items For Your Review(New Flow)</span>
                 </div>
-                <div class="hotfix-image-placeholder"></div>
-                <div class="hotfix-description-header">Description of Hotfix ------</div>
                 <div class="hotfix-description-text">
-                    <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</p>
-                    <p>There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is...</p>
+                    <p>The pending article sections “Items to Approve” under Home Page has, for the time being separate sections for both old-flow (pre SolvNetPlus Modernization - 28 June Release) and new flow articles.</p>
                 </div>
+                <img src="media/h9.png" alt="Hot Fix 9 Image" class="hotfix-image-placeholder">
+                <p>Note: We will now not show “In-Author Review” article in above list to reviewer who sent it back to author as it is not under his action at that moment. Yes, it will come back to same reviewer.</p>
                 <div class="hotfix-learn-more"></div>
             </div>
 
             <div class="hotfix-item">
                 <div class="hotfix-title">
                     <span class="hotfix-number">Hot Fix 10</span>
-                    <span class="hotfix-separator">|</span>
-                    <span class="hotfix-item-title">Title of Hot Fix</span>
+                    <span class="hotfix-separator"></span>
+                    <span class="hotfix-item-title">Pending Items For Your Review(New Flow)</span>
                 </div>
-                <div class="hotfix-image-placeholder"></div>
-                <div class="hotfix-description-header">Description of Hotfix ------</div>
                 <div class="hotfix-description-text">
-                    <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</p>
-                    <p>There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is...</p>
+                    <p>Comments box at various places in the content management flow is now made mandatory. This enables reviewers to add their comments while they are performing tasks associated with article such as ‘Reassign’, ‘Send Back to Author, ‘Reject’ & ‘Archive’.</p>
+                    <p>Note: The comment section at the time ‘Approve’ will be made non-mandatory soon! </p>
                 </div>
+                <img src="media/h10.png" alt="Hot Fix 10 Image" class="hotfix-image-placeholder">
                 <div class="hotfix-learn-more"></div>
             </div>
         </div>
@@ -1001,7 +1068,7 @@
             <div class="winners-grid">
                 <div class="winner-profile">
                     <div class="winner-image-frame">
-                        <div class="winner-image-placeholder"></div>
+                        <img src="media/Kenneth Hung.jpg" alt="Kenneth Hung" class="winner-image-placeholder">
                     </div>
                     <div class="winner-name">Kenneth Hung</div>
                     <div class="winner-category">Top Published Volume</div>
@@ -1009,7 +1076,7 @@
                 
                 <div class="winner-profile">
                     <div class="winner-image-frame">
-                        <div class="winner-image-placeholder"></div>
+                        <img src="media/Deeksha Sharma.jpg" alt="Deeksha Sharma" class="winner-image-placeholder">
                     </div>
                     <div class="winner-name">Deeksha Sharma</div>
                     <div class="winner-category">Quality</div>
@@ -1017,7 +1084,7 @@
                 
                 <div class="winner-profile">
                     <div class="winner-image-frame">
-                        <div class="winner-image-placeholder"></div>
+                        <img src="media/Lucy Yye.jpg" alt="Lucy Yue" class="winner-image-placeholder">
                     </div>
                     <div class="winner-name">Lucy Yue</div>
                     <div class="winner-category">Popularity</div>
@@ -1025,7 +1092,7 @@
                 
                 <div class="winner-profile">
                     <div class="winner-image-frame">
-                        <div class="winner-image-placeholder"></div>
+                        <img src="media/Mukul Pingley.jpg" alt="Mukul Pingley" class="winner-image-placeholder">
                     </div>
                     <div class="winner-name">Mukul Pingley</div>
                     <div class="winner-category">Reviewed Volume</div>
@@ -1045,20 +1112,24 @@
                 <div class="article-item">
                     <div class="article-number">1</div>
                     <div class="article-details">
-                        <div class="article-number-box">#Article Number</div>
-                        <div class="article-title-box">Article Title Article Title Article ...</div>
-                        <div class="article-author-box">Author Name</div>
+                        <div class="article-number-box">000049793</div>
+                        <div class="article-title-box">Avoiding Excessive ctos_gls_dly* Buffer Cells in the Clock Path to Resolve Timing Issues</div>
+                        <div class="article-author-box">Ravi Goswami</div>
+                        <div class="article-category-box">18 Votes</div>
                     </div>
                 </div>
                 
                 <div class="article-item">
                     <div class="article-number">2</div>
                     <div class="article-details">
-                        <div class="article-number-box">#12345678910</div>
-                        <div class="article-title-box">Article Title Article Title Article ...</div>
-                        <div class="article-author-box">Author Name</div>
+                        <div class="article-number-box">000048933</div>
+                        <div class="article-title-box">How to Enable Consistent Power Reporting in the Log File</div>
+                        <div class="article-author-box">Deeksha Sharma</div>
+                        <div class="article-category-box">17 Votes</div>
                     </div>
                 </div>
+                
+
             </div>
         </div>
 
@@ -1076,8 +1147,7 @@
             <div class="recap-accent-line"></div>
             
             <div class="recap-content">
-                <p>This release delivered several enhancements to bring efficiency in knowledge workflows and to enhance customer exxperience!</p>
-                <p>You can go through these 2 articles to know more about these recent updates:</p>
+                <p>This release delivered several enhancements to bring efficiency in knowledge workflows and to enhance customer exxperience! You can go through these 2 articles to know more about these recent updates:</p>
                 
                 <div class="recap-articles">
                     <div class="recap-article">
@@ -1098,17 +1168,17 @@
             <div class="highlights-accent-line"></div>
             
             <div class="highlights-grid">
-                <div class="highlight-box"></div>
-                <div class="highlight-box"></div>
+                <img src="media/highlight_img_1_edited.png" alt="Highlight 1" class="highlight-box">
+                <img src="media/highlight_img_2_edited.png" alt="Highlight 2" class="highlight-box">
             </div>
         </div>
 
         <!-- Author Profile Section -->
         <div class="author-section">
             <div class="author-profile">
-                <div class="author-image"></div>
+                <img src="media/sumeet.jpg" alt="Sumeet Aggarwal" class="author-image">
                 <div class="author-name">Sumeet Aggarwal</div>
-                <div class="author-designation">Full Designation Full Designnation</div>
+                <div class="author-designation">Knowledge Initiative and Customer Success</div>
             </div>
         </div>
 
