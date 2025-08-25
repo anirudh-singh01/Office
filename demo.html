@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Email</title>
+    <style>
+        /* Basic styles that work in most email clients including Outlook */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #111C24;
+            background-color: #f4f4f4;
+        }
+        
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            height: 24px;
+            width: 110px;
+        }
+        
+        .banner {
+            background-color: #7E45AF;
+            height: 3px;
+            margin: 0 auto;
+        }
+        
+        .title-section {
+            padding: 0 18px;
+            text-align: center;
+        }
+        
+        .title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #111C24;
+            padding: 11px 0;
+        }
+        
+        .title-divider {
+            border-top: 1px solid #111C24;
+            margin: 20px auto;
+            width: 100%;
+        }
+        
+        .content-section {
+            padding: 15px 18px;
+        }
+        
+        .content-text {
+            color: #111C24;
+            margin-bottom: 15px;
+        }
+        
+        .numbered-list {
+            padding: 15px;
+        }
+        
+        .list-item {
+            margin-bottom: 15px;
+        }
+        
+        .item-number {
+            width: 7%;
+            padding: 0 0 0 18px;
+            vertical-align: top;
+        }
+        
+        .number-circle {
+            border-right: 3px solid #7E45AF;
+            padding: 3px 9px 0 0;
+            height: 30px;
+        }
+        
+        .number {
+            font-size: 18px;
+            font-weight: bold;
+            color: #000000;
+        }
+        
+        .item-content {
+            width: 33%;
+            padding: 0 22px 0 0;
+            vertical-align: top;
+        }
+        
+        .item-header {
+            font-weight: bold;
+            color: #000000;
+            margin-bottom: 15px;
+        }
+        
+        .item-description {
+            margin-bottom: 15px;
+        }
+        
+        .tertiary-button {
+            color: #316ACA;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .arrow {
+            font-size: 17.5px;
+            margin-left: 5px;
+        }
+        
+        .item-image {
+            width: 27%;
+            padding: 0 18px 0 0;
+            text-align: right;
+            vertical-align: top;
+        }
+        
+        .item-image img {
+            max-height: 120px;
+            height: 120px;
+            max-width: 213px;
+            width: 213px;
+        }
+        
+        .footer-divider {
+            background-color: #7E45AF;
+            height: 3px;
+            margin: 20px 0;
+        }
+        
+        .footer-links {
+            text-align: center;
+            padding: 0 18px;
+        }
+        
+        .footer-links a {
+            color: #646E81;
+            text-decoration: none;
+            font-size: 9px;
+            margin: 0 7.5px;
+        }
+        
+        .footer-copyright {
+            text-align: center;
+            padding: 11px 0;
+            color: #646E81;
+            font-size: 7.5px;
+        }
+        
+        .event-header {
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        .event-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #111C24;
+            margin-bottom: 15px;
+        }
+        
+        .event-date {
+            font-weight: bold;
+            color: #000000;
+            margin-bottom: 10px;
+        }
+        
+        .event-location {
+            color: #111C24;
+            margin-bottom: 10px;
+        }
+        
+        .primary-button {
+            display: inline-block;
+            background-color: #7E45AF;
+            color: #ffffff;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 11.5px;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .divider {
+            height: 1px;
+            background-color: #111C24;
+            margin: 0 30px;
+        }
+        
+        .section-heading {
+            font-size: 18px;
+            font-weight: bold;
+            color: #111C24;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .two-column {
+            margin: 0 auto 20px;
+            max-width: 500px;
+        }
+        
+        .column-left {
+            width: 47%;
+            vertical-align: top;
+        }
+        
+        .column-right {
+            width: 53%;
+            vertical-align: top;
+        }
+        
+        .image-placeholder {
+            width: 100%;
+            height: 146px;
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+        }
+        
+        .event-details h3 {
+            font-size: 18px;
+            font-weight: bold;
+            color: #111C24;
+            margin-bottom: 15px;
+        }
+        
+        .event-details p {
+            color: #111C24;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+        
+        .event-links {
+            font-size: 9px;
+        }
+        
+        .event-links a {
+            color: #000000;
+            text-decoration: none;
+        }
+        
+        .speakers-grid {
+            margin: 20px auto;
+            max-width: 500px;
+            text-align: center;
+        }
+        
+        .speaker-card {
+            display: inline-block;
+            text-align: center;
+            margin: 0 10px 20px;
+            vertical-align: top;
+            width: 140px;
+        }
+        
+        .speaker-image {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+        }
+        
+        .speaker-name {
+            font-weight: bold;
+            color: #111C24;
+            margin-bottom: 8px;
+        }
+        
+        .speaker-title {
+            font-size: 10.5px;
+            color: #111C24;
+            margin-bottom: 8px;
+        }
+        
+        .speaker-company {
+            font-size: 10.5px;
+            color: #111C24;
+            font-style: italic;
+        }
+        
+        .agenda-container {
+            text-align: center;
+            width: 100%;
+        }
+        
+        .agenda-table {
+            width: 100%;
+            max-width: 500px;
+            border-collapse: collapse;
+            margin: 20px auto;
+            display: inline-block;
+        }
+        
+        .agenda-table td {
+            padding: 15px;
+            vertical-align: top;
+        }
+        
+        .agenda-time {
+            width: 23%;
+            background-color: #F0F0F4;
+            font-weight: bold;
+            color: #000000;
+        }
+        
+        .agenda-item {
+            width: 77%;
+            background-color: #F0F0F4;
+            color: #000000;
+        }
+        
+        .agenda-table tr:nth-child(even) td {
+            background-color: #ffffff;
+        }
+        
+        /* Mobile responsive - basic fallbacks */
+        @media (max-width: 600px) {
+            .email-container {
+                margin: 0 10px;
+            }
+            
+            .content-section,
+            .numbered-list {
+                padding: 15px 10px;
+            }
+            
+            .agenda-table {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <img src="https://online.synopsys.com/rs/367-MRV-360/images/logo-purple-2x.png" 
+                 alt="Synopsys Logo" class="logo">
+        </div>
+        
+        <div class="banner"></div>
+        
+        <div class="title-section">
+            <h1 class="title">Email Title Here</h1>
+            <div class="title-divider"></div>
+        </div>
+        
+        <div class="content-section">
+            <p class="content-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it.</p>
+        </div>
+        
+        <div class="numbered-list">
+            <!-- List items using table layout for Outlook compatibility -->
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td class="item-number">
+                        <div class="number-circle">
+                            <span class="number">1.</span>
+                        </div>
+                    </td>
+                    <td class="item-content">
+                        <h3 class="item-header">Header Text Recommend One to Two Lines of Text</h3>
+                        <p class="item-description">Lorem ipsum dolor sit amet, consectetur adipisching elit.</p>
+                        <a href="#" class="tertiary-button">Tertiary Button <span class="arrow">›</span></a>
+                    </td>
+                    <td class="item-image">
+                        <img src="https://online.synopsys.com/rs/367-MRV-360/images/medium-landscape-placeholder-2x.png?version=0" 
+                             alt="Image" title="Image">
+                    </td>
+                </tr>
+            </table>
+            
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td class="item-number">
+                        <div class="number-circle">
+                            <span class="number">2.</span>
+                        </div>
+                    </td>
+                    <td class="item-content">
+                        <h3 class="item-header">Header Text Recommend One to Two Lines of Text</h3>
+                        <p class="item-description">Lorem ipsum dolor sit amet, consectetur adipisching elit.</p>
+                        <a href="#" class="tertiary-button">Tertiary Button <span class="arrow">›</span></a>
+                    </td>
+                    <td class="item-image">
+                        <img src="https://online.synopsys.com/rs/367-MRV-360/images/medium-landscape-placeholder-2x.png?version=0" 
+                             alt="Image" title="Image">
+                    </td>
+                </tr>
+            </table>
+            
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td class="item-number">
+                        <div class="number-circle">
+                            <span class="number">3.</span>
+                        </div>
+                    </td>
+                    <td class="item-content">
+                        <h3 class="item-header">Header Text Recommend One to Two Lines of Text</h3>
+                        <p class="item-description">Lorem ipsum dolor sit amet, consectetur adipisching elit.</p>
+                        <a href="#" class="tertiary-button">Tertiary Button <span class="arrow">›</span></a>
+                    </td>
+                    <td class="item-image">
+                        <img src="https://online.synopsys.com/rs/367-MRV-360/images/medium-landscape-placeholder-2x.png?version=0" 
+                             alt="Image" title="Image">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="banner"></div>
+        
+        <div class="content-section">
+            <div class="event-header">
+                <div class="event-name">Event Name Here</div>
+                <div class="event-date">Date Goes here</div>
+                <div class="event-location">Location Goes here</div>
+                <div style="margin-top: 15px;">
+                    <a href="#" class="primary-button">Primary Button</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <div class="content-section">
+            <div class="two-column">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                        <td class="column-left">
+                            <div class="image-placeholder"></div>
+                        </td>
+                        <td class="column-right">
+                            <div class="event-details">
+                                <h3>Date Goes Here</h3>
+                                <p>Venue Name</p>
+                                <p>Example Address Line 1</p>
+                                <p>Example Address Line 2</p>
+                                <div class="event-links">
+                                    <a href="#" target="_blank">Add to Calendar</a> | 
+                                    <a href="#" target="_blank">View Map</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <p class="content-text">Fill out the event details above. The fields for date, venue, address, etc. are suggestions; feel free to include whatever information you believe to be relevant. Use the Calendar link to add a .ics file. Add a map link to help your user see where the event is being held. Use this text area to briefly describe the event. Delete the sections of this email that aren't needed.</p>
+        </div>
+        
+        <div class="content-section">
+            <div class="section-heading">Featured Speakers</div>
+            <div class="speakers-grid">
+                <!-- Speaker cards using table layout for Outlook -->
+                <table cellpadding="0" cellspacing="0" border="0" style="display: inline-block; margin: 0 10px 20px;">
+                    <tr>
+                        <td class="speaker-card">
+                            <div class="speaker-image"></div>
+                            <div class="speaker-name">First Last Name</div>
+                            <div class="speaker-title">Job Title</div>
+                            <div class="speaker-company">Company</div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <table cellpadding="0" cellspacing="0" border="0" style="display: inline-block; margin: 0 10px 20px;">
+                    <tr>
+                        <td class="speaker-card">
+                            <div class="speaker-image"></div>
+                            <div class="speaker-name">First Last Name</div>
+                            <div class="speaker-title">Job Title</div>
+                            <div class="speaker-company">Company</div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <table cellpadding="0" cellspacing="0" border="0" style="display: inline-block; margin: 0 10px 20px;">
+                    <tr>
+                        <td class="speaker-card">
+                            <div class="speaker-image"></div>
+                            <div class="speaker-name">First Last Name</div>
+                            <div class="speaker-title">Job Title</div>
+                            <div class="speaker-company">Company</div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <div class="section-heading">Agenda</div>
+            <div class="agenda-container">
+                <table class="agenda-table" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                        <td class="agenda-time">12:00 a.m.</td>
+                        <td class="agenda-item">Event agenda item goes here. Please keep it brief.</td>
+                    </tr>
+                    <tr>
+                        <td class="agenda-time">12:00 a.m.</td>
+                        <td class="agenda-item">Event agenda item goes here. Please keep it brief.</td>
+                    </tr>
+                    <tr>
+                        <td class="agenda-time">12:00 a.m.</td>
+                        <td class="agenda-item">Event agenda item goes here. Please keep it brief.</td>
+                    </tr>
+                    <tr>
+                        <td class="agenda-time">12:00 a.m.</td>
+                        <td class="agenda-item">Event agenda item goes here. Please keep it brief.</td>
+                    </tr>
+                    <tr>
+                        <td class="agenda-time">12:00 a.m.</td>
+                        <td class="agenda-item">Event agenda item goes here. Please keep it brief.</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div class="footer-divider"></div>
+        
+        <div class="footer-links">
+            <a href="https://em.synopsys.com/MzY3LU1SVi0zNjAAAAGcXU9POjagYSBAATEu37qVH0FvUNsevkdNTxPb3XotKng3-0eLyULAtjUrJx54eXNLCklk300=" target="_blank">About</a>
+            <span style="color: #646E81; font-size: 9px;">|</span>
+            <a href="https://em.synopsys.com/MzY3LU1SVi0zNjAAAAGcXU9POi4KFChWqIEk1tHFv1SNfOFVjNlYJM5-1uoFMpg1OxDekJjVGUTzQZMu_Hl5mstfpEk=" target="_blank">Privacy</a>
+            <span style="color: #646E81; font-size: 9px;">|</span>
+            <a href="https://em.synopsys.com/MzY3LU1SVi0zNjAAAAGcXU9POit5EVklnuSZp3PxHatMEtPdbm5Npse1TpuYDmSSv9GKANSXzU9MZYIS8IguH3vRABA=" target="_blank">Manage Subscription</a>
+        </div>
+        
+        <div class="footer-copyright">
+            © 2025 Synopsys, Inc. All Rights Reserved
+        </div>
+        
+        <img src="https://em.synopsys.com/trk?t=1&amp;mid=MzY3LU1SVi0zNjAAAAGcXU9POsdN5QbihV5yXRH2ZRCwdatPYiLzu-2M6hdYBQw-I-yApb-TqrPA7ULaxIMMPQ2eOyaY9in_KFzHLBYt7fO8zrdqHZC537zkkgdgZ5ZWQMbmWmO1I0A" 
+             alt="" style="display:none; width:1px; height:1px;">
+    </div>
+</body>
+</html>
