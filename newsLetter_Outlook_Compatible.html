@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SolvNetPlus Newsletter</title>
+        <!--[if mso]>
+        <noscript>
+            <xml>
+                <o:OfficeDocumentSettings>
+                    <o:PixelsPerInch>96</o:PixelsPerInch>
+                </o:OfficeDocumentSettings>
+            </xml>
+        </noscript>
+        <![endif]-->
+        <style>
+            /* Reset styles for email clients */
+            body, table, td, p, a, li, blockquote { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+            table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+            img { -ms-interpolation-mode: bicubic; border: 0; outline: none; text-decoration: none; }
+            
+            /* Outlook-specific styles */
+            .ExternalClass * { line-height: 100%; }
+            .ExternalClass { width: 100%; }
+            .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div { line-height: 100%; }
+            
+            /* Basic styles - keeping your exact design */
+            body { margin: 0; padding: 0; background-color: #ffffff; font-family: Arial, sans-serif; color: #333333; line-height: 1.6; }
+            .newsletter-container { max-width: 800px; margin: 0 auto; padding: 30px; background-color: #ffffff; }
+            
+            /* Header styles - exact same */
+            .header { text-align: center; margin-bottom: 35px; }
+            .logo { font-size: 32px; font-weight: 700; margin-bottom: 30px; }
+            .logo-solvnet { color: #888888; }
+            .logo-plus { color: #7E45AF; }
+            .header-line { height: 4px; background-color: #7E45AF; margin-bottom: 30px; }
+            
+            /* Title section - exact same */
+            .title-section { text-align: center; margin-bottom: 35px; }
+            .newsletter-title { font-size: 24px; font-weight: 700; color: #333333; margin-bottom: 10px; }
+            .newsletter-date { font-size: 18px; font-weight: 700; color: #333333; }
+            .separator-line { height: 1px; background-color: #333333; margin-bottom: 40px; }
+            
+            /* Content styles - exact same */
+            .main-content { text-align: center; margin-bottom: 40px; }
+            .content-text { text-align: left; font-size: 16px; line-height: 1.6; color: #333333; }
+            .content-text p { margin-bottom: 15px; }
+            
+            /* Hotfix styles - exact same */
+            .hotfix-header { margin-bottom: 50px; }
+            .hotfix-main-title { font-size: 24px; font-weight: 700; color: #333333; margin-bottom: 20px; }
+            .hotfix-accent-line { height: 4px; background-color: #7E45AF; width: 100%; }
+            .hotfix-header-lines { margin-bottom: 30px; }
+            .hotfix-thin-line { height: 1px; background-color: #333333; width: 100%; margin-bottom: 10px; }
+            .hotfix-purple-line { height: 3px; background-color: #7E45AF; width: 60px; }
+            .hotfix-section { margin-bottom: 50px; }
+            .hotfix-item { margin-bottom: 50px; padding: 20px; border: 1px solid #e0e0e0; }
+            .hotfix-title { margin-bottom: 25px; font-size: 18px; font-weight: 600; }
+            .hotfix-number { font-weight: 700; color: #333333; }
+            .hotfix-separator { border-right: 3px solid #7E45AF; padding: 3px 9px 0 0; height: 30px; display: inline-block; margin: 0 15px; }
+            .hotfix-item-title { color: #333333; }
+            .hotfix-image-placeholder { max-width: 100%; height: auto; margin: 15px 0; border: 1px solid #e0e0e0; border-radius: 8px; }
+            .hotfix-description-text { margin-bottom: 25px; }
+            .hotfix-description-text p { font-size: 14px; line-height: 1.6; color: #333333; margin-bottom: 15px; }
+            .hotfix-learn-more { text-align: right; font-size: 14px; font-weight: 400; font-style: italic; color: #333333; margin-top: 15px; }
+            
+            /* Winners section - exact same layout using tables */
+            .winners-section { margin-bottom: 60px; }
+            .winners-title { font-size: 24px; font-weight: 700; color: #333333; margin-bottom: 20px; }
+            .winners-accent-line { height: 3px; background-color: #7E45AF; width: 60px; margin-bottom: 50px; }
+            .winners-table { width: 100%; border-collapse: collapse; }
+            .winners-table td { padding: 15px; text-align: center; vertical-align: top; width: 25%; }
+            .winner-image-frame { width: 80px; height: 80px; margin: 0 auto 20px; background: #ADD8E6; border: 3px solid #7E45AF; border-radius: 50%; position: relative; }
+            .winner-image-placeholder { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+            .winner-name { font-size: 16px; font-weight: 600; color: #333333; margin-bottom: 15px; }
+            .winner-category { font-size: 14px; color: #666666; font-style: italic; }
+            
+            /* Articles section - exact same layout using tables */
+            .top-article-section { margin-bottom: 50px; }
+            .top-article-title { font-size: 20px; font-weight: 700; color: #333333; margin-bottom: 20px; }
+            .top-article-accent-line { height: 3px; background-color: #7E45AF; width: 60px; margin-bottom: 35px; }
+            .article-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+            .article-table td { padding: 15px; border: 1px solid #e0e0e0; vertical-align: top; }
+            .article-number { font-size: 18px; font-weight: 700; color: #333333; text-align: center; background-color: #f8f4ff; width: 50px; }
+            .article-details { background-color: #ffffff; }
+            .article-number-box { padding: 20px 25px; font-size: 16px; color: #333333; min-width: 150px; border-right: 1px solid #e0e0e0; }
+            .article-title-box { padding: 20px 25px; font-size: 16px; color: #333333; flex: 1; border-right: 1px solid #e0e0e0; }
+            .article-author-box { padding: 20px 25px; font-size: 16px; color: #333333; min-width: 120px; border-right: 1px solid #e0e0e0; }
+            .article-category-box { padding: 20px 25px; font-size: 16px; color: #333333; min-width: 100px; }
+            
+            /* Footer styles - exact same */
+            .footer-disclaimer { margin-top: 50px; padding: 25px 0; border-top: 1px solid #e0e0e0; }
+            .footer-disclaimer p { font-size: 14px; line-height: 1.6; color: #333333; }
+            .disclaimer-link { color: #7E45AF; text-decoration: none; font-weight: 600; }
+            
+            /* RECAP section - exact same */
+            .recap-section { margin-bottom: 60px; }
+            .recap-title { font-size: 24px; font-weight: 700; color: #333333; margin-bottom: 20px; }
+            .recap-accent-line { height: 3px; background-color: #7E45AF; width: 60px; }
+            .recap-content { text-align: left; font-size: 16px; line-height: 1.6; color: #333333; }
+            .recap-articles { margin-top: 25px; }
+            .recap-article { margin-bottom: 15px; }
+            .recap-article-label { font-weight: 600; color: #333333; margin-right: 15px; }
+            .recap-article-link { color: #7E45AF; text-decoration: none; font-weight: 400; }
+            
+            /* Highlights section - exact same */
+            .highlights-section { margin-bottom: 60px; }
+            .highlights-title { font-size: 24px; font-weight: 700; color: #333333; margin-bottom: 20px; }
+            .highlights-accent-line { height: 3px; background-color: #7E45AF; width: 60px; margin-bottom: 35px; }
+            .highlights-table { width: 100%; border-collapse: collapse; }
+            .highlights-table td { padding: 0 15px; vertical-align: top; width: 50%; }
+            .highlight-box { width: 100%; height: 200px; background-color: #e0e0e0; border: 1px solid #e0e0e0; border-radius: 8px; }
+            
+            /* Author section - exact same */
+            .author-section { margin-bottom: 60px; }
+            .author-profile { text-align: center; margin: 30px 0; }
+            .author-image { width: 80px; height: 80px; background-color: #e0e0e0; border-radius: 50%; margin: 0 auto 20px; border: 1px solid #e0e0e0; }
+            .author-name { font-size: 18px; font-weight: 600; color: #333333; margin-bottom: 15px; }
+            .author-designation { font-size: 14px; color: #666666; font-style: italic; }
+            
+            /* Newsletter footer - exact same */
+            .newsletter-footer { margin-top: 50px; padding: 25px 0; }
+            .footer-accent-line { height: 4px; background-color: #7E45AF; width: 100%; margin-bottom: 25px; }
+            .footer-nav { text-align: center; margin-bottom: 20px; }
+            .footer-link { color: #333333; text-decoration: none; font-weight: 600; margin: 0 15px; }
+            .footer-separator { color: #333333; margin: 0 15px; }
+            .footer-copyright { text-align: center; font-size: 12px; color: #666666; }
+            
+            /* Section separators - exact same */
+            .part3-top-separator { height: 1px; background-color: #333333; width: 100%; margin-bottom: 50px; }
+            .section-separator { height: 1px; background-color: #333333; margin: 50px 0; }
+        </style>
+    </head>
+    <body>
+        <div class="newsletter-container">
+            <header class="header">
+                <div class="logo">
+                    <span class="logo-solvnet">SolvNet</span><span class="logo-plus">Plus</span>
+                </div>
+                <div class="header-line"></div>
+            </header>
+
+            <div class="title-section">
+                <h1 class="newsletter-title">SolvNetPlus Newsletter</h1>
+                <div class="newsletter-date">August, 2025</div>
+            </div>
+
+            <div class="separator-line"></div>
+
+            <main class="main-content">
+                <div class="content-text">
+                    <p>Welcome to the first edition of SolvNetPlus newsletter!</p>
+                    <p>This newsletter provides a consolidated view of recent and upcoming changes impacting your customer experience and knowledge flows. The newsletter will also recognize knowledge award program winners, top articles and highlight customer adoption and self-help successes.</p>
+                    <p style="margin: 30px 0;">This first edition focuses on <strong>Important hotfixes we have released on August 22 after SolvNetPlus Modernization – 28 June Release.</strong></p>
+                    <p style="margin: 30px 0;">And <strong style="color: #0066cc;">congratulations</strong> to all the CSG Knowledge Award Winners - Q3FY25 again!</p>
+                    <p>We will evolve to learn along to way to share other useful information. Thanks for your attention and</p>
+                    <p>If you have questions and feedback, please write to us at Knowledge-Initiative <a href="mailto:knowledge-initiative@synopsys.com" style="color: #0066cc; text-decoration: underline; font-weight: bold;">knowledge-initiative@synopsys.com</a>.</p>
+                </div>
+            </main>
+        </div>
+
+        <!-- Part 2: Hotfix Section -->
+        <div class="newsletter-container">
+            <div class="hotfix-header">
+                <div class="hotfix-thin-line"></div>
+                <h2 class="hotfix-main-title">KI Aug 2025 Hotfix - Important Enhancements</h2>
+                <div class="hotfix-header-lines">
+                    <div class="hotfix-purple-line"></div>
+                </div>
+            </div>
+
+            <div class="hotfix-section">
+                <div class="hotfix-item">
+                    <div class="hotfix-title">
+                        <span class="hotfix-number">Hot Fix 1</span>
+                        <span class="hotfix-separator"></span>
+                        <span class="hotfix-item-title">Custom Email Notifications</span>
+                    </div>
+                    <div class="hotfix-description-text">
+                        <p>Now contains all important details including title and link.</p>
+                    </div>
+                    <img src="media/h1.png" alt="Hot Fix 1 Image" class="hotfix-image-placeholder">
+                    <div class="hotfix-learn-more"></div>
+                </div>
+
+                <div class="hotfix-item">
+                    <div class="hotfix-title">
+                        <span class="hotfix-number">Hot Fix 2</span>
+                        <span class="hotfix-separator"></span>
+                        <span class="hotfix-item-title">Comment box size</span>
+                    </div>
+                    <div class="hotfix-description-text">
+                        <p>Comment box size and text-limit has been increased for all actions: Send Back To Author, Reassign, Reject and Archive.</p>
+                    </div>
+                    <img src="media/h2.png" alt="Hot Fix 2 Image" class="hotfix-image-placeholder">
+                    <div class="hotfix-learn-more"></div>
+                </div>
+
+                <div class="hotfix-item">
+                    <div class="hotfix-title">
+                        <span class="hotfix-number">Hot Fix 3</span>
+                        <span class="hotfix-separator"></span>
+                        <span class="hotfix-item-title">Complete Article Access and Edit-Privileges</span>
+                    </div>
+                    <div class="hotfix-description-text">
+                        <p>All Reviewers (KM, TR, LR) assigned to the article have complete article access and edit-privileges.</p>
+                        <p><strong>a.</strong> The article detail section can be edited using "Edit" button on the top or pencil icons for respective section.</p>
+                        <p><strong>b.</strong> The Product L1/L2 can now be modified by reviewers themselves – No need to send it back to author.</p>
+                    </div>
+                    <img src="media/h3.png" alt="Hot Fix 3 Image" class="hotfix-image-placeholder">
+                    <div class="hotfix-learn-more"></div>
+                </div>
+
+                <div class="hotfix-item">
+                    <div class="hotfix-title">
+                        <span class="hotfix-number">Hot Fix 4</span>
+                        <span class="hotfix-separator"></span>
+                        <span class="hotfix-item-title">Change Level of Review and Manually Choose</span>
+                    </div>
+                    <div class="hotfix-description-text">
+                        <p>Selected KMs can change level of review and manually choose TR and LR overriding system auto-assign after their approval.</p>
+                    </div>
+                    <img src="media/h4.png" alt="Hot Fix 4 Image" class="hotfix-image-placeholder">
+                    <div class="hotfix-learn-more"></div>
+                </div>
+
+                <div class="hotfix-item">
+                    <div class="hotfix-title">
+                        <span class="hotfix-number">Hot Fix 5</span>
+                        <span class="hotfix-separator"></span>
+                        <span class="hotfix-item-title">Approval Work Items</span>
+                    </div>
+                    <div class="hotfix-description-text">
+                        <p>All Salesforce knowledge users (authors and reviewers) can now see article approval and rejection stages in the 'Approval Work Items' section at the end of the article page</p>
+                    </div>
+                    <img src="media/h5.png" alt="Hot Fix 5 Image" class="hotfix-image-placeholder">
+                    <p>Note: In the event where Reviewer sends an article back to author for correction, the approval work item of this article continues to show the same reviewer's name as this article will come back to the same reviewer once author resubmits an article. </p>
+                    <div class="hotfix-learn-more"></div>
+                </div>
+
+                <div class="hotfix-item">
+                    <div class="hotfix-title">
+                        <span class="hotfix-number">Hot Fix 6</span>
+                        <span class="hotfix-separator"></span>
+                        <span class="hotfix-item-title">Removed "Recall" option</span>
+                    </div>
+                    <div class="hotfix-description-text">
+                        <p>Removed "Recall" option altogether as it was causing confusion. 
+                            Users can use 'Chatter' with @name tag or teams or email to suggest change/action to latest assignee of the article by knowing it from "Assigned To" field in the Article Approval Work Items at the end of article page as shown in above point #5.
+                        </p>
+                    </div>
+                    <img src="media/h6.png" alt="Hot Fix 6 Image" class="hotfix-image-placeholder">
+                    <div class="hotfix-learn-more"></div>
+                </div>
+
+                <div class="hotfix-item">
+                    <div class="hotfix-title">
+                        <span class="hotfix-number">Hot Fix 7</span>
+                        <span class="hotfix-separator"></span>
+                        <span class="hotfix-item-title">Re-assign</span>
+                    </div>
+                    <div class="hotfix-description-text">
+                        <p>Reviewers can now reassign article to any salesforce active reviewer, and not just from the system reviewers list</p>
+                    </div>
+                    <img src="media/h7.png" alt="Hot Fix 7 Image" class="hotfix-image-placeholder">
+                    <div class="hotfix-learn-more"></div>
+                </div>
+
+                <div class="hotfix-item">
+                    <div class="hotfix-title">
+                        <span class="hotfix-number">Hot Fix 8</span>
+                        <span class="hotfix-separator"></span>
+                        <span class="hotfix-item-title">Pending Items For Your Review (New Flow)</span>
+                    </div>
+                    <div class="hotfix-description-text">
+                        <p>The pending article sections "Items to Approve" under Home Page has, for the time being separate sections for both old-flow (pre SolvNetPlus Modernization - 28 June Release) and new flow articles.</p>
+                    </div>
+                    <img src="media/h8.png" alt="Hot Fix 8 Image" class="hotfix-image-placeholder">
+                    <div class="hotfix-learn-more"></div>
+                </div>
+
+                <div class="hotfix-item">
+                    <div class="hotfix-title">
+                        <span class="hotfix-number">Hot Fix 9</span>
+                        <span class="hotfix-separator"></span>
+                        <span class="hotfix-item-title">In-Author Review Visibility</span>
+                    </div>
+                    <div class="hotfix-description-text">
+                        <p>The pending article sections "Items to Approve" under Home Page has, for the time being separate sections for both old-flow (pre SolvNetPlus Modernization - 28 June Release) and new flow articles.</p>
+                    </div>
+                    <img src="media/h9.png" alt="Hot Fix 9 Image" class="hotfix-image-placeholder">
+                    <p>Note: We will now not show "In-Author Review" article in above list to reviewer who sent it back to author as it is not under his action at that moment. Yes, it will come back to same reviewer.</p>
+                    <div class="hotfix-learn-more"></div>
+                </div>
+
+                <div class="hotfix-item">
+                    <div class="hotfix-title">
+                        <span class="hotfix-number">Hot Fix 10</span>
+                        <span class="hotfix-separator"></span>
+                        <span class="hotfix-item-title">Mandatory Comments</span>
+                    </div>
+                    <div class="hotfix-description-text">
+                        <p>Comments box at various places in the content management flow is now made mandatory. This enables reviewers to add their comments while they are performing tasks associated with article such as 'Reassign', 'Send Back to Author, 'Reject' & 'Archive'.</p>
+                        <p>Note: The comment section at the time 'Approve' will be made non-mandatory soon! </p>
+                    </div>
+                    <img src="media/h10.png" alt="Hot Fix 10 Image" class="hotfix-image-placeholder">
+                    <div class="hotfix-learn-more"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Part 3: Winners and Top Articles Section -->
+        <div class="newsletter-container">
+            <div class="part3-top-separator"></div>
+            
+            <div class="winners-section">
+                <h2 class="winners-title">Q3 FY25 Winners</h2>
+                <div class="winners-accent-line"></div>
+                
+                <table class="winners-table">
+                    <tr>
+                        <td>
+                            <div class="winner-image-frame">
+                                <img src="media/Kenneth Hung.jpg" alt="Kenneth Hung" class="winner-image-placeholder">
+                            </div>
+                            <div class="winner-name">Kenneth Hung</div>
+                            <div class="winner-category">Top Published Volume</div>
+                        </td>
+                        <td>
+                            <div class="winner-image-frame">
+                                <img src="media/Deeksha Sharma.jpg" alt="Deeksha Sharma" class="winner-image-placeholder">
+                            </div>
+                            <div class="winner-name">Deeksha Sharma</div>
+                            <div class="winner-category">Quality</div>
+                        </td>
+                        <td>
+                            <div class="winner-image-frame">
+                                <img src="media/Lucy Yye.jpg" alt="Lucy Yue" class="winner-image-placeholder">
+                            </div>
+                            <div class="winner-name">Lucy Yue</div>
+                            <div class="winner-category">Popularity</div>
+                        </td>
+                        <td>
+                            <div class="winner-image-frame">
+                                <img src="media/Mukul Pingley.jpg" alt="Mukul Pingley" class="winner-image-placeholder">
+                            </div>
+                            <div class="winner-name">Mukul Pingley</div>
+                            <div class="winner-category">Reviewed Volume</div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="section-separator"></div>
+
+            <div class="top-article-section">
+                <h2 class="top-article-title">Top Voted Article of Q3FY25</h2>
+                <div class="top-article-accent-line"></div>
+                
+                <table class="article-table">
+                    <tr>
+                        <td class="article-number">1</td>
+                        <td class="article-details">
+                            <div class="article-number-box">000049793</div>
+                            <div class="article-title-box">Avoiding Excessive ctos_gls_dly* Buffer Cells in the Clock Path to Resolve Timing Issues</div>
+                            <div class="article-author-box">Ravi Goswami</div>
+                            <div class="article-category-box">18 Votes</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="article-number">2</td>
+                        <td class="article-details">
+                            <div class="article-number-box">000048933</div>
+                            <div class="article-title-box">How to Enable Consistent Power Reporting in the Log File</div>
+                            <div class="article-author-box">Deeksha Sharma</div>
+                            <div class="article-category-box">17 Votes</div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="footer-disclaimer">
+                <p>To read about award program and all Q3FY25 winners, please refer here - <a href="#" class="disclaimer-link">Knowledge Recognition Program Q3FY25 Winners final ppt.pptx</a></p>
+            </div>
+        </div>
+
+        <!-- Part 4: RECAP, Highlights, Author Profile, and Footer -->
+        <div class="newsletter-container">
+            <div class="recap-section">
+                <h2 class="recap-title">RECAP: SolvNetPlus Modernization 28 June Release</h2>
+                <div class="recap-accent-line"></div>
+                
+                <div class="recap-content">
+                    <p>This release delivered several enhancements to bring efficiency in knowledge workflows and to enhance customer experience! You can go through these 2 articles to know more about these recent updates:</p>
+                    
+                    <div class="recap-articles">
+                        <div class="recap-article">
+                            <span class="recap-article-label">Improved Customer Experience:</span>
+                            <a href="#" class="recap-article-link">SolvNetPlus Community Enhancement Notification</a>
+                        </div>
+                        <div class="recap-article">
+                            <span class="recap-article-label">Efficient Knowledge Workflows:</span>
+                            <a href="#" class="recap-article-link">SolvNetPlus Knowledge Workflow (Internal) Enhancement Update</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlights-section">
+                <h2 class="highlights-title">Highlights</h2>
+                <div class="highlights-accent-line"></div>
+                
+                <table class="highlights-table">
+                    <tr>
+                        <td><img src="media/highlight_img_1_edited.png" alt="Highlight 1" class="highlight-box"></td>
+                        <td><img src="media/highlight_img_2_edited.png" alt="Highlight 2" class="highlight-box"></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="author-section">
+                <div class="author-profile">
+                    <img src="media/sumeet.jpg" alt="Sumeet Aggarwal" class="author-image">
+                    <div class="author-name">Sumeet Aggarwal</div>
+                    <div class="author-designation">Knowledge Initiative and Customer Success</div>
+                </div>
+            </div>
+
+            <footer class="newsletter-footer">
+                <div class="footer-accent-line"></div>
+                <div class="footer-nav">
+                    <a href="#" class="footer-link">About</a>
+                    <span class="footer-separator">|</span>
+                    <a href="#" class="footer-link">Privacy</a>
+                    <span class="footer-separator">|</span>
+                    <a href="#" class="footer-link">Manage Subscription</a>
+                </div>
+                <div class="footer-copyright">
+                    © 2025 Synopsys, Inc. All Rights Reserved
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>
