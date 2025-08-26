@@ -1,551 +1,727 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Email</title>
-    <style>
-        /* Basic styles that work in most email clients including Outlook */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #111C24;
-            background-color: #f4f4f4;
-        }
-        
-        .email-container {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #ffffff;
-        }
-        
-        .header {
-            text-align: center;
-            padding: 20px 0;
-        }
-        
-        .logo {
-            height: 24px;
-            width: 110px;
-        }
-        
-        .banner {
-            background-color: #7E45AF;
-            height: 3px;
-            margin: 0 auto;
-        }
-        
-        .title-section {
-            padding: 0 18px;
-            text-align: center;
-        }
-        
-        .title {
-            font-size: 18px;
-            font-weight: bold;
-            color: #111C24;
-            padding: 11px 0;
-        }
-        
-        .title-divider {
-            border-top: 1px solid #111C24;
-            margin: 20px auto;
-            width: 100%;
-        }
-        
-        .content-section {
-            padding: 15px 18px;
-        }
-        
-        .content-text {
-            color: #111C24;
-            margin-bottom: 15px;
-        }
-        
-        .numbered-list {
-            padding: 15px;
-        }
-        
-        .list-item {
-            margin-bottom: 15px;
-        }
-        
-        .item-number {
-            width: 7%;
-            padding: 0 0 0 18px;
-            vertical-align: top;
-        }
-        
-        .number-circle {
-            border-right: 3px solid #7E45AF;
-            padding: 3px 9px 0 0;
-            height: 30px;
-        }
-        
-        .number {
-            font-size: 18px;
-            font-weight: bold;
-            color: #000000;
-        }
-        
-        .item-content {
-            width: 33%;
-            padding: 0 22px 0 0;
-            vertical-align: top;
-        }
-        
-        .item-header {
-            font-weight: bold;
-            color: #000000;
-            margin-bottom: 15px;
-        }
-        
-        .item-description {
-            margin-bottom: 15px;
-        }
-        
-        .tertiary-button {
-            color: #316ACA;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        
-        .arrow {
-            font-size: 17.5px;
-            margin-left: 5px;
-        }
-        
-        .item-image {
-            width: 27%;
-            padding: 0 18px 0 0;
-            text-align: right;
-            vertical-align: top;
-        }
-        
-        .item-image img {
-            max-height: 120px;
-            height: 120px;
-            max-width: 213px;
-            width: 213px;
-        }
-        
-        .footer-divider {
-            background-color: #7E45AF;
-            height: 3px;
-            margin: 20px 0;
-        }
-        
-        .footer-links {
-            text-align: center;
-            padding: 0 18px;
-        }
-        
-        .footer-links a {
-            color: #646E81;
-            text-decoration: none;
-            font-size: 9px;
-            margin: 0 7.5px;
-        }
-        
-        .footer-copyright {
-            text-align: center;
-            padding: 11px 0;
-            color: #646E81;
-            font-size: 7.5px;
-        }
-        
-        .event-header {
-            padding: 20px 0;
-            text-align: center;
-        }
-        
-        .event-name {
-            font-size: 18px;
-            font-weight: bold;
-            color: #111C24;
-            margin-bottom: 15px;
-        }
-        
-        .event-date {
-            font-weight: bold;
-            color: #000000;
-            margin-bottom: 10px;
-        }
-        
-        .event-location {
-            color: #111C24;
-            margin-bottom: 10px;
-        }
-        
-        .primary-button {
-            display: inline-block;
-            background-color: #7E45AF;
-            color: #ffffff;
-            padding: 12px 24px;
-            text-decoration: none;
-            border-radius: 6px;
-            font-size: 11.5px;
-            font-weight: bold;
-            text-align: center;
-        }
-        
-        .divider {
-            height: 1px;
-            background-color: #111C24;
-            margin: 0 30px;
-        }
-        
-        .section-heading {
-            font-size: 18px;
-            font-weight: bold;
-            color: #111C24;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        
-        .two-column {
-            margin: 0 auto 20px;
-            max-width: 500px;
-        }
-        
-        .column-left {
-            width: 47%;
-            vertical-align: top;
-        }
-        
-        .column-right {
-            width: 53%;
-            vertical-align: top;
-        }
-        
-        .image-placeholder {
-            width: 100%;
-            height: 146px;
-            background-color: #f4f4f4;
-            border: 1px solid #ddd;
-        }
-        
-        .event-details h3 {
-            font-size: 18px;
-            font-weight: bold;
-            color: #111C24;
-            margin-bottom: 15px;
-        }
-        
-        .event-details p {
-            color: #111C24;
-            line-height: 1.4;
-            margin-bottom: 10px;
-        }
-        
-        .event-links {
-            font-size: 9px;
-        }
-        
-        .event-links a {
-            color: #000000;
-            text-decoration: none;
-        }
-        
-        .speakers-grid {
-            margin: 20px auto;
-            max-width: 500px;
-            text-align: center;
-        }
-        
-        .speaker-card {
-            display: inline-block;
-            text-align: center;
-            margin: 0 10px 20px;
-            vertical-align: top;
-            width: 140px;
-        }
-        
-        .speaker-image {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            margin: 0 auto 15px;
-            background-color: #f4f4f4;
-            border: 1px solid #ddd;
-        }
-        
-        .speaker-name {
-            font-weight: bold;
-            color: #111C24;
-            margin-bottom: 8px;
-        }
-        
-        .speaker-title {
-            font-size: 10.5px;
-            color: #111C24;
-            margin-bottom: 8px;
-        }
-        
-        .speaker-company {
-            font-size: 10.5px;
-            color: #111C24;
-            font-style: italic;
-        }
-        
-        .agenda-container {
-            text-align: center;
-            width: 100%;
-        }
-        
-        .agenda-table {
-            width: 100%;
-            max-width: 500px;
-            border-collapse: collapse;
-            margin: 20px auto;
-            display: inline-block;
-        }
-        
-        .agenda-table td {
-            padding: 15px;
-            vertical-align: top;
-        }
-        
-        .agenda-time {
-            width: 23%;
-            background-color: #F0F0F4;
-            font-weight: bold;
-            color: #000000;
-        }
-        
-        .agenda-item {
-            width: 77%;
-            background-color: #F0F0F4;
-            color: #000000;
-        }
-        
-        .agenda-table tr:nth-child(even) td {
-            background-color: #ffffff;
-        }
-        
-        /* Mobile responsive - basic fallbacks */
-        @media (max-width: 600px) {
-            .email-container {
-                margin: 0 10px;
-            }
-            
-            .content-section,
-            .numbered-list {
-                padding: 15px 10px;
-            }
-            
-            .agenda-table {
-                font-size: 14px;
-            }
-        }
-    </style>
+  <title> Tech Insider Newsletter </title>
+  <!--[if !mso]><!-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!--<![endif]-->
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style type="text/css">
+    #outlook a {
+      padding: 0;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+
+    table,
+    td {
+      border-collapse: collapse;
+      mso-table-lspace: 0pt;
+      mso-table-rspace: 0pt;
+    }
+
+    img {
+      border: 0;
+      height: auto;
+      line-height: 100%;
+      outline: none;
+      text-decoration: none;
+      -ms-interpolation-mode: bicubic;
+    }
+
+    p {
+      display: block;
+      margin: 13px 0;
+    }
+  </style>
+  <!--[if mso]>
+        <noscript>
+        <xml>
+        <o:OfficeDocumentSettings>
+          <o:AllowPNG/>
+          <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+        </xml>
+        </noscript>
+        <![endif]-->
+  <!--[if lte mso 11]>
+        <style type="text/css">
+          .mj-outlook-group-fix { width:100% !important; }
+        </style>
+        <![endif]-->
+  <!--[if !mso]><!-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" type="text/css">
+  <style type="text/css">
+    @import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,700);
+  </style>
+  <!--<![endif]-->
+  <style type="text/css">
+    @media only screen and (min-width:480px) {
+      .mj-column-per-100 {
+        width: 100% !important;
+        max-width: 100%;
+      }
+
+      .mj-column-per-35 {
+        width: 35% !important;
+        max-width: 35%;
+      }
+
+      .mj-column-per-65 {
+        width: 65% !important;
+        max-width: 65%;
+      }
+
+      .mj-column-per-50 {
+        width: 50% !important;
+        max-width: 50%;
+      }
+
+      .mj-column-per-33 {
+        width: 33% !important;
+        max-width: 33%;
+      }
+    }
+  </style>
+  <style media="screen and (min-width:480px)">
+    .moz-text-html .mj-column-per-100 {
+      width: 100% !important;
+      max-width: 100%;
+    }
+
+    .moz-text-html .mj-column-per-35 {
+      width: 35% !important;
+      max-width: 35%;
+    }
+
+    .moz-text-html .mj-column-per-65 {
+      width: 65% !important;
+      max-width: 65%;
+    }
+
+    .moz-text-html .mj-column-per-50 {
+      width: 50% !important;
+      max-width: 50%;
+    }
+
+    .moz-text-html .mj-column-per-33 {
+      width: 33% !important;
+      max-width: 33%;
+    }
+  </style>
+  <style type="text/css">
+  </style>
+  <style type="text/css">
+    @media (prefers-color-scheme: dark) {
+      .body-section {
+        background-color: #121212 !important;
+      }
+
+      .text-section h2,
+      .text-section h3 {
+        color: #f0f0f0 !important;
+      }
+
+      .text-section p {
+        color: #dddddd !important;
+      }
+
+      .footer-text {
+        color: #aaaaaa !important;
+      }
+
+      .container-bg {
+        background-color: #1e1e1e !important;
+      }
+
+      .card-bg {
+        background-color: #2d2d2d !important;
+      }
+
+      .section-wrapper {
+        background-color: #1e1e1e !important;
+      }
+
+      .top-story {
+        background-color: #2d2d2d !important;
+        border: 1px solid #444 !important;
+      }
+
+      .article-meta {
+        color: #aaaaaa !important;
+      }
+    }
+  </style>
 </head>
-<body>
-    <div class="email-container">
-        <div class="header">
-            <img src="https://online.synopsys.com/rs/367-MRV-360/images/logo-purple-2x.png" 
-                 alt="Synopsys Logo" class="logo">
-        </div>
-        
-        <div class="banner"></div>
-        
-        <div class="title-section">
-            <h1 class="title">Email Title Here</h1>
-            <div class="title-divider"></div>
-        </div>
-        
-        <div class="content-section">
-            <p class="content-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it.</p>
-        </div>
-        
-        <div class="numbered-list">
-            <!-- List items using table layout for Outlook compatibility -->
-            <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                <tr>
-                    <td class="item-number">
-                        <div class="number-circle">
-                            <span class="number">1.</span>
-                        </div>
-                    </td>
-                    <td class="item-content">
-                        <h3 class="item-header">Header Text Recommend One to Two Lines of Text</h3>
-                        <p class="item-description">Lorem ipsum dolor sit amet, consectetur adipisching elit.</p>
-                        <a href="#" class="tertiary-button">Tertiary Button <span class="arrow">›</span></a>
-                    </td>
-                    <td class="item-image">
-                        <img src="https://online.synopsys.com/rs/367-MRV-360/images/medium-landscape-placeholder-2x.png?version=0" 
-                             alt="Image" title="Image">
-                    </td>
-                </tr>
-            </table>
-            
-            <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                <tr>
-                    <td class="item-number">
-                        <div class="number-circle">
-                            <span class="number">2.</span>
-                        </div>
-                    </td>
-                    <td class="item-content">
-                        <h3 class="item-header">Header Text Recommend One to Two Lines of Text</h3>
-                        <p class="item-description">Lorem ipsum dolor sit amet, consectetur adipisching elit.</p>
-                        <a href="#" class="tertiary-button">Tertiary Button <span class="arrow">›</span></a>
-                    </td>
-                    <td class="item-image">
-                        <img src="https://online.synopsys.com/rs/367-MRV-360/images/medium-landscape-placeholder-2x.png?version=0" 
-                             alt="Image" title="Image">
-                    </td>
-                </tr>
-            </table>
-            
-            <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                <tr>
-                    <td class="item-number">
-                        <div class="number-circle">
-                            <span class="number">3.</span>
-                        </div>
-                    </td>
-                    <td class="item-content">
-                        <h3 class="item-header">Header Text Recommend One to Two Lines of Text</h3>
-                        <p class="item-description">Lorem ipsum dolor sit amet, consectetur adipisching elit.</p>
-                        <a href="#" class="tertiary-button">Tertiary Button <span class="arrow">›</span></a>
-                    </td>
-                    <td class="item-image">
-                        <img src="https://online.synopsys.com/rs/367-MRV-360/images/medium-landscape-placeholder-2x.png?version=0" 
-                             alt="Image" title="Image">
-                    </td>
-                </tr>
-            </table>
-        </div>
-        
-        <div class="banner"></div>
-        
-        <div class="content-section">
-            <div class="event-header">
-                <div class="event-name">Event Name Here</div>
-                <div class="event-date">Date Goes here</div>
-                <div class="event-location">Location Goes here</div>
-                <div style="margin-top: 15px;">
-                    <a href="#" class="primary-button">Primary Button</a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="divider"></div>
-        
-        <div class="content-section">
-            <div class="two-column">
-                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+
+<body style="word-spacing:normal;background-color:#f5f5f5;">
+  <div class="body-section" style="background-color:#f5f5f5;">
+    <!-- Header Section -->
+    <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600" bgcolor="#673ab7" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+    <div style="background:#673ab7;background-color:#673ab7;margin:0px auto;max-width:600px;">
+      <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#673ab7;background-color:#673ab7;width:100%;">
+        <tbody>
+          <tr>
+            <td style="direction:ltr;font-size:0px;padding:20px 0;text-align:center;">
+              <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:600px;" ><![endif]-->
+              <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                  <tbody>
+                    <!-- Uncomment and replace [Logo URL] below to display your tech site logo
+        <mj-image src="[Logo URL]" alt="Tech Insider" width="180px" padding="10px" /> -->
                     <tr>
-                        <td class="column-left">
-                            <div class="image-placeholder"></div>
-                        </td>
-                        <td class="column-right">
-                            <div class="event-details">
-                                <h3>Date Goes Here</h3>
-                                <p>Venue Name</p>
-                                <p>Example Address Line 1</p>
-                                <p>Example Address Line 2</p>
-                                <div class="event-links">
-                                    <a href="#" target="_blank">Add to Calendar</a> | 
-                                    <a href="#" target="_blank">View Map</a>
-                                </div>
-                            </div>
-                        </td>
+                      <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                        <div style="font-family:'Roboto', sans-serif;font-size:28px;font-weight:bold;line-height:24px;text-align:center;color:#ffffff;">TECH INSIDER</div>
+                      </td>
                     </tr>
+                    <tr>
+                      <td align="center" style="font-size:0px;padding:0 25px 10px;word-break:break-word;">
+                        <div style="font-family:Roboto, Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;line-height:24px;text-align:center;color:#ffffff;">Your Weekly Tech Update | July 2023</div>
+                      </td>
+                    </tr>
+                  </tbody>
                 </table>
-            </div>
-        </div>
-        
-        <div class="content-section">
-            <p class="content-text">Fill out the event details above. The fields for date, venue, address, etc. are suggestions; feel free to include whatever information you believe to be relevant. Use the Calendar link to add a .ics file. Add a map link to help your user see where the event is being held. Use this text area to briefly describe the event. Delete the sections of this email that aren't needed.</p>
-        </div>
-        
-        <div class="content-section">
-            <div class="section-heading">Featured Speakers</div>
-            <div class="speakers-grid">
-                <!-- Speaker cards using table layout for Outlook -->
-                <table cellpadding="0" cellspacing="0" border="0" style="display: inline-block; margin: 0 10px 20px;">
-                    <tr>
-                        <td class="speaker-card">
-                            <div class="speaker-image"></div>
-                            <div class="speaker-name">First Last Name</div>
-                            <div class="speaker-title">Job Title</div>
-                            <div class="speaker-company">Company</div>
-                        </td>
-                    </tr>
-                </table>
-                
-                <table cellpadding="0" cellspacing="0" border="0" style="display: inline-block; margin: 0 10px 20px;">
-                    <tr>
-                        <td class="speaker-card">
-                            <div class="speaker-image"></div>
-                            <div class="speaker-name">First Last Name</div>
-                            <div class="speaker-title">Job Title</div>
-                            <div class="speaker-company">Company</div>
-                        </td>
-                    </tr>
-                </table>
-                
-                <table cellpadding="0" cellspacing="0" border="0" style="display: inline-block; margin: 0 10px 20px;">
-                    <tr>
-                        <td class="speaker-card">
-                            <div class="speaker-image"></div>
-                            <div class="speaker-name">First Last Name</div>
-                            <div class="speaker-title">Job Title</div>
-                            <div class="speaker-company">Company</div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        
-        <div class="content-section">
-            <div class="section-heading">Agenda</div>
-            <div class="agenda-container">
-                <table class="agenda-table" cellpadding="0" cellspacing="0" border="0">
-                    <tr>
-                        <td class="agenda-time">12:00 a.m.</td>
-                        <td class="agenda-item">Event agenda item goes here. Please keep it brief.</td>
-                    </tr>
-                    <tr>
-                        <td class="agenda-time">12:00 a.m.</td>
-                        <td class="agenda-item">Event agenda item goes here. Please keep it brief.</td>
-                    </tr>
-                    <tr>
-                        <td class="agenda-time">12:00 a.m.</td>
-                        <td class="agenda-item">Event agenda item goes here. Please keep it brief.</td>
-                    </tr>
-                    <tr>
-                        <td class="agenda-time">12:00 a.m.</td>
-                        <td class="agenda-item">Event agenda item goes here. Please keep it brief.</td>
-                    </tr>
-                    <tr>
-                        <td class="agenda-time">12:00 a.m.</td>
-                        <td class="agenda-item">Event agenda item goes here. Please keep it brief.</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        
-        <div class="footer-divider"></div>
-        
-        <div class="footer-links">
-            <a href="https://em.synopsys.com/MzY3LU1SVi0zNjAAAAGcXU9POjagYSBAATEu37qVH0FvUNsevkdNTxPb3XotKng3-0eLyULAtjUrJx54eXNLCklk300=" target="_blank">About</a>
-            <span style="color: #646E81; font-size: 9px;">|</span>
-            <a href="https://em.synopsys.com/MzY3LU1SVi0zNjAAAAGcXU9POi4KFChWqIEk1tHFv1SNfOFVjNlYJM5-1uoFMpg1OxDekJjVGUTzQZMu_Hl5mstfpEk=" target="_blank">Privacy</a>
-            <span style="color: #646E81; font-size: 9px;">|</span>
-            <a href="https://em.synopsys.com/MzY3LU1SVi0zNjAAAAGcXU9POit5EVklnuSZp3PxHatMEtPdbm5Npse1TpuYDmSSv9GKANSXzU9MZYIS8IguH3vRABA=" target="_blank">Manage Subscription</a>
-        </div>
-        
-        <div class="footer-copyright">
-            © 2025 Synopsys, Inc. All Rights Reserved
-        </div>
-        
-        <img src="https://em.synopsys.com/trk?t=1&amp;mid=MzY3LU1SVi0zNjAAAAGcXU9POsdN5QbihV5yXRH2ZRCwdatPYiLzu-2M6hdYBQw-I-yApb-TqrPA7ULaxIMMPQ2eOyaY9in_KFzHLBYt7fO8zrdqHZC537zkkgdgZ5ZWQMbmWmO1I0A" 
-             alt="" style="display:none; width:1px; height:1px;">
+              </div>
+              <!--[if mso | IE]></td></tr></table><![endif]-->
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+    <!--[if mso | IE]></td></tr></table><![endif]-->
+    <!-- Featured Story -->
+    <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="section-wrapper-outlook" style="width:600px;" width="600" bgcolor="#ffffff" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+    <div class="section-wrapper" style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:600px;">
+      <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
+        <tbody>
+          <tr>
+            <td style="direction:ltr;font-size:0px;padding:20px 0 0;text-align:center;">
+              <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="container-bg-outlook" width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" class="container-bg-outlook" style="width:600px;" width="600" bgcolor="#ffffff" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+              <div class="container-bg" style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:600px;">
+                <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
+                  <tbody>
+                    <tr>
+                      <td style="direction:ltr;font-size:0px;padding:0 20px 20px;text-align:center;">
+                        <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="text-section-outlook" style="vertical-align:top;width:560px;" ><![endif]-->
+                        <div class="mj-column-per-100 mj-outlook-group-fix text-section" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                          <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                            <tbody>
+                              <tr>
+                                <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:0;word-break:break-word;">
+                                  <div style="font-family:Roboto, Helvetica, Arial, sans-serif;font-size:12px;font-weight:bold;line-height:24px;text-align:left;text-transform:uppercase;color:#673ab7;">FEATURED STORY</div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td align="left" style="font-size:0px;padding:10px 25px;padding-top:0;word-break:break-word;">
+                                  <div style="font-family:Roboto, Helvetica, Arial, sans-serif;font-size:24px;font-weight:bold;line-height:38px;text-align:left;color:#333333;">
+                                    <h2 style="margin:5px 0 10px">Artificial Intelligence Breakthroughs Transform Healthcare Industry</h2>
+                                  </div>
+                                </td>
+                              </tr>
+                              <!-- Uncomment and replace [Featured Image URL] below to display featured article image
+          <mj-image src="[Featured Image URL]" alt="AI in Healthcare" width="100%" padding="0 0 15px" /> -->
+                              <tr>
+                                <td align="left" style="font-size:0px;padding:10px 25px;padding-top:0;word-break:break-word;">
+                                  <div style="font-family:Roboto, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#333333;">New machine learning algorithms are helping doctors diagnose diseases with unprecedented accuracy. Researchers at MedTech Labs announced yesterday that their AI system has achieved 97% accuracy in early detection of certain cancers, outperforming human specialists by a significant margin.</div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td align="left" class="article-meta" style="font-size:0px;padding:10px 25px;padding-top:10px;word-break:break-word;">
+                                  <div style="font-family:Roboto, Helvetica, Arial, sans-serif;font-size:12px;font-weight:400;line-height:24px;text-align:left;color:#666666;">By Sarah Johnson | July 15, 2023 | 8 min read</div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td align="center" vertical-align="middle" style="font-size:0px;padding:15px 0;word-break:break-word;">
+                                  <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;line-height:100%;">
+                                    <tr>
+                                      <td align="center" bgcolor="#673ab7" role="presentation" style="border:none;border-radius:4px;cursor:auto;mso-padding-alt:10px 25px;background:#673ab7;" valign="middle">
+                                        <a href="https://www.example.com/ai-healthcare" style="display:inline-block;background:#673ab7;color:white;font-family:Roboto, Helvetica, Arial, sans-serif;font-size:14px;font-weight:normal;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:4px;" target="_blank"> Read Full Article </a>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <!--[if mso | IE]></td></tr></table><![endif]-->
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!--[if mso | IE]></td></tr></table></td></tr><![endif]-->
+              <!-- Top Stories -->
+              <!--[if mso | IE]><tr><td class="container-bg-outlook" width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" class="container-bg-outlook" style="width:600px;" width="600" bgcolor="#ffffff" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+              <div class="container-bg" style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:600px;">
+                <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
+                  <tbody>
+                    <tr>
+                      <td style="direction:ltr;font-size:0px;padding:20px;text-align:center;">
+                        <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:560px;" ><![endif]-->
+                        <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                          <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                            <tbody>
+                              <tr>
+                                <td align="left" class="text-section" style="font-size:0px;padding:10px 25px;padding-bottom:15px;word-break:break-word;">
+                                  <div style="font-family:Roboto, Helvetica, Arial, sans-serif;font-size:22px;font-weight:bold;line-height:24px;text-align:left;color:#333333;">
+                                    <h2 style="margin:0">This Week's Top Stories</h2>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <!--[if mso | IE]></td></tr></table><![endif]-->
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!--[if mso | IE]></td></tr></table></td></tr><![endif]-->
+              <!-- Story 1 -->
+              <!--[if mso | IE]><tr><td class="container-bg-outlook" width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" class="container-bg-outlook" style="width:600px;" width="600" bgcolor="#ffffff" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+              <div class="container-bg" style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:600px;">
+                <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
+                  <tbody>
+                    <tr>
+                      <td style="direction:ltr;font-size:0px;padding:0 20px 20px;text-align:center;">
+                        <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="text-section-outlook" style="vertical-align:top;width:196px;" ><![endif]-->
+                        <div class="mj-column-per-35 mj-outlook-group-fix text-section" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                          <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                            <tbody>
+                              <!-- Uncomment and replace [Story1 Image URL] below to display article image
+          <mj-image src="[Story1 Image URL]" alt="Next Gen Smartphones" padding="0" /> -->
+                            </tbody>
+                          </table>
+                        </div>
+                        <!--[if mso | IE]></td><td class="text-section-outlook" style="vertical-align:top;width:364px;" ><![endif]-->
+                        <div class="mj-column-per-65 mj-outlook-group-fix text-section" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                          <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                            <tbody>
+                              <tr>
+                                <td style="vertical-align:top;padding-left:15px;">
+                                  <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
+                                    <tbody>
+                                      <tr>
+                                        <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:5px;word-break:break-word;">
+                                          <div style="font-family:Roboto, Helvetica, Arial, sans-serif;font-size:18px;font-weight:bold;line-height:24px;text-align:left;color:#333333;">
+                                            <h3 style="margin:0">Next-Gen Smartphones to Feature Quantum Computing Chips</h3>
+                                          </div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td align="left" style="font-size:0px;padding:10px 25px;padding-top:0;word-break:break-word;">
+                                          <div style="font-family:Roboto, Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;line-height:20px;text-align:left;color:#333333;">Industry giants are racing to incorporate quantum processing units in next year's flagship devices, promising unprecedented computational power and battery efficiency.</div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td align="left" style="font-size:0px;padding:10px 25px;padding-top:5px;word-break:break-word;">
+                                          <div style="font-family:Roboto, Helvetica, Arial, sans-serif;font-size:14px;font-weight:500;line-height:24px;text-align:left;color:#673ab7;">Read More â†’</div>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <!--[if mso | IE]></td></tr></table><![endif]-->
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!--[if mso | IE]></td></tr></table></td></tr><![endif]-->
+              <!-- Story 2 -->
+              <!--[if mso | IE]><tr><td class="container-bg-outlook" width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" class="container-bg-outlook" style="width:600px;" width="600" bgcolor="#ffffff" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+              <div class="container-bg" style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:600px;">
+                <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
+                  <tbody>
+                    <tr>
+                      <td style="direction:ltr;font-size:0px;padding:0 20px 20px;text-align:center;">
+                        <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="text-section-outlook" style="vertical-align:top;width:196px;" ><![endif]-->
+                        <div class="mj-column-per-35 mj-outlook-group-fix text-section" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                          <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                            <tbody>
+                              <!-- Uncomment and replace [Story2 Image URL] below to display article image
+          <mj-image src="[Story2 Image URL]" alt="EV Breakthrough" padding="0" /> -->
+                            </tbody>
+                          </table>
+                        </div>
+                        <!--[if mso | IE]></td><td class="text-section-outlook" style="vertical-align:top;width:364px;" ><![endif]-->
+                        <div class="mj-column-per-65 mj-outlook-group-fix text-section" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                          <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                            <tbody>
+                              <tr>
+                                <td style="vertical-align:top;padding-left:15px;">
+                                  <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
+                                    <tbody>
+                                      <tr>
+                                        <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:5px;word-break:break-word;">
+                                          <div style="font-family:Roboto, Helvetica, Arial, sans-serif;font-size:18px;font-weight:bold;line-height:24px;text-align:left;color:#333333;">
+                                            <h3 style="margin:0">Revolutionary Battery Technology Doubles EV Range</h3>
+                                          </div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td align="left" style="font-size:0px;padding:10px 25px;padding-top:0;word-break:break-word;">
+                                          <div style="font-family:Roboto, Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;line-height:20px;text-align:left;color:#333333;">A startup backed by major automakers has developed a solid-state battery that could double electric vehicle range while reducing charging time to under 10 minutes.</div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td align="left" style="font-size:0px;padding:10px 25px;padding-top:5px;word-break:break-word;">
+                                          <div style="font-family:Roboto, Helvetica, Arial, sans-serif;font-size:14px;font-weight:500;line-height:24px;text-align:left;color:#673ab7;">Read More â†’</div>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <!--[if mso | IE]></td></tr></table><![endif]-->
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!--[if mso | IE]></td></tr></table></td></tr><![endif]-->
+              <!-- Quick Bytes Section -->
+              <!--[if mso | IE]><tr><td class="card-bg-outlook" width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" class="card-bg-outlook" style="width:600px;" width="600" bgcolor="#f9f9f9" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+              <div class="card-bg" style="background:#f9f9f9;background-color:#f9f9f9;margin:0px auto;max-width:600px;">
+                <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#f9f9f9;background-color:#f9f9f9;width:100%;">
+                  <tbody>
+                    <tr>
+                      <td style="direction:ltr;font-size:0px;padding:20px;text-align:center;">
+                        <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:560px;" ><![endif]-->
+                        <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                          <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                            <tbody>
+                              <tr>
+                                <td align="left" class="text-section" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                  <div style="font-family:Roboto, Helvetica, Arial, sans-serif;font-size:20px;font-weight:bold;line-height:24px;text-align:left;color:#333333;">
+                                    <h2 style="margin:0 0 15px">Quick Bytes</h2>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <!--[if mso | IE]></td></tr></table><![endif]-->
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!--[if mso | IE]></td></tr></table></td></tr><tr><td class="card-bg-outlook" width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" class="card-bg-outlook" style="width:600px;" width="600" bgcolor="#f9f9f9" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+              <div class="card-bg" style="background:#f9f9f9;background-color:#f9f9f9;margin:0px auto;max-width:600px;">
+                <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#f9f9f9;background-color:#f9f9f9;width:100%;">
+                  <tbody>
+                    <tr>
+                      <td style="direction:ltr;font-size:0px;padding:0 20px 20px;text-align:center;">
+                        <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="text-section-outlook" style="vertical-align:top;width:280px;" ><![endif]-->
+                        <div class="mj-column-per-50 mj-outlook-group-fix text-section" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                          <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                            <tbody>
+                              <tr>
+                                <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                  <div style="font-family:Roboto, Helvetica, Arial, sans-serif;font-size:16px;font-weight:bold;line-height:24px;text-align:left;color:#333333;">SpaceX Successfully Tests Mars Rocket</div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td align="left" style="font-size:0px;padding:10px 25px;padding-top:0;word-break:break-word;">
+                                  <div style="font-family:Roboto, Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;line-height:24px;text-align:left;color:#555555;">Latest prototype completes high-altitude test with perfect landing.</div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <!--[if mso | IE]></td><td class="text-section-outlook" style="vertical-align:top;width:280px;" ><![endif]-->
+                        <div class="mj-column-per-50 mj-outlook-group-fix text-section" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                          <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                            <tbody>
+                              <tr>
+                                <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                  <div style="font-family:Roboto, Helvetica, Arial, sans-serif;font-size:16px;font-weight:bold;line-height:24px;text-align:left;color:#333333;">Global Chip Shortage: Latest Updates</div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td align="left" style="font-size:0px;padding:10px 25px;padding-top:0;word-break:break-word;">
+                                  <div style="font-family:Roboto, Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;line-height:24px;text-align:left;color:#555555;">Industry analysts predict supply chains will normalize by Q4 2023.</div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <!--[if mso | IE]></td></tr></table><![endif]-->
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!--[if mso | IE]></td></tr></table></td></tr><![endif]-->
+              <!-- New Products -->
+              <!--[if mso | IE]><tr><td class="container-bg-outlook" width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" class="container-bg-outlook" style="width:600px;" width="600" bgcolor="#ffffff" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+              <div class="container-bg" style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:600px;">
+                <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
+                  <tbody>
+                    <tr>
+                      <td style="direction:ltr;font-size:0px;padding:20px;text-align:center;">
+                        <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:560px;" ><![endif]-->
+                        <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                          <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                            <tbody>
+                              <tr>
+                                <td align="left" class="text-section" style="font-size:0px;padding:10px 25px;padding-bottom:15px;word-break:break-word;">
+                                  <div style="font-family:Roboto, Helvetica, Arial, sans-serif;font-size:22px;font-weight:bold;line-height:24px;text-align:left;color:#333333;">
+                                    <h2 style="margin:0">New Product Releases</h2>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td align="center" style="font-size:0px;padding:0 0 15px 0;word-break:break-word;">
+                                  <p style="border-top:solid 1px #eeeeee;font-size:1px;margin:0px auto;width:100%;">
+                                  </p>
+                                  <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" style="border-top:solid 1px #eeeeee;font-size:1px;margin:0px auto;width:560px;" role="presentation" width="560px" ><tr><td style="height:0;line-height:0;"> &nbsp;
+</td></tr></table><![endif]-->
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <!--[if mso | IE]></td></tr></table><![endif]-->
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!--[if mso | IE]></td></tr></table></td></tr><tr><td class="container-bg-outlook" width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" class="container-bg-outlook" style="width:600px;" width="600" bgcolor="#ffffff" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+              <div class="container-bg" style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:600px;">
+                <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
+                  <tbody>
+                    <tr>
+                      <td style="direction:ltr;font-size:0px;padding:0 20px 20px;text-align:center;">
+                        <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="text-section-outlook" style="vertical-align:top;width:184.8px;" ><![endif]-->
+                        <div class="mj-column-per-33 mj-outlook-group-fix text-section" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                          <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                            <tbody>
+                              <tr>
+                                <td style="vertical-align:top;padding:5px;">
+                                  <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
+                                    <tbody>
+                                      <tr>
+                                        <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                          <div style="font-family:Roboto, Helvetica, Arial, sans-serif;font-size:14px;font-weight:bold;line-height:24px;text-align:center;color:#333333;">NextGen VR Headset</div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td align="center" style="font-size:0px;padding:10px 25px;padding-top:0;word-break:break-word;">
+                                          <div style="font-family:Roboto, Helvetica, Arial, sans-serif;font-size:12px;font-weight:400;line-height:24px;text-align:center;color:#555555;">8K resolution, wireless, 12hr battery</div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td align="center" vertical-align="middle" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                          <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;line-height:100%;">
+                                            <tr>
+                                              <td align="center" bgcolor="#673ab7" role="presentation" style="border:none;border-radius:4px;cursor:auto;mso-padding-alt:10px 25px;background:#673ab7;" valign="middle">
+                                                <a href="https://www.example.com/vr" style="display:inline-block;background:#673ab7;color:white;font-family:Roboto, Helvetica, Arial, sans-serif;font-size:12px;font-weight:normal;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:4px;" target="_blank"> Learn More </a>
+                                              </td>
+                                            </tr>
+                                          </table>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <!--[if mso | IE]></td><td class="text-section-outlook" style="vertical-align:top;width:184.8px;" ><![endif]-->
+                        <div class="mj-column-per-33 mj-outlook-group-fix text-section" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                          <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                            <tbody>
+                              <tr>
+                                <td style="vertical-align:top;padding:5px;">
+                                  <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
+                                    <tbody>
+                                      <tr>
+                                        <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                          <div style="font-family:Roboto, Helvetica, Arial, sans-serif;font-size:14px;font-weight:bold;line-height:24px;text-align:center;color:#333333;">Smart Home Hub 2.0</div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td align="center" style="font-size:0px;padding:10px 25px;padding-top:0;word-break:break-word;">
+                                          <div style="font-family:Roboto, Helvetica, Arial, sans-serif;font-size:12px;font-weight:400;line-height:24px;text-align:center;color:#555555;">Universal compatibility, enhanced AI</div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td align="center" vertical-align="middle" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                          <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;line-height:100%;">
+                                            <tr>
+                                              <td align="center" bgcolor="#673ab7" role="presentation" style="border:none;border-radius:4px;cursor:auto;mso-padding-alt:10px 25px;background:#673ab7;" valign="middle">
+                                                <a href="https://www.example.com/smart-home" style="display:inline-block;background:#673ab7;color:white;font-family:Roboto, Helvetica, Arial, sans-serif;font-size:12px;font-weight:normal;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:4px;" target="_blank"> Learn More </a>
+                                              </td>
+                                            </tr>
+                                          </table>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <!--[if mso | IE]></td><td class="text-section-outlook" style="vertical-align:top;width:184.8px;" ><![endif]-->
+                        <div class="mj-column-per-33 mj-outlook-group-fix text-section" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                          <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                            <tbody>
+                              <tr>
+                                <td style="vertical-align:top;padding:5px;">
+                                  <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
+                                    <tbody>
+                                      <tr>
+                                        <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                          <div style="font-family:Roboto, Helvetica, Arial, sans-serif;font-size:14px;font-weight:bold;line-height:24px;text-align:center;color:#333333;">Ultra-thin Laptop Pro</div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td align="center" style="font-size:0px;padding:10px 25px;padding-top:0;word-break:break-word;">
+                                          <div style="font-family:Roboto, Helvetica, Arial, sans-serif;font-size:12px;font-weight:400;line-height:24px;text-align:center;color:#555555;">5nm processor, 24hr battery life</div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td align="center" vertical-align="middle" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                          <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;line-height:100%;">
+                                            <tr>
+                                              <td align="center" bgcolor="#673ab7" role="presentation" style="border:none;border-radius:4px;cursor:auto;mso-padding-alt:10px 25px;background:#673ab7;" valign="middle">
+                                                <a href="https://www.example.com/laptop" style="display:inline-block;background:#673ab7;color:white;font-family:Roboto, Helvetica, Arial, sans-serif;font-size:12px;font-weight:normal;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:4px;" target="_blank"> Learn More </a>
+                                              </td>
+                                            </tr>
+                                          </table>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <!--[if mso | IE]></td></tr></table><![endif]-->
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!--[if mso | IE]></td></tr></table></td></tr></table><![endif]-->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!--[if mso | IE]></td></tr></table><![endif]-->
+    <!-- Footer -->
+    <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600" bgcolor="#673ab7" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+    <div style="background:#673ab7;background-color:#673ab7;margin:0px auto;max-width:600px;">
+      <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#673ab7;background-color:#673ab7;width:100%;">
+        <tbody>
+          <tr>
+            <td style="direction:ltr;font-size:0px;padding:20px 0;text-align:center;">
+              <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:600px;" ><![endif]-->
+              <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                  <tbody>
+                    <tr>
+                      <td align="center" class="footer-text" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                        <div style="font-family:Roboto, Helvetica, Arial, sans-serif;font-size:16px;font-weight:bold;line-height:24px;text-align:center;color:#ffffff;">Tech Insider Newsletter</div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="center" class="footer-text" style="font-size:0px;padding:0 25px;word-break:break-word;">
+                        <div style="font-family:Roboto, Helvetica, Arial, sans-serif;font-size:12px;font-weight:400;line-height:24px;text-align:center;color:#ffffff;">Â© 2023 Tech Insider Media. All rights reserved.</div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                        <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" ><tr><td><![endif]-->
+                        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="float:none;display:inline-table;">
+                          <tr>
+                            <td style="padding:4px;vertical-align:middle;">
+                              <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#673ab7;border-radius:3px;width:25px;">
+                                <tr>
+                                  <td style="font-size:0;height:25px;vertical-align:middle;width:25px;">
+                                    <a href="https://www.example.com/" target="_blank">
+                                      <img height="25" src="https://www.mailjet.com/images/theme/v1/icons/ico-social/twitter.png" style="border-radius:3px;display:block;" width="25" />
+                                    </a>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                        <!--[if mso | IE]></td><td><![endif]-->
+                        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="float:none;display:inline-table;">
+                          <tr>
+                            <td style="padding:4px;vertical-align:middle;">
+                              <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#673ab7;border-radius:3px;width:25px;">
+                                <tr>
+                                  <td style="font-size:0;height:25px;vertical-align:middle;width:25px;">
+                                    <a href="https://www.example.com/" target="_blank">
+                                      <img height="25" src="https://www.mailjet.com/images/theme/v1/icons/ico-social/linkedin.png" style="border-radius:3px;display:block;" width="25" />
+                                    </a>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                        <!--[if mso | IE]></td><td><![endif]-->
+                        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="float:none;display:inline-table;">
+                          <tr>
+                            <td style="padding:4px;vertical-align:middle;">
+                              <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#673ab7;border-radius:3px;width:25px;">
+                                <tr>
+                                  <td style="font-size:0;height:25px;vertical-align:middle;width:25px;">
+                                    <a href="https://www.example.com/" target="_blank">
+                                      <img height="25" src="https://www.mailjet.com/images/theme/v1/icons/ico-social/youtube.png" style="border-radius:3px;display:block;" width="25" />
+                                    </a>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                        <!--[if mso | IE]></td></tr></table><![endif]-->
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="center" class="footer-text" style="font-size:0px;padding:0 25px 10px;word-break:break-word;">
+                        <div style="font-family:Roboto, Helvetica, Arial, sans-serif;font-size:12px;font-weight:400;line-height:24px;text-align:center;color:#ffffff;">Email Preferences | Unsubscribe | Privacy Policy</div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!--[if mso | IE]></td></tr></table><![endif]-->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!--[if mso | IE]></td></tr></table><![endif]-->
+  </div>
 </body>
+
 </html>
