@@ -64,6 +64,159 @@
     p {
       margin: 13px 0;
     }
+
+    /* Responsive Design - Mobile First */
+    @media only screen and (max-width: 600px) {
+      .mobile-full-width {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      
+      .mobile-stack {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      
+      .mobile-text-center {
+        text-align: center !important;
+      }
+      
+      .mobile-padding {
+        padding: 15px !important;
+      }
+      
+      .mobile-font-size {
+        font-size: 16px !important;
+        line-height: 24px !important;
+      }
+      
+      .mobile-header-font {
+        font-size: 20px !important;
+        line-height: 24px !important;
+      }
+      
+      .mobile-subheader-font {
+        font-size: 18px !important;
+        line-height: 22px !important;
+      }
+      
+      .mobile-winners-table td {
+        display: block !important;
+        width: 100% !important;
+        padding: 10px 0 !important;
+        text-align: center !important;
+      }
+      
+      .mobile-winners-table td:not(:last-child) {
+        border-bottom: 1px solid #e0e0e0 !important;
+      }
+      
+             .mobile-top-articles-table {
+         display: block !important;
+         border: none !important;
+       }
+       
+       .mobile-top-articles-table tr {
+         display: block !important;
+         margin-bottom: 20px !important;
+         border: 1px solid #e0e0e0 !important;
+         border-radius: 8px !important;
+         overflow: hidden !important;
+       }
+       
+       .mobile-top-articles-table td {
+         display: block !important;
+         width: 100% !important;
+         padding: 12px 15px !important;
+         border: none !important;
+         text-align: left !important;
+         border-bottom: 1px solid #f0f0f0 !important;
+       }
+       
+       .mobile-top-articles-table td:last-child {
+         border-bottom: none !important;
+       }
+       
+       .mobile-top-articles-table td:first-child {
+         background-color: #f8f4ff !important;
+         font-weight: bold !important;
+         text-align: center !important;
+         font-size: 20px !important;
+         padding: 15px !important;
+         border-bottom: 2px solid #7E45AF !important;
+       }
+       
+       .mobile-top-articles-table td:nth-child(2) {
+         background-color: #fafafa !important;
+         font-weight: 600 !important;
+         color: #7E45AF !important;
+       }
+       
+       .mobile-top-articles-table td:nth-child(3) {
+         font-weight: 500 !important;
+         line-height: 1.4 !important;
+         padding: 15px !important;
+       }
+       
+       .mobile-top-articles-table td:nth-child(4) {
+         background-color: #f8f8f8 !important;
+         font-weight: 600 !important;
+       }
+       
+       .mobile-top-articles-table td:nth-child(5) {
+         background-color: #f0f8ff !important;
+         font-weight: 600 !important;
+         color: #0066cc !important;
+         text-align: center !important;
+       }
+      
+      .mobile-highlights {
+        display: block !important;
+        width: 100% !important;
+        margin-bottom: 20px !important;
+      }
+      
+      .mobile-highlights img {
+        max-width: 100% !important;
+        height: auto !important;
+      }
+    }
+
+         @media only screen and (max-width: 480px) {
+       .mobile-padding {
+         padding: 10px !important;
+       }
+       
+       .mobile-font-size {
+         font-size: 14px !important;
+         line-height: 20px !important;
+       }
+       
+       .mobile-header-font {
+         font-size: 18px !important;
+         line-height: 22px !important;
+       }
+       
+       .mobile-subheader-font {
+         font-size: 16px !important;
+         line-height: 20px !important;
+       }
+       
+       .mobile-top-articles-table td {
+         padding: 10px 12px !important;
+       }
+       
+       .mobile-top-articles-table td:first-child {
+         font-size: 18px !important;
+         padding: 12px !important;
+       }
+       
+       .mobile-top-articles-table td:nth-child(3) {
+         padding: 12px !important;
+         font-size: 15px !important;
+       }
+     }
   </style>
   <!--[if mso]>
         <noscript>
@@ -89,6 +242,27 @@
   </style>
   <!--<![endif]-->
   <style type="text/css">
+    /* Responsive Column System */
+    @media only screen and (max-width: 600px) {
+      .mj-column-per-100 {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+
+      .mj-column-per-50 {
+        width: 100% !important;
+        max-width: 100% !important;
+        display: block !important;
+      }
+
+      .mj-column-per-25 {
+        width: 100% !important;
+        max-width: 100% !important;
+        display: block !important;
+        margin-bottom: 20px !important;
+      }
+    }
+
     @media only screen and (min-width:480px) {
       .mj-column-per-100 {
         width: 100% !important;
@@ -128,18 +302,18 @@
   <div style="background-color:#ffffff;">
     <!-- Header Section -->
     <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:800px;" width="800" bgcolor="#ffffff" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
-    <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:800px;">
+    <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:800px;" class="mobile-full-width">
       <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
         <tbody>
           <tr>
-            <td style="direction:ltr;font-size:0px;padding:30px;text-align:center;">
+            <td style="direction:ltr;font-size:0px;padding:30px;text-align:center;" class="mobile-padding">
               <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:800px;" ><![endif]-->
               <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
                 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
                   <tbody>
                     <tr>
                       <td align="center" style="font-size:0px;padding:0 0 30px 0;word-break:break-word;">
-                        <div style="font-family:'Roboto', Arial, sans-serif;font-size:32px;font-weight:700;line-height:32px;text-align:center;color:#888888;">
+                        <div style="font-family:'Roboto', Arial, sans-serif;font-size:32px;font-weight:700;line-height:32px;text-align:center;color:#888888;" class="mobile-header-font">
                           <span style="color:#888888;">SolvNet</span><span style="color:#7E45AF;">Plus</span>
                         </div>
                       </td>
@@ -153,11 +327,11 @@
                       <td align="left" style="font-size:0px;padding:0 0 35px 0;word-break:break-word;">
                         <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
                           <tr>
-                            <td style="width:50%;vertical-align:baseline;">
-                              <div style="font-family:'Roboto', Arial, sans-serif;font-size:24px;font-weight:700;line-height:24px;text-align:left;color:#333333;">SolvNetPlus Newsletter</div>
+                            <td style="width:50%;vertical-align:baseline;" class="mobile-stack">
+                              <div style="font-family:'Roboto', Arial, sans-serif;font-size:24px;font-weight:700;line-height:24px;text-align:left;color:#333333;" class="mobile-subheader-font mobile-text-center">SolvNetPlus Newsletter</div>
                             </td>
-                            <td style="width:50%;vertical-align:baseline;text-align:right;">
-                              <div style="font-family:'Roboto', Arial, sans-serif;font-size:18px;font-weight:700;line-height:18px;text-align:right;color:#333333;">August, 2025</div>
+                            <td style="width:50%;vertical-align:baseline;text-align:right;" class="mobile-stack">
+                              <div style="font-family:'Roboto', Arial, sans-serif;font-size:18px;font-weight:700;line-height:18px;text-align:right;color:#333333;" class="mobile-subheader-font mobile-text-center">August, 2025</div>
                             </td>
                           </tr>
                         </table>
@@ -181,18 +355,18 @@
 
     <!-- Main Content Section -->
     <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:800px;" width="800" bgcolor="#ffffff" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
-    <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:800px;">
+    <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:800px;" class="mobile-full-width">
       <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
         <tbody>
           <tr>
-            <td style="direction:ltr;font-size:0px;padding:0 30px 40px;text-align:center;">
+            <td style="direction:ltr;font-size:0px;padding:0 30px 40px;text-align:center;" class="mobile-padding">
               <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:800px;" ><![endif]-->
               <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
                 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
                   <tbody>
                     <tr>
                       <td align="left" style="font-size:0px;padding:0;word-break:break-word;">
-                        <div style="font-family:'Roboto', Arial, sans-serif;font-size:16px;font-weight:400;line-height:25px;text-align:left;color:#333333;">
+                        <div style="font-family:'Roboto', Arial, sans-serif;font-size:16px;font-weight:400;line-height:25px;text-align:left;color:#333333;" class="mobile-font-size">
                           <p style="margin:0 0 15px 0;">Welcome to the first edition of SolvNetPlus newsletter!</p>
                           <p style="margin:0 0 15px 0;">This newsletter provides a consolidated view of recent and upcoming changes that enhances our customer experience and knowledge management flows. And will also recognize knowledge award
                             program winners, top articles and highlight customer adoption and self-help successes.</p>
@@ -216,11 +390,11 @@
 
     <!-- Hotfix Header Section -->
     <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:800px;" width="800" bgcolor="#ffffff" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
-    <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:800px;">
+    <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:800px;" class="mobile-full-width">
       <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
         <tbody>
           <tr>
-            <td style="direction:ltr;font-size:0px;padding:0 30px 50px;text-align:center;">
+            <td style="direction:ltr;font-size:0px;padding:0 30px 50px;text-align:center;" class="mobile-padding">
               <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:800px;" ><![endif]-->
               <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
                 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
@@ -232,7 +406,7 @@
                     </tr>
                     <tr>
                       <td align="left" style="font-size:0px;padding:0 0 20px 0;word-break:break-word;">
-                        <div style="font-family:'Roboto', Arial, sans-serif;font-size:24px;font-weight:700;line-height:24px;text-align:left;color:#333333;">KI Aug 2025 Hotfix - Important Enhancements</div>
+                        <div style="font-family:'Roboto', Arial, sans-serif;font-size:24px;font-weight:700;line-height:24px;text-align:left;color:#333333;" class="mobile-subheader-font">KI Aug 2025 Hotfix - Important Enhancements</div>
                       </td>
                     </tr>
                     <tr>
@@ -253,11 +427,11 @@
 
     <!-- Hotfix Items Section -->
     <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:800px;" width="800" bgcolor="#ffffff" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
-    <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:800px;">
+    <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:800px;" class="mobile-full-width">
       <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
         <tbody>
           <tr>
-            <td style="direction:ltr;font-size:0px;padding:0 30px 50px;text-align:center;">
+            <td style="direction:ltr;font-size:0px;padding:0 30px 50px;text-align:center;" class="mobile-padding">
               <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:800px;" ><![endif]-->
               <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
                 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
@@ -532,11 +706,11 @@
 
     <!-- Part 3: Winners and Top Articles Section -->
     <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:800px;" width="800" bgcolor="#ffffff" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
-    <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:800px;">
+    <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:800px;" class="mobile-full-width">
       <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
         <tbody>
           <tr>
-            <td style="direction:ltr;font-size:0px;padding:0 30px 60px;text-align:center;">
+            <td style="direction:ltr;font-size:0px;padding:0 30px 60px;text-align:center;" class="mobile-padding">
               <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:800px;" ><![endif]-->
               <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
                 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
@@ -548,7 +722,7 @@
                     </tr>
                     <tr>
                       <td align="left" style="font-size:0px;padding:0 0 20px 0;word-break:break-word;">
-                        <div style="font-family:'Roboto', Arial, sans-serif;font-size:24px;font-weight:700;line-height:24px;text-align:left;color:#333333;">Q3 FY25 Knowledge Winners</div>
+                        <div style="font-family:'Roboto', Arial, sans-serif;font-size:24px;font-weight:700;line-height:24px;text-align:left;color:#333333;" class="mobile-subheader-font">Q3 FY25 Knowledge Winners</div>
                       </td>
                     </tr>
                     <tr>
@@ -558,30 +732,30 @@
                     </tr>
                     <tr>
                       <td align="center" style="font-size:0px;padding:0;word-break:break-word;">
-                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
+                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;" class="mobile-winners-table">
                           <tr>
-                            <td style="width:25%;vertical-align:top;padding:0 15px;">
+                            <td style="width:25%;vertical-align:top;padding:0 15px;" class="mobile-stack">
                               <div style="text-align:center;">
                                 <img src="media/Kenneth_Hung_1.png" alt="Kenneth Hung" style="width:120px;height:120px;margin:0 auto 20px;display:block;">
                                 <div style="font-family:'Roboto', Arial, sans-serif;font-size:16px;font-weight:600;line-height:16px;text-align:center;color:#333333;margin-bottom:15px;">Kenneth Hung</div>
                                 <div style="font-family:'Roboto', Arial, sans-serif;font-size:14px;font-weight:400;font-style:italic;line-height:14px;text-align:center;color:#333333;">Top Published Volume</div>
                               </div>
                             </td>
-                            <td style="width:25%;vertical-align:top;padding:0 15px;">
+                            <td style="width:25%;vertical-align:top;padding:0 15px;" class="mobile-stack">
                               <div style="text-align:center;">
                                 <img src="media/Deeksha_Sharma_1.png" alt="Deeksha Sharma" style="width:120px;height:120px;margin:0 auto 20px;display:block;">
                                 <div style="font-family:'Roboto', Arial, sans-serif;font-size:16px;font-weight:600;line-height:16px;text-align:center;color:#333333;margin-bottom:15px;">Deeksha Sharma</div>
                                 <div style="font-family:'Roboto', Arial, sans-serif;font-size:14px;font-weight:400;font-style:italic;line-height:14px;text-align:center;color:#333333;">Quality</div>
                               </div>
                             </td>
-                            <td style="width:25%;vertical-align:top;padding:0 15px;">
+                            <td style="width:25%;vertical-align:top;padding:0 15px;" class="mobile-stack">
                               <div style="text-align:center;">
                                 <img src="media/Lucy_Yye_1.png" alt="Lucy Yue" style="width:120px;height:120px;margin:0 auto 20px;display:block;">
                                 <div style="font-family:'Roboto', Arial, sans-serif;font-size:16px;font-weight:600;line-height:16px;text-align:center;color:#333333;margin-bottom:15px;">Lucy Yue</div>
                                 <div style="font-family:'Roboto', Arial, sans-serif;font-size:14px;font-weight:400;font-style:italic;line-height:14px;text-align:center;color:#333333;">Popularity</div>
                               </div>
                             </td>
-                            <td style="width:25%;vertical-align:top;padding:0 15px;">
+                            <td style="width:25%;vertical-align:top;padding:0 15px;" class="mobile-stack">
                               <div style="text-align:center;">
                                 <img src="media/Mukul_Pingley_1.png" alt="Mukul Pingley" style="width:120px;height:120px;margin:0 auto 20px;display:block;">
                                 <div style="font-family:'Roboto', Arial, sans-serif;font-size:16px;font-weight:600;line-height:16px;text-align:center;color:#333333;margin-bottom:15px;">Mukul Pingley</div>
@@ -604,12 +778,12 @@
     <!--[if mso | IE]></td></tr></table><![endif]-->
 
     <!-- Separator Line -->
-    <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:800px;" width="800" bgcolor="#ffffff" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
-    <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:800px;">
+    <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:800px;" width="800" bgcolor="#ffffff" ><![endif]-->
+    <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:800px;" class="mobile-full-width">
       <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
         <tbody>
           <tr>
-            <td style="direction:ltr;font-size:0px;padding:0 30px 50px;text-align:center;">
+            <td style="direction:ltr;font-size:0px;padding:0 30px 50px;text-align:center;" class="mobile-padding">
               <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:800px;" ><![endif]-->
               <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
                 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
@@ -632,18 +806,18 @@
 
     <!-- Top Articles Section -->
     <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:800px;" width="800" bgcolor="#ffffff" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
-    <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:800px;">
+    <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:800px;" class="mobile-full-width">
       <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
         <tbody>
           <tr>
-            <td style="direction:ltr;font-size:0px;padding:0 30px 50px;text-align:center;">
+            <td style="direction:ltr;font-size:0px;padding:0 30px 50px;text-align:center;" class="mobile-padding">
               <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:800px;" ><![endif]-->
               <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
                 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
                   <tbody>
                     <tr>
                       <td align="left" style="font-size:0px;padding:0 0 20px 0;word-break:break-word;">
-                        <div style="font-family:'Roboto', Arial, sans-serif;font-size:20px;font-weight:700;line-height:20px;text-align:left;color:#333333;">Top Voted Articles of Q3FY25</div>
+                        <div style="font-family:'Roboto', Arial, sans-serif;font-size:20px;font-weight:700;line-height:20px;text-align:left;color:#333333;" class="mobile-subheader-font">Top Voted Articles of Q3FY25</div>
                       </td>
                     </tr>
                     <tr>
@@ -653,38 +827,38 @@
                     </tr>
                     <tr>
                       <td align="center" style="font-size:0px;padding:0;word-break:break-word;">
-                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;border:1px solid #e0e0e0;table-layout:fixed;">
-                          <tr style="background-color:#f8f4ff;">
-                            <td style="width:8%;padding:15px 10px;text-align:center;border-right:1px solid #e0e0e0;vertical-align:middle;">
+                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;border:1px solid #e0e0e0;table-layout:fixed;" class="mobile-top-articles-table">
+                          <tr style="background-color:#f8f4ff;" class="mobile-table-row">
+                            <td style="width:8%;padding:15px 10px;text-align:center;border-right:1px solid #e0e0e0;vertical-align:middle;" class="mobile-table-cell">
                               <div style="font-family:'Roboto', Arial, sans-serif;font-size:18px;font-weight:700;line-height:18px;text-align:center;color:#333333;">1</div>
                             </td>
-                            <td style="width:15%;padding:15px 10px;border-right:1px solid #e0e0e0;vertical-align:middle;">
+                            <td style="width:15%;padding:15px 10px;border-right:1px solid #e0e0e0;vertical-align:middle;" class="mobile-table-cell">
                               <div style="font-family:'Roboto', Arial, sans-serif;font-size:16px;font-weight:400;line-height:16px;text-align:left;color:#333333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">#000049793</div>
                             </td>
-                            <td style="width:52%;padding:15px 10px;border-right:1px solid #e0e0e0;vertical-align:middle;">
+                            <td style="width:52%;padding:15px 10px;border-right:1px solid #e0e0e0;vertical-align:middle;" class="mobile-table-cell">
                               <div style="font-family:'Roboto', Arial, sans-serif;font-size:16px;font-weight:400;line-height:16px;text-align:left;color:#333333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Avoiding Excessive ctos_gls_dly* Buffer Cells in the Clock Path to Resolve Timing Issues</div>
                             </td>
-                            <td style="width:15%;padding:15px 10px;border-right:1px solid #e0e0e0;vertical-align:middle;">
+                            <td style="width:15%;padding:15px 10px;border-right:1px solid #e0e0e0;vertical-align:middle;" class="mobile-table-cell">
                               <div style="font-family:'Roboto', Arial, sans-serif;font-size:16px;font-weight:400;line-height:16px;text-align:left;color:#333333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Ravi Goswami</div>
                             </td>
-                            <td style="width:10%;padding:15px 10px;vertical-align:middle;">
+                            <td style="width:10%;padding:15px 10px;vertical-align:middle;" class="mobile-table-cell">
                               <div style="font-family:'Roboto', Arial, sans-serif;font-size:16px;font-weight:400;line-height:16px;text-align:left;color:#333333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">18 Votes</div>
                             </td>
                           </tr>
-                          <tr style="background-color:#ffffff;">
-                            <td style="width:8%;padding:15px 10px;text-align:center;border-right:1px solid #e0e0e0;vertical-align:middle;">
+                          <tr style="background-color:#ffffff;" class="mobile-table-row">
+                            <td style="width:8%;padding:15px 10px;text-align:center;border-right:1px solid #e0e0e0;vertical-align:middle;" class="mobile-table-cell">
                               <div style="font-family:'Roboto', Arial, sans-serif;font-size:18px;font-weight:700;line-height:18px;text-align:center;color:#333333;">2</div>
                             </td>
-                            <td style="width:15%;padding:15px 10px;border-right:1px solid #e0e0e0;vertical-align:middle;">
+                            <td style="width:15%;padding:15px 10px;border-right:1px solid #e0e0e0;vertical-align:middle;" class="mobile-table-cell">
                               <div style="font-family:'Roboto', Arial, sans-serif;font-size:16px;font-weight:400;line-height:16px;text-align:left;color:#333333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">#000048933</div>
                             </td>
-                            <td style="width:52%;padding:15px 10px;border-right:1px solid #e0e0e0;vertical-align:middle;">
+                            <td style="width:52%;padding:15px 10px;border-right:1px solid #e0e0e0;vertical-align:middle;" class="mobile-table-cell">
                               <div style="font-family:'Roboto', Arial, sans-serif;font-size:16px;font-weight:400;line-height:16px;text-align:left;color:#333333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">How to Enable Consistent Power Reporting in the Log File</div>
                             </td>
-                            <td style="width:15%;padding:15px 10px;border-right:1px solid #e0e0e0;vertical-align:middle;">
+                            <td style="width:15%;padding:15px 10px;border-right:1px solid #e0e0e0;vertical-align:middle;" class="mobile-table-cell">
                               <div style="font-family:'Roboto', Arial, sans-serif;font-size:16px;font-weight:400;line-height:16px;text-align:left;color:#333333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Deeksha Sharma</div>
                             </td>
-                            <td style="width:10%;padding:15px 10px;vertical-align:middle;">
+                            <td style="width:10%;padding:15px 10px;vertical-align:middle;" class="mobile-table-cell">
                               <div style="font-family:'Roboto', Arial, sans-serif;font-size:16px;font-weight:400;line-height:16px;text-align:left;color:#333333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">17 Votes</div>
                             </td>
                           </tr>
@@ -704,11 +878,11 @@
 
     <!-- Footer Disclaimer -->
     <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:800px;" width="800" bgcolor="#ffffff" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
-    <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:800px;">
+    <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:800px;" class="mobile-full-width">
       <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
         <tbody>
           <tr>
-            <td style="direction:ltr;font-size:0px;padding:0 30px 50px;text-align:center;">
+            <td style="direction:ltr;font-size:0px;padding:0 30px 50px;text-align:center;" class="mobile-padding">
               <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:800px;" ><![endif]-->
               <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
                 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
@@ -732,12 +906,12 @@
     <!--[if mso | IE]></td></tr></table><![endif]-->
 
     <!-- Part 4: RECAP, Highlights, Author Profile, and Footer -->
-    <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:800px;" width="800" bgcolor="#ffffff" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
-    <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:800px;">
+    <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:800px;" width="800" bgcolor="#ffffff" ><![endif]-->
+    <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:800px;" class="mobile-full-width">
       <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
         <tbody>
           <tr>
-            <td style="direction:ltr;font-size:0px;padding:0 30px 60px;text-align:center;">
+            <td style="direction:ltr;font-size:0px;padding:0 30px 60px;text-align:center;" class="mobile-padding">
               <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:800px;" ><![endif]-->
               <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
                 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
@@ -760,18 +934,18 @@
 
     <!-- RECAP Section -->
     <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:800px;" width="800" bgcolor="#ffffff" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
-    <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:800px;">
+    <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:800px;" class="mobile-full-width">
       <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
         <tbody>
           <tr>
-            <td style="direction:ltr;font-size:0px;padding:0 30px 60px;text-align:center;">
+            <td style="direction:ltr;font-size:0px;padding:0 30px 60px;text-align:center;" class="mobile-padding">
               <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:800px;" ><![endif]-->
               <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
                 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
                   <tbody>
                     <tr>
                       <td align="left" style="font-size:0px;padding:0 0 20px 0;word-break:break-word;">
-                        <div style="font-family:'Roboto', Arial, sans-serif;font-size:24px;font-weight:700;line-height:24px;text-align:left;color:#333333;">RECAP: SolvNetPlus Modernization 28 June Release</div>
+                        <div style="font-family:'Roboto', Arial, sans-serif;font-size:24px;font-weight:700;line-height:24px;text-align:left;color:#333333;" class="mobile-subheader-font">RECAP: SolvNetPlus Modernization 28 June Release</div>
                       </td>
                     </tr>
                     <tr>
@@ -781,14 +955,14 @@
                     </tr>
                     <tr>
                       <td align="left" style="font-size:0px;padding:0 0 25px 0;word-break:break-word;">
-                        <div style="font-family:'Roboto', Arial, sans-serif;font-size:16px;font-weight:400;line-height:25px;text-align:left;color:#333333;">
+                        <div style="font-family:'Roboto', Arial, sans-serif;font-size:16px;font-weight:400;line-height:25px;text-align:left;color:#333333;" class="mobile-font-size">
                           <p style="margin:0 0 15px 0;">This release delivered several enhancements to bring efficiency in knowledge workflows and to enhance customer experience! You can go through these 2 articles to know more about these recent updates:</p>
                         </div>
                       </td>
                     </tr>
                     <tr>
                       <td align="left" style="font-size:0px;padding:0 0 15px 0;word-break:break-word;">
-                        <div style="font-family:'Roboto', Arial, sans-serif;font-size:16px;font-weight:400;line-height:25px;text-align:left;color:#333333;">
+                        <div style="font-family:'Roboto', Arial, sans-serif;font-size:16px;font-weight:400;line-height:25px;text-align:left;color:#333333;" class="mobile-font-size">
                           <span style="font-weight:600;">Improved Customer Experience:</span>
                           <a href="#" style="color:#7E45AF;text-decoration:none;font-weight:400;"> SolvNetPlus Community Enhancement Notification</a>
                         </div>
@@ -796,7 +970,7 @@
                     </tr>
                     <tr>
                       <td align="left" style="font-size:0px;padding:0;word-break:break-word;">
-                        <div style="font-family:'Roboto', Arial, sans-serif;font-size:16px;font-weight:400;line-height:25px;text-align:left;color:#333333;">
+                        <div style="font-family:'Roboto', Arial, sans-serif;font-size:16px;font-weight:400;line-height:25px;text-align:left;color:#333333;" class="mobile-font-size">
                           <span style="font-weight:600;">Efficient Knowledge Workflows:</span>
                           <a href="#" style="color:#7E45AF;text-decoration:none;font-weight:400;"> SolvNetPlus Knowledge Workflow (Internal) Enhancement Update</a>
                         </div>
@@ -815,18 +989,18 @@
 
     <!-- Highlights Section -->
     <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:800px;" width="800" bgcolor="#ffffff" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
-    <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:800px;">
+    <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:800px;" class="mobile-full-width">
       <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
         <tbody>
           <tr>
-            <td style="direction:ltr;font-size:0px;padding:0 30px 60px;text-align:center;">
+            <td style="direction:ltr;font-size:0px;padding:0 30px 60px;text-align:center;" class="mobile-padding">
               <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:800px;" ><![endif]-->
               <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
                 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
                   <tbody>
                     <tr>
                       <td align="left" style="font-size:0px;padding:0 0 20px 0;word-break:break-word;">
-                        <div style="font-family:'Roboto', Arial, sans-serif;font-size:24px;font-weight:700;line-height:24px;text-align:left;color:#333333;">Highlights</div>
+                        <div style="font-family:'Roboto', Arial, sans-serif;font-size:24px;font-weight:700;line-height:24px;text-align:left;color:#333333;" class="mobile-subheader-font">Highlights</div>
                       </td>
                     </tr>
                     <tr>
@@ -837,7 +1011,7 @@
                     <tr>
                       <td align="center" style="font-size:0px;padding:0;word-break:break-word;">
                         <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:400px;" ><![endif]-->
-                        <div class="mj-column-per-50 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;">
+                        <div class="mj-column-per-50 mj-outlook-group-fix mobile-highlights" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;">
                           <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
                             <tbody>
                               <tr>
@@ -851,7 +1025,7 @@
                           </table>
                         </div>
                         <!--[if mso | IE]></td><td class="" style="vertical-align:top;width:400px;" ><![endif]-->
-                        <div class="mj-column-per-50 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;">
+                        <div class="mj-column-per-50 mj-outlook-group-fix mobile-highlights" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;">
                           <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
                             <tbody>
                               <tr>
@@ -880,11 +1054,11 @@
 
     <!-- Author Profile Section -->
     <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:800px;" width="800" bgcolor="#ffffff" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
-    <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:800px;">
+    <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:800px;" class="mobile-full-width">
       <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
         <tbody>
           <tr>
-            <td style="direction:ltr;font-size:0px;padding:0 30px 60px;text-align:center;">
+            <td style="direction:ltr;font-size:0px;padding:0 30px 60px;text-align:center;" class="mobile-padding">
               <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:800px;" ><![endif]-->
               <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
                 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
@@ -916,11 +1090,11 @@
 
     <!-- Footer -->
     <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:800px;" width="800" bgcolor="#ffffff" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
-    <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:800px;">
+    <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:800px;" class="mobile-full-width">
       <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
         <tbody>
           <tr>
-            <td style="direction:ltr;font-size:0px;padding:0 30px 50px;text-align:center;">
+            <td style="direction:ltr;font-size:0px;padding:0 30px 50px;text-align:center;" class="mobile-padding">
               <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:800px;" ><![endif]-->
               <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
                 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
