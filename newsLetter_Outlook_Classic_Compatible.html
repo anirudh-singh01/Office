@@ -27,7 +27,13 @@
     table { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
     td { mso-line-height-rule: exactly; }
     .outlook-fix { display: block !important; width: 100% !important; }
-    /* Outlook Classic image size preservation */
+    /* Outlook Classic image size preservation - AGGRESSIVE */
+    img {
+      width: auto !important;
+      height: auto !important;
+      max-width: none !important;
+      max-height: none !important;
+    }
     .highlights-section img {
       width: 350px !important;
       height: 200px !important;
@@ -37,6 +43,13 @@
     .highlights-section td {
       width: 50% !important;
       max-width: 400px !important;
+    }
+    /* Force all hotfix images to maintain size */
+    .hotfix-section img {
+      width: auto !important;
+      height: auto !important;
+      max-width: 100% !important;
+      max-height: none !important;
     }
   </style>
   <![endif]-->
@@ -46,7 +59,13 @@
     body, table, td {font-family: Arial, Helvetica, sans-serif !important;}
     .outlook-table { width: 100% !important; }
     .outlook-cell { display: block !important; width: 100% !important; }
-    /* Outlook image size preservation */
+    /* Outlook image size preservation - AGGRESSIVE */
+    img {
+      width: auto !important;
+      height: auto !important;
+      max-width: none !important;
+      max-height: none !important;
+    }
     .highlights-section img {
       width: 350px !important;
       height: 200px !important;
@@ -56,6 +75,13 @@
     .highlights-section td {
       width: 50% !important;
       max-width: 400px !important;
+    }
+    /* Force all hotfix images to maintain size */
+    .hotfix-section img {
+      width: auto !important;
+      height: auto !important;
+      max-width: 100% !important;
+      max-height: none !important;
     }
   </style>
   <![endif]-->
@@ -119,6 +145,12 @@
       margin: 13px 0;
     }
     
+    /* Global image size preservation */
+    img {
+      max-width: 100% !important;
+      height: auto !important;
+    }
+    
     /* Highlights section image size preservation */
     .highlights-section img {
       width: 350px !important;
@@ -131,6 +163,23 @@
     .highlights-section td {
       width: 50% !important;
       max-width: 400px !important;
+    }
+    
+    /* Hotfix section image size preservation */
+    .hotfix-section img {
+      max-width: 100% !important;
+      height: auto !important;
+      width: auto !important;
+    }
+    
+    /* Force specific hotfix image sizes for Outlook Classic */
+    img[src*="h4.png"], img[src*="h5.png"], img[src*="h6.png"], 
+    img[src*="h7.png"], img[src*="h8.png"], img[src*="h9.png"], 
+    img[src*="h10.png"], img[src*="h1.png"], img[src*="h2.png"] {
+      width: 400px !important;
+      height: 300px !important;
+      max-width: 400px !important;
+      max-height: 300px !important;
     }
     
          /* Highlights section mobile responsive */
@@ -355,7 +404,7 @@
     </table>
 
     <!-- Hotfix Header Section -->
-    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:800px;background:#ffffff;" class="outlook-table">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:800px;background:#ffffff;" class="outlook-table hotfix-section">
       <tr>
         <td style="padding:0 30px 50px;" class="mobile-padding">
           <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
@@ -384,7 +433,7 @@
     </table>
 
     <!-- Hotfix Items Section -->
-    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:800px;background:#ffffff;" class="outlook-table">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:800px;background:#ffffff;" class="outlook-table hotfix-section">
       <tr>
         <td style="padding:0 30px 50px;" class="mobile-padding">
           <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
@@ -439,9 +488,9 @@
                 <div style="font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:400;line-height:22px;text-align:left;color:#333333;margin:25px 0;">
                   <p style="margin:0 0 15px 0;">Selected KMs can change level of review and manually choose TR and LR overriding system auto-assign after their approval.</p>
                 </div>
-                <div style="text-align:center;margin:25px 0;">
-                  <img src="media/h4.png" alt="Hot Fix 2 Image" style="width:auto;max-width:100%;height:auto;background-color:#e0e0e0;border:1px solid #e0e0e0;display:block;margin:0 auto;">
-                </div>
+                                 <div style="text-align:center;margin:25px 0;">
+                   <img src="media/h4.png" alt="Hot Fix 2 Image" style="width:auto;max-width:100%;height:auto;background-color:#e0e0e0;border:1px solid #e0e0e0;display:block;margin:0 auto;" width="400" height="300">
+                 </div>
               </td>
             </tr>
 
@@ -468,9 +517,9 @@
                 <div style="font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:400;line-height:22px;text-align:left;color:#333333;margin:25px 0;">
                   <p style="margin:0 0 15px 0;">All Salesforce knowledge users (authors and reviewers) can now see article approval and rejection stages in the 'Approval Work Items' section at the end of the article page</p>
                 </div>
-                <div style="text-align:center;margin:25px 0;">
-                  <img src="media/h5.png" alt="Hot Fix 3 Image" style="width:auto;max-width:100%;height:auto;background-color:#e0e0e0;border:1px solid #e0e0e0;display:block;margin:0 auto;">
-                </div>
+                                 <div style="text-align:center;margin:25px 0;">
+                   <img src="media/h5.png" alt="Hot Fix 3 Image" style="width:auto;max-width:100%;height:auto;background-color:#e0e0e0;border:1px solid #e0e0e0;display:block;margin:0 auto;" width="400" height="300">
+                 </div>
                 <div style="font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:400;line-height:22px;text-align:left;color:#333333;margin:25px 0;">
                   <p style="margin:0 0 15px 0;"><strong>Note:</strong> In the event where Reviewer sends an article back to author for correction, the approval work item of this article continues to show the same reviewer's name as this article will come back to the same reviewer once author resubmits an article.</p>
                 </div>
@@ -501,9 +550,9 @@
                   <p style="margin:0 0 5px 0;">Removed "Recall" option altogether as it was causing confusion.</p>
                   <p style="margin:0 0 15px 0;">Users can use 'Chatter' with @name tag or teams or email to suggest change/action to latest assignee of the article by knowing it from "Assigned To" field in the Article Approval Work Items at the end of article page as shown in above Hot Fix #5.</p>
                 </div>
-                <div style="text-align:center;margin:25px 0;">
-                  <img src="media/h6.png" alt="Hot Fix 4 Image" style="width:auto;max-width:100%;height:auto;background-color:#e0e0e0;border:1px solid #e0e0e0;display:block;margin:0 auto;">
-                </div>
+                                 <div style="text-align:center;margin:25px 0;">
+                   <img src="media/h6.png" alt="Hot Fix 4 Image" style="width:auto;max-width:100%;height:auto;background-color:#e0e0e0;border:1px solid #e0e0e0;display:block;margin:0 auto;" width="400" height="300">
+                 </div>
               </td>
             </tr>
 
@@ -530,9 +579,9 @@
                 <div style="font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:400;line-height:22px;text-align:left;color:#333333;margin:25px 0;">
                   <p style="margin:0 0 15px 0;">Reviewers can now reassign article to any salesforce active reviewer, and not just from the system reviewers list</p>
                 </div>
-                <div style="text-align:center;margin:25px 0;">
-                  <img src="media/h7.png" alt="Hot Fix 5 Image" style="width:auto;max-width:100%;height:auto;background-color:#e0e0e0;border:1px solid #e0e0e0;display:block;margin:0 auto;">
-                </div>
+                                 <div style="text-align:center;margin:25px 0;">
+                   <img src="media/h7.png" alt="Hot Fix 5 Image" style="width:auto;max-width:100%;height:auto;background-color:#e0e0e0;border:1px solid #e0e0e0;display:block;margin:0 auto;" width="400" height="300">
+                 </div>
               </td>
             </tr>
 
@@ -559,9 +608,9 @@
                 <div style="font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:400;line-height:22px;text-align:left;color:#333333;margin:25px 0;">
                   <p style="margin:0 0 15px 0;">Under Home, author can also see articles pending under their review (In-Author Review) if a reviewer has sent it back for corrections.</p>
                 </div>
-                <div style="text-align:center;margin:25px 0;">
-                  <img src="media/h8.png" alt="Hot Fix 6 Image" style="width:auto;max-width:100%;height:auto;background-color:#e0e0e0;border:1px solid #e0e0e0;display:block;margin:0 auto;">
-                </div>
+                                 <div style="text-align:center;margin:25px 0;">
+                   <img src="media/h8.png" alt="Hot Fix 6 Image" style="width:auto;max-width:100%;height:auto;background-color:#e0e0e0;border:1px solid #e0e0e0;display:block;margin:0 auto;" width="400" height="300">
+                 </div>
               </td>
             </tr>
 
@@ -588,9 +637,9 @@
                 <div style="font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:400;line-height:22px;text-align:left;color:#333333;margin:25px 0;">
                   <p style="margin:0 0 15px 0;">The pending article sections "Items to Approve" under Home Page has, for the time being separate sections for both old-flow (pre SolvNetPlus Modernization - 28 June Release) and new flow articles.</p>
                 </div>
-                <div style="text-align:center;margin:25px 0;">
-                  <img src="media/h9.png" alt="Hot Fix 7 Image" style="width:auto;max-width:100%;height:auto;background-color:#e0e0e0;border:1px solid #e0e0e0;display:block;margin:0 auto;">
-                </div>
+                                 <div style="text-align:center;margin:25px 0;">
+                   <img src="media/h9.png" alt="Hot Fix 7 Image" style="width:auto;max-width:100%;height:auto;background-color:#e0e0e0;border:1px solid #e0e0e0;display:block;margin:0 auto;" width="400" height="300">
+                 </div>
                 <div style="font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:400;line-height:22px;text-align:left;color:#333333;margin:25px 0;">
                   <p style="margin:0 0 15px 0;"><strong>Note:</strong> We will now not show "In-Author Review" article in above list to reviewer who sent it back to author as it is not under his action at that moment. Yes, it will come back to same reviewer.</p>
                 </div>
@@ -621,9 +670,9 @@
                   <p style="margin:0 0 15px 0;">Comments box at various places in the content management flow is now made mandatory. This enables reviewers to add their comments while they are performing tasks associated with article such as 'Reassign', 'Send Back to Author, 'Reject' & 'Archive'.</p>
                   <p style="margin:0 0 15px 0;">Note: The comment section at the time 'Approve' will be made non-mandatory soon!</p>
                 </div>
-                <div style="text-align:center;margin:25px 0;">
-                  <img src="media/h10.png" alt="Hot Fix 8 Image" style="width:auto;max-width:100%;height:auto;background-color:#e0e0e0;border:1px solid #e0e0e0;display:block;margin:0 auto;">
-                </div>
+                                 <div style="text-align:center;margin:25px 0;">
+                   <img src="media/h10.png" alt="Hot Fix 8 Image" style="width:auto;max-width:100%;height:auto;background-color:#e0e0e0;border:1px solid #e0e0e0;display:block;margin:0 auto;" width="400" height="300">
+                 </div>
               </td>
             </tr>
 
@@ -650,9 +699,9 @@
                 <div style="font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:400;line-height:22px;text-align:left;color:#333333;margin:25px 0;">
                   <p style="margin:0 0 15px 0;">Comment box size and text-limit has been increased for all actions: Send Back To Author, Reassign, Reject and Archive.</p>
                 </div>
-                <div style="text-align:center;margin:25px 0;">
-                  <img src="media/h2.png" alt="Hot Fix 9 Image" style="width:auto;max-width:100%;height:auto;background-color:#e0e0e0;border:1px solid #e0e0e0;display:block;margin:0 auto;">
-                </div>
+                                 <div style="text-align:center;margin:25px 0;">
+                   <img src="media/h2.png" alt="Hot Fix 9 Image" style="width:auto;max-width:100%;height:auto;background-color:#e0e0e0;border:1px solid #e0e0e0;display:block;margin:0 auto;" width="400" height="300">
+                 </div>
               </td>
             </tr>
 
@@ -679,9 +728,9 @@
                 <div style="font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:400;line-height:22px;text-align:left;color:#333333;margin:25px 0;">
                   <p style="margin:0 0 15px 0;">Now contains all important details including title and link.</p>
                 </div>
-                <div style="text-align:center;margin:25px 0;">
-                  <img src="media/h1.png" alt="Hot Fix 10 Image" style="width:auto;max-width:100%;height:auto;background-color:#e0e0e0;border:1px solid #e0e0e0;display:block;margin:0 auto;">
-                </div>
+                                 <div style="text-align:center;margin:25px 0;">
+                   <img src="media/h1.png" alt="Hot Fix 10 Image" style="width:auto;max-width:100%;height:auto;background-color:#e0e0e0;border:1px solid #e0e0e0;display:block;margin:0 auto;" width="400" height="300">
+                 </div>
               </td>
             </tr>
           </table>
