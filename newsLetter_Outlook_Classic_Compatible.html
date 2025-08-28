@@ -27,6 +27,17 @@
     table { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
     td { mso-line-height-rule: exactly; }
     .outlook-fix { display: block !important; width: 100% !important; }
+    /* Outlook Classic image size preservation */
+    .highlights-section img {
+      width: 350px !important;
+      height: 200px !important;
+      max-width: 350px !important;
+      max-height: 200px !important;
+    }
+    .highlights-section td {
+      width: 50% !important;
+      max-width: 400px !important;
+    }
   </style>
   <![endif]-->
   
@@ -35,6 +46,17 @@
     body, table, td {font-family: Arial, Helvetica, sans-serif !important;}
     .outlook-table { width: 100% !important; }
     .outlook-cell { display: block !important; width: 100% !important; }
+    /* Outlook image size preservation */
+    .highlights-section img {
+      width: 350px !important;
+      height: 200px !important;
+      max-width: 350px !important;
+      max-height: 200px !important;
+    }
+    .highlights-section td {
+      width: 50% !important;
+      max-width: 400px !important;
+    }
   </style>
   <![endif]-->
   
@@ -95,6 +117,20 @@
 
     p {
       margin: 13px 0;
+    }
+    
+    /* Highlights section image size preservation */
+    .highlights-section img {
+      width: 350px !important;
+      height: 200px !important;
+      max-width: 350px !important;
+      max-height: 200px !important;
+      object-fit: cover;
+    }
+    
+    .highlights-section td {
+      width: 50% !important;
+      max-width: 400px !important;
     }
     
          /* Highlights section mobile responsive */
@@ -901,12 +937,12 @@
                    <tr>
                      <td style="width:50%;vertical-align:top;padding:0 15px;">
                        <div style="text-align:center;">
-                         <img src="media/highlight_img_1_edited.png" alt="Highlight 1" style="width:100%;max-width:350px;height:200px;background-color:#e0e0e0;border:1px solid #e0e0e0;display:block;margin:0 auto;">
+                         <img src="media/highlight_img_1_edited.png" alt="Highlight 1" style="width:350px;height:200px;background-color:#e0e0e0;border:1px solid #e0e0e0;display:block;margin:0 auto;max-width:100%;" width="350" height="200">
                        </div>
                      </td>
                      <td style="width:50%;vertical-align:top;padding:0 15px;">
                        <div style="text-align:center;">
-                         <img src="media/highlight_img_2_edited.png" alt="Highlight 2" style="width:100%;max-width:350px;height:200px;background-color:#e0e0e0;border:1px solid #e0e0e0;display:block;margin:0 auto;">
+                         <img src="media/highlight_img_2_edited.png" alt="Highlight 2" style="width:350px;height:200px;background-color:#e0e0e0;border:1px solid #e0e0e0;display:block;margin:0 auto;max-width:100%;" width="350" height="200">
                        </div>
                      </td>
                    </tr>
