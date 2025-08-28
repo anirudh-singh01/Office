@@ -27,29 +27,66 @@
     table { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
     td { mso-line-height-rule: exactly; }
     .outlook-fix { display: block !important; width: 100% !important; }
-    /* Outlook Classic image size preservation - AGGRESSIVE */
-    img {
+    
+    /* LOCKED CONTAINER - PREVENT OUTLOOK MODIFICATIONS */
+    .newsletter-locked-container {
+      width: 800px !important;
+      max-width: 800px !important;
+      min-width: 800px !important;
+      overflow: hidden !important;
+      position: relative !important;
+    }
+    
+    /* FORCE ALL IMAGES TO STAY IN BOUNDS */
+    .newsletter-locked-container img {
+      max-width: 100% !important;
       width: auto !important;
       height: auto !important;
-      max-width: none !important;
-      max-height: none !important;
+      overflow: hidden !important;
+      position: relative !important;
     }
+    
+    /* HIGHLIGHTS SECTION - LOCKED DIMENSIONS */
+    .highlights-section {
+      width: 100% !important;
+      max-width: 100% !important;
+      overflow: hidden !important;
+    }
+    
     .highlights-section img {
       width: 350px !important;
       height: 200px !important;
       max-width: 350px !important;
       max-height: 200px !important;
+      overflow: hidden !important;
     }
+    
     .highlights-section td {
       width: 50% !important;
-      max-width: 400px !important;
+      max-width: 50% !important;
+      overflow: hidden !important;
     }
-    /* Force all hotfix images to maintain size */
-    .hotfix-section img {
-      width: auto !important;
-      height: auto !important;
+    
+    /* HOTFIX SECTION - LOCKED DIMENSIONS */
+    .hotfix-section {
+      width: 100% !important;
       max-width: 100% !important;
-      max-height: none !important;
+      overflow: hidden !important;
+    }
+    
+    .hotfix-section img {
+      width: 400px !important;
+      height: 300px !important;
+      max-width: 400px !important;
+      max-height: 300px !important;
+      overflow: hidden !important;
+    }
+    
+    /* PREVENT ANY ELEMENT FROM GOING OUTSIDE */
+    * {
+      max-width: 100% !important;
+      overflow: hidden !important;
+      box-sizing: border-box !important;
     }
   </style>
   <![endif]-->
@@ -59,29 +96,66 @@
     body, table, td {font-family: Arial, Helvetica, sans-serif !important;}
     .outlook-table { width: 100% !important; }
     .outlook-cell { display: block !important; width: 100% !important; }
-    /* Outlook image size preservation - AGGRESSIVE */
-    img {
+    
+    /* LOCKED CONTAINER - PREVENT OUTLOOK MODIFICATIONS */
+    .newsletter-locked-container {
+      width: 800px !important;
+      max-width: 800px !important;
+      min-width: 800px !important;
+      overflow: hidden !important;
+      position: relative !important;
+    }
+    
+    /* FORCE ALL IMAGES TO STAY IN BOUNDS */
+    .newsletter-locked-container img {
+      max-width: 100% !important;
       width: auto !important;
       height: auto !important;
-      max-width: none !important;
-      max-height: none !important;
+      overflow: hidden !important;
+      position: relative !important;
     }
+    
+    /* HIGHLIGHTS SECTION - LOCKED DIMENSIONS */
+    .highlights-section {
+      width: 100% !important;
+      max-width: 100% !important;
+      overflow: hidden !important;
+    }
+    
     .highlights-section img {
       width: 350px !important;
       height: 200px !important;
       max-width: 350px !important;
       max-height: 200px !important;
+      overflow: hidden !important;
     }
+    
     .highlights-section td {
       width: 50% !important;
-      max-width: 400px !important;
+      max-width: 50% !important;
+      overflow: hidden !important;
     }
-    /* Force all hotfix images to maintain size */
-    .hotfix-section img {
-      width: auto !important;
-      height: auto !important;
+    
+    /* HOTFIX SECTION - LOCKED DIMENSIONS */
+    .hotfix-section {
+      width: 100% !important;
       max-width: 100% !important;
-      max-height: none !important;
+      overflow: hidden !important;
+    }
+    
+    .hotfix-section img {
+      width: 400px !important;
+      height: 300px !important;
+      max-width: 400px !important;
+      max-height: 300px !important;
+      overflow: hidden !important;
+    }
+    
+    /* PREVENT ANY ELEMENT FROM GOING OUTSIDE */
+    * {
+      max-width: 100% !important;
+      overflow: hidden !important;
+      box-sizing: border-box !important;
     }
   </style>
   <![endif]-->
@@ -145,34 +219,63 @@
       margin: 13px 0;
     }
     
-    /* Global image size preservation */
-    img {
-      max-width: 100% !important;
-      height: auto !important;
+    /* LOCKED CONTAINER - PREVENT DESIGN CHANGES */
+    .newsletter-locked-container {
+      width: 800px;
+      max-width: 800px;
+      min-width: 800px;
+      margin: 0 auto;
+      overflow: hidden;
+      position: relative;
+      background-color: #ffffff;
     }
     
-    /* Highlights section image size preservation */
+    /* FORCE ALL IMAGES TO STAY IN BOUNDS */
+    .newsletter-locked-container img {
+      max-width: 100% !important;
+      height: auto !important;
+      overflow: hidden !important;
+      position: relative !important;
+    }
+    
+    /* HIGHLIGHTS SECTION - LOCKED DIMENSIONS */
+    .highlights-section {
+      width: 100% !important;
+      max-width: 100% !important;
+      overflow: hidden !important;
+    }
+    
     .highlights-section img {
       width: 350px !important;
       height: 200px !important;
       max-width: 350px !important;
       max-height: 200px !important;
       object-fit: cover;
+      overflow: hidden !important;
     }
     
     .highlights-section td {
       width: 50% !important;
-      max-width: 400px !important;
+      max-width: 50% !important;
+      overflow: hidden !important;
     }
     
-    /* Hotfix section image size preservation */
-    .hotfix-section img {
+    /* HOTFIX SECTION - LOCKED DIMENSIONS */
+    .hotfix-section {
+      width: 100% !important;
       max-width: 100% !important;
-      height: auto !important;
-      width: auto !important;
+      overflow: hidden !important;
     }
     
-    /* Force specific hotfix image sizes for Outlook Classic */
+    .hotfix-section img {
+      width: 400px !important;
+      height: 300px !important;
+      max-width: 400px !important;
+      max-height: 300px !important;
+      overflow: hidden !important;
+    }
+    
+    /* FORCE SPECIFIC HOTFIX IMAGE SIZES */
     img[src*="h4.png"], img[src*="h5.png"], img[src*="h6.png"], 
     img[src*="h7.png"], img[src*="h8.png"], img[src*="h9.png"], 
     img[src*="h10.png"], img[src*="h1.png"], img[src*="h2.png"] {
@@ -180,20 +283,54 @@
       height: 300px !important;
       max-width: 400px !important;
       max-height: 300px !important;
+      overflow: hidden !important;
     }
     
-         /* Highlights section mobile responsive */
-     @media only screen and (max-width: 600px) {
-       .highlights-section table td {
-         display: block !important;
-         width: 100% !important;
-         margin-bottom: 20px !important;
-       }
-       
-       .highlights-section table td:last-child {
-         margin-bottom: 0 !important;
-       }
-     }
+    /* PREVENT ANY ELEMENT FROM GOING OUTSIDE */
+    .newsletter-locked-container * {
+      max-width: 100% !important;
+      overflow: hidden !important;
+      box-sizing: border-box !important;
+    }
+    
+    /* ADDITIONAL HIGHLIGHTS LOCKDOWN */
+    .highlights-locked-table {
+      width: 100% !important;
+      max-width: 100% !important;
+      overflow: hidden !important;
+      table-layout: fixed !important;
+    }
+    
+    .highlights-locked-table td {
+      width: 50% !important;
+      max-width: 50% !important;
+      overflow: hidden !important;
+      word-wrap: break-word !important;
+    }
+    
+    .highlights-locked-table div {
+      max-width: 100% !important;
+      overflow: hidden !important;
+    }
+    
+    /* Highlights section mobile responsive */
+    @media only screen and (max-width: 600px) {
+      .newsletter-locked-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: auto !important;
+      }
+      
+      .highlights-section table td {
+        display: block !important;
+        width: 100% !important;
+        margin-bottom: 20px !important;
+      }
+      
+      .highlights-section table td:last-child {
+        margin-bottom: 0 !important;
+      }
+    }
 
     /* Simplified mobile styles - more compatible */
     @media only screen and (max-width: 600px) {
@@ -300,8 +437,6 @@
         color: #0066cc !important;
         text-align: center !important;
       }
-      
-       
     }
 
     @media only screen and (max-width: 480px) {
@@ -324,22 +459,23 @@
         line-height: 20px !important;
       }
       
-               /* Highlights mobile responsive for small screens */
-        .highlights-section table td {
-          display: block !important;
-          width: 100% !important;
-          margin-bottom: 25px !important;
-        }
-        
-        .highlights-section table td:last-child {
-          margin-bottom: 0 !important;
-        }
+      /* Highlights mobile responsive for small screens */
+      .highlights-section table td {
+        display: block !important;
+        width: 100% !important;
+        margin-bottom: 25px !important;
+      }
+      
+      .highlights-section table td:last-child {
+        margin-bottom: 0 !important;
+      }
     }
   </style>
 </head>
 
 <body style="word-spacing:normal;background-color:#ffffff;font-family:Arial, Helvetica, sans-serif;">
-  <div style="background-color:#ffffff;">
+  <!-- LOCKED CONTAINER - PREVENTS OUTLOOK FROM MODIFYING DESIGN -->
+  <div class="newsletter-locked-container" style="width:800px;max-width:800px;min-width:800px;margin:0 auto;overflow:hidden;position:relative;background-color:#ffffff;">
     <!-- Header Section -->
     <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:800px;background:#ffffff;" class="outlook-table">
       <tr>
@@ -982,16 +1118,17 @@
             </tr>
                          <tr>
                <td align="center" style="padding:0;">
-                 <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
+                 <!-- LOCKED HIGHLIGHTS TABLE - PREVENTS OUTLOOK MODIFICATIONS -->
+                 <table border="0" cellpadding="0" cellspacing="0" style="width:100%;max-width:100%;overflow:hidden;" class="highlights-locked-table">
                    <tr>
-                     <td style="width:50%;vertical-align:top;padding:0 15px;">
-                       <div style="text-align:center;">
-                         <img src="media/highlight_img_1_edited.png" alt="Highlight 1" style="width:350px;height:200px;background-color:#e0e0e0;border:1px solid #e0e0e0;display:block;margin:0 auto;max-width:100%;" width="350" height="200">
+                     <td style="width:50%;vertical-align:top;padding:0 15px;max-width:50%;overflow:hidden;">
+                       <div style="text-align:center;max-width:100%;overflow:hidden;">
+                         <img src="media/highlight_img_1_edited.png" alt="Highlight 1" style="width:350px;height:200px;background-color:#e0e0e0;border:1px solid #e0e0e0;display:block;margin:0 auto;max-width:350px;max-height:200px;overflow:hidden;" width="350" height="200">
                        </div>
                      </td>
-                     <td style="width:50%;vertical-align:top;padding:0 15px;">
-                       <div style="text-align:center;">
-                         <img src="media/highlight_img_2_edited.png" alt="Highlight 2" style="width:350px;height:200px;background-color:#e0e0e0;border:1px solid #e0e0e0;display:block;margin:0 auto;max-width:100%;" width="350" height="200">
+                     <td style="width:50%;vertical-align:top;padding:0 15px;max-width:50%;overflow:hidden;">
+                       <div style="text-align:center;max-width:100%;overflow:hidden;">
+                         <img src="media/highlight_img_2_edited.png" alt="Highlight 2" style="width:350px;height:200px;background-color:#e0e0e0;border:1px solid #e0e0e0;display:block;margin:0 auto;max-width:350px;max-height:200px;overflow:hidden;" width="350" height="200">
                        </div>
                      </td>
                    </tr>
@@ -1055,6 +1192,7 @@
       </tr>
     </table>
   </div>
+  <!-- END LOCKED CONTAINER -->
 </body>
 
 </html>
