@@ -27,8 +27,6 @@
     table { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
     td { mso-line-height-rule: exactly; }
     .outlook-fix { display: block !important; width: 100% !important; }
-    .outlook-column { display: inline-block !important; width: 50% !important; }
-    .mobile-highlights { display: inline-block !important; width: 50% !important; }
   </style>
   <![endif]-->
   
@@ -37,7 +35,6 @@
     body, table, td {font-family: Arial, Helvetica, sans-serif !important;}
     .outlook-table { width: 100% !important; }
     .outlook-cell { display: block !important; width: 100% !important; }
-    .mobile-highlights { display: inline-block !important; width: 50% !important; }
   </style>
   <![endif]-->
   
@@ -100,25 +97,18 @@
       margin: 13px 0;
     }
     
-    /* Default highlights layout - always horizontal */
-    .mobile-highlights {
-      display: inline-block !important;
-      width: 48% !important;
-      margin-bottom: 0 !important;
-      vertical-align: top !important;
-    }
-    
-    .mobile-highlights:first-child {
-      margin-right: 2% !important;
-    }
-    
-    /* Outlook Classic specific highlights fix */
-    .outlook-column.mobile-highlights {
-      display: inline-block !important;
-      width: 50% !important;
-      margin-bottom: 0 !important;
-      vertical-align: top !important;
-    }
+         /* Highlights section mobile responsive */
+     @media only screen and (max-width: 600px) {
+       .highlights-section table td {
+         display: block !important;
+         width: 100% !important;
+         margin-bottom: 20px !important;
+       }
+       
+       .highlights-section table td:last-child {
+         margin-bottom: 0 !important;
+       }
+     }
 
     /* Simplified mobile styles - more compatible */
     @media only screen and (max-width: 600px) {
@@ -226,21 +216,7 @@
         text-align: center !important;
       }
       
-      .mobile-highlights img {
-        max-width: 100% !important;
-        height: auto !important;
-      }
-      
-      /* Other columns can stack if needed */
-      .outlook-column:not(.mobile-highlights) {
-        display: block !important;
-        width: 100% !important;
-        margin-bottom: 30px !important;
-      }
-      
-      .outlook-column:not(.mobile-highlights):last-child {
-        margin-bottom: 0 !important;
-      }
+       
     }
 
     @media only screen and (max-width: 480px) {
@@ -263,24 +239,16 @@
         line-height: 20px !important;
       }
       
-      /* Stack highlights vertically on very small screens */
-      .mobile-highlights {
-        display: block !important;
-        width: 100% !important;
-        margin-bottom: 25px !important;
-        margin-right: 0 !important;
-      }
-      
-      .mobile-highlights:last-child {
-        margin-bottom: 0 !important;
-      }
-      
-
-      
-      /* Other columns can stack if needed */
-      .outlook-column:not(.mobile-highlights) {
-        margin-bottom: 25px !important;
-      }
+               /* Highlights mobile responsive for small screens */
+        .highlights-section table td {
+          display: block !important;
+          width: 100% !important;
+          margin-bottom: 25px !important;
+        }
+        
+        .highlights-section table td:last-child {
+          margin-bottom: 0 !important;
+        }
     }
   </style>
 </head>
@@ -909,7 +877,7 @@
     </table>
 
     <!-- Highlights Section -->
-    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:800px;background:#ffffff;" class="outlook-table">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:800px;background:#ffffff;" class="outlook-table highlights-section">
       <tr>
         <td style="padding:0 30px 60px;" class="mobile-padding">
           <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
@@ -927,50 +895,24 @@
                 </table>
               </td>
             </tr>
-            <tr>
-              <td align="center" style="padding:0;">
-                <!--[if mso]>
-                <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-                <tr>
-                <td style="vertical-align:top;width:400px;">
-                <![endif]-->
-                <div class="outlook-column mobile-highlights" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;">
-                  <table border="0" cellpadding="0" cellspacing="0" style="vertical-align:top;" width="100%">
-                    <tbody>
-                      <tr>
-                        <td align="center" style="font-size:0px;padding:0 15px;word-break:break-word;">
-                          <div style="text-align:center;">
-                            <img src="media/highlight_img_1_edited.png" alt="Highlight 1" style="width:100%;max-width:350px;height:200px;background-color:#e0e0e0;border:1px solid #e0e0e0;display:block;margin:0 auto;">
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <!--[if mso]>
-                </td>
-                <td style="vertical-align:top;width:400px;">
-                <![endif]-->
-                <div class="outlook-column mobile-highlights" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;">
-                  <table border="0" cellpadding="0" cellspacing="0" style="vertical-align:top;" width="100%">
-                    <tbody>
-                      <tr>
-                        <td align="center" style="font-size:0px;padding:0 15px;word-break:break-word;">
-                          <div style="text-align:center;">
-                            <img src="media/highlight_img_2_edited.png" alt="Highlight 2" style="width:100%;max-width:350px;height:200px;background-color:#e0e0e0;border:1px solid #e0e0e0;display:block;margin:0 auto;">
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <!--[if mso]>
-                </td>
-                </tr>
-                </table>
-                <![endif]-->
-              </td>
-            </tr>
+                         <tr>
+               <td align="center" style="padding:0;">
+                 <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
+                   <tr>
+                     <td style="width:50%;vertical-align:top;padding:0 15px;">
+                       <div style="text-align:center;">
+                         <img src="media/highlight_img_1_edited.png" alt="Highlight 1" style="width:100%;max-width:350px;height:200px;background-color:#e0e0e0;border:1px solid #e0e0e0;display:block;margin:0 auto;">
+                       </div>
+                     </td>
+                     <td style="width:50%;vertical-align:top;padding:0 15px;">
+                       <div style="text-align:center;">
+                         <img src="media/highlight_img_2_edited.png" alt="Highlight 2" style="width:100%;max-width:350px;height:200px;background-color:#e0e0e0;border:1px solid #e0e0e0;display:block;margin:0 auto;">
+                       </div>
+                     </td>
+                   </tr>
+                 </table>
+               </td>
+             </tr>
           </table>
         </td>
       </tr>
