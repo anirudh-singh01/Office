@@ -97,6 +97,18 @@
     p {
       margin: 13px 0;
     }
+    
+    /* Default highlights layout - always horizontal */
+    .mobile-highlights {
+      display: inline-block !important;
+      width: 48% !important;
+      margin-bottom: 0 !important;
+      vertical-align: top !important;
+    }
+    
+    .mobile-highlights:first-child {
+      margin-right: 2% !important;
+    }
 
     /* Simplified mobile styles - more compatible */
     @media only screen and (max-width: 600px) {
@@ -209,26 +221,15 @@
         height: auto !important;
       }
       
-      .outlook-column {
+      /* Other columns can stack if needed */
+      .outlook-column:not(.mobile-highlights) {
         display: block !important;
         width: 100% !important;
         margin-bottom: 30px !important;
       }
       
-      .outlook-column:last-child {
+      .outlook-column:not(.mobile-highlights):last-child {
         margin-bottom: 0 !important;
-      }
-      
-      /* Force horizontal layout for highlights on mobile */
-      .mobile-highlights {
-        display: inline-block !important;
-        width: 48% !important;
-        margin-bottom: 0 !important;
-        vertical-align: top !important;
-      }
-      
-      .mobile-highlights:first-child {
-        margin-right: 2% !important;
       }
     }
 
@@ -252,10 +253,6 @@
         line-height: 20px !important;
       }
       
-      .outlook-column {
-        margin-bottom: 25px !important;
-      }
-      
       /* Stack highlights vertically on very small screens */
       .mobile-highlights {
         display: block !important;
@@ -267,6 +264,13 @@
       .mobile-highlights:last-child {
         margin-bottom: 0 !important;
       }
+      
+
+      
+      /* Other columns can stack if needed */
+      .outlook-column:not(.mobile-highlights) {
+        margin-bottom: 25px !important;
+      }
     }
   </style>
 </head>
@@ -274,7 +278,7 @@
 <body style="word-spacing:normal;background-color:#ffffff;font-family:Arial, Helvetica, sans-serif;">
   <div style="background-color:#ffffff;">
     <!-- Header Section -->
-    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:800px;background:#ffffff;background-color:#ffffff;" class="outlook-table">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:800px;background:#ffffff;" class="outlook-table">
       <tr>
         <td style="padding:30px;text-align:center;" class="mobile-padding">
           <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
@@ -315,7 +319,7 @@
     </table>
 
     <!-- Main Content Section -->
-    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:800px;background:#ffffff;background-color:#ffffff;" class="outlook-table">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:800px;background:#ffffff;" class="outlook-table">
       <tr>
         <td style="padding:0 30px 40px;" class="mobile-padding">
           <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
@@ -337,7 +341,7 @@
     </table>
 
     <!-- Hotfix Header Section -->
-    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:800px;background:#ffffff;background-color:#ffffff;" class="outlook-table">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:800px;background:#ffffff;" class="outlook-table">
       <tr>
         <td style="padding:0 30px 50px;" class="mobile-padding">
           <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
@@ -366,7 +370,7 @@
     </table>
 
     <!-- Hotfix Items Section -->
-    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:800px;background:#ffffff;background-color:#ffffff;" class="outlook-table">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:800px;background:#ffffff;" class="outlook-table">
       <tr>
         <td style="padding:0 30px 50px;" class="mobile-padding">
           <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
@@ -672,7 +676,7 @@
     </table>
 
     <!-- Winners and Top Articles Section -->
-    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:800px;background:#ffffff;background-color:#ffffff;" class="outlook-table">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:800px;background:#ffffff;" class="outlook-table">
       <tr>
         <td style="padding:0 30px 60px;" class="mobile-padding">
           <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
@@ -737,7 +741,7 @@
     </table>
 
     <!-- Separator Line -->
-    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:800px;background:#ffffff;background-color:#ffffff;" class="outlook-table">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:800px;background:#ffffff;" class="outlook-table">
       <tr>
         <td style="padding:0 30px 50px;" class="mobile-padding">
           <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
@@ -752,7 +756,7 @@
     </table>
 
     <!-- Top Articles Section -->
-    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:800px;background:#ffffff;background-color:#ffffff;" class="outlook-table">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:800px;background:#ffffff;" class="outlook-table">
       <tr>
         <td style="padding:0 30px 50px;" class="mobile-padding">
           <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
@@ -816,7 +820,7 @@
     </table>
 
     <!-- Footer Disclaimer -->
-    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:800px;background:#ffffff;background-color:#ffffff;" class="outlook-table">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:800px;background:#ffffff;" class="outlook-table">
       <tr>
         <td style="padding:0 30px 50px;" class="mobile-padding">
           <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
@@ -833,7 +837,7 @@
     </table>
 
     <!-- Separator Line -->
-    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:800px;background:#ffffff;background-color:#ffffff;" class="outlook-table">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:800px;background:#ffffff;" class="outlook-table">
       <tr>
         <td style="padding:0 30px 50px;" class="mobile-padding">
           <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
@@ -848,7 +852,7 @@
     </table>
 
     <!-- RECAP Section -->
-    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:800px;background:#ffffff;background-color:#ffffff;" class="outlook-table">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:800px;background:#ffffff;" class="outlook-table">
       <tr>
         <td style="padding:0 30px 60px;" class="mobile-padding">
           <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
@@ -895,7 +899,7 @@
     </table>
 
     <!-- Highlights Section -->
-    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:800px;background:#ffffff;background-color:#ffffff;" class="outlook-table">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:800px;background:#ffffff;" class="outlook-table">
       <tr>
         <td style="padding:0 30px 60px;" class="mobile-padding">
           <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
@@ -963,20 +967,20 @@
     </table>
 
     <!-- Author Profile Section -->
-    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:800px;background:#ffffff;background-color:#ffffff;" class="outlook-table">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:800px;background:#ffffff;" class="outlook-table">
       <tr>
-        <td style="padding:0 30px 60px;" class="mobile-padding">
+        <td style="padding:0 30px 30px;" class="mobile-padding">
           <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
             <tr>
-              <td align="center" style="padding:0 0 50px 0;">
+              <td align="center" style="padding:0 0 30px 0;">
                 <div style="height:1px;background-color:#333333;width:100%;font-size:1px;line-height:1px;">&nbsp;</div>
               </td>
             </tr>
             <tr>
-              <td align="center" style="padding:30px 0;">
+              <td align="center" style="padding:15px 0;">
                 <div style="text-align:center;">
-                  <img src="media/sumeet.jpg" alt="Sumeet Aggarwal" style="width:80px;height:80px;background-color:#e0e0e0;margin:0 auto 20px;border:1px solid #e0e0e0;display:block;">
-                  <div style="font-family:Arial, Helvetica, sans-serif;font-size:18px;font-weight:600;line-height:18px;text-align:center;color:#333333;margin-bottom:15px;">Sumeet Aggarwal</div>
+                  <img src="media/sumeet.jpg" alt="Sumeet Aggarwal" style="width:80px;height:80px;background-color:#e0e0e0;margin:0 auto 15px;border:1px solid #e0e0e0;display:block;">
+                  <div style="font-family:Arial, Helvetica, sans-serif;font-size:18px;font-weight:600;line-height:18px;text-align:center;color:#333333;margin-bottom:10px;">Sumeet Aggarwal</div>
                   <div style="font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:400;font-style:italic;line-height:14px;text-align:center;color:#666666;">Knowledge Initiative and Customer Success</div>
                 </div>
               </td>
@@ -987,7 +991,7 @@
     </table>
 
     <!-- Footer -->
-    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:800px;background:#ffffff;background-color:#ffffff;" class="outlook-table">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:800px;background:#ffffff;" class="outlook-table">
       <tr>
         <td style="padding:0 30px 50px;" class="mobile-padding">
           <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
@@ -996,17 +1000,7 @@
                 <div style="height:4px;background-color:#7E45AF;width:100%;font-size:1px;line-height:4px;">&nbsp;</div>
               </td>
             </tr>
-            <tr>
-              <td align="center" style="padding:0 0 20px 0;">
-                <div style="text-align:center;font-family:Arial, Helvetica, sans-serif;font-size:16px;font-weight:600;color:#333333;">
-                  <a href="#" style="color:#333333;text-decoration:none;font-weight:600;margin:0 15px;">About</a>
-                  <span style="color:#333333;margin:0 15px;">|</span>
-                  <a href="#" style="color:#333333;text-decoration:none;font-weight:600;margin:0 15px;">Privacy</a>
-                  <span style="color:#333333;margin:0 15px;">|</span>
-                  <a href="#" style="color:#333333;text-decoration:none;font-weight:600;margin:0 15px;">Manage Subscription</a>
-                </div>
-              </td>
-            </tr>
+
             <tr>
               <td align="center" style="padding:0;">
                 <div style="font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:400;line-height:12px;text-align:center;color:#666666;">© 2025 Synopsys, Inc. All Rights Reserved</div>
