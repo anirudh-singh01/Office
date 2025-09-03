@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import synopsysLogo from './assets/synopsys_logo.png';
 
-const TopHeader = () => {
+const TopHeader = ({ onMenuToggle }) => {
   const navigate = useNavigate();
 
   const handleLogoClick = () => {
@@ -25,8 +25,19 @@ const TopHeader = () => {
           </span>
         </div>
         
-        {/* Right side - Help icon */}
-        <div className="flex items-center">
+        {/* Right side - Mobile Menu Button and Help icon */}
+        <div className="flex items-center space-x-2">
+          {/* Mobile Menu Button (hidden on desktop) */}
+          <button 
+            onClick={onMenuToggle}
+            className="p-2 text-gray-500 hover:text-gray-700 md:hidden"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+          
+          {/* Help icon */}
           <button className="p-1 sm:p-2 text-blue-500 hover:text-blue-600 transition-colors">
             <svg 
               className="w-5 h-5 sm:w-6 sm:h-6" 

@@ -18,7 +18,7 @@ function App() {
     <Router>
       <div className="h-screen bg-gray-50">
         {/* TopHeader - Fixed at very top */}
-        <TopHeader />
+        <TopHeader onMenuToggle={toggleSidebar} />
         
         {/* Sidebar - Below TopHeader */}
         <Sidebar 
