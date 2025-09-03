@@ -37,18 +37,19 @@ function App() {
         <Content activeUrl={activeUrl}>
           <Routes>
             <Route path="/" element={<div className="p-6">Welcome to Synopsys.ai Copilot 🚀</div>} />
-            <Route path="/compiler" element={<div className="p-6">Custom Compiler Page</div>} />
-            <Route path="/fusion" element={<div className="p-6">Fusion Compiler Page</div>} />
+            <Route path="/synopsys-copilot" element={<div className="p-6">Synopsys.ai Copilot Page</div>} />
+            <Route path="/custom-compiler" element={<div className="p-6">Custom Compiler Page</div>} />
+            <Route path="/fusion-compiler" element={<div className="p-6">Fusion Compiler Page</div>} />
             <Route path="/primetime" element={<div className="p-6">PrimeTime Page</div>} />
             <Route path="/vcs" element={<div className="p-6">VCS Page</div>} />
-            <Route path="/dso" element={<div className="p-6">DSO.ai Page</div>} />
+            <Route path="/dso-ai" element={<div className="p-6">DSO.ai Page</div>} />
             <Route path="/ic-validator" element={<div className="p-6">IC Validator Page</div>} />
             <Route path="/vc-formal" element={<div className="p-6">VC Formal Page</div>} />
             <Route path="/vc-low-power" element={<div className="p-6">VC Low Power Page</div>} />
             <Route path="/vc-spyglass" element={<div className="p-6">VC SpyGlass Page</div>} />
             <Route path="/verdi" element={<div className="p-6">Verdi Page</div>} />
             <Route path="/testmax" element={<div className="p-6">TestMAX ATPG Page</div>} />
-            <Route path="/primesim" element={<div className="p-6">PrimeSim Pro Page</div>} />
+            <Route path="/primesim-pro" element={<div className="p-6">PrimeSim Pro Page</div>} />
           </Routes>
         </Content>
       </div>

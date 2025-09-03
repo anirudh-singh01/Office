@@ -13,7 +13,8 @@ const Sidebar = ({ isOpen, onToggle, activeTool, setActiveTool, setActiveUrl }) 
     { id: 'vc-low-power', label: 'VC LP', url: 'https://snpsai-copilot-gtm/?product=vclp' },
     { id: 'vc-spyglass', label: 'VC SpyGlass', url: 'https://snpsai-copilot-gtm/?product=vcspyglass' },
     { id: 'vcs', label: 'VCS', url: 'https://snpsai-copilot-gtm/?product=vcs' },
-    { id: 'verdi', label: 'Verdi', url: 'https://snpsai-copilot-gtm/?product=verdi' }
+    { id: 'verdi', label: 'Verdi', url: 'https://snpsai-copilot-gtm/?product=verdi' },
+    { id: 'testmax', label: 'TestMAX ATPG', url: 'https://snpsai-copilot-gtm/?product=testmax' }
   ];
 
   const handleToolClick = (toolId, url) => {
