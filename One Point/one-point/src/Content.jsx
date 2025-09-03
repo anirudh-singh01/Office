@@ -9,7 +9,7 @@ const Content = ({ activeUrl, children }) => {
             src={activeUrl} 
             className="h-full w-full border-none rounded-md"
             title="Tool Content"
-            sandbox="allow-same-origin allow-scripts allow-popups"
+            sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation"
             allowFullScreen
           />
         ) : (
