@@ -7,7 +7,7 @@ import Content from './Content';
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [activeTool, setActiveTool] = useState('synopsys-copilot');
+  const [activeTool, setActiveTool] = useState('custom-compiler');
   const [activeUrl, setActiveUrl] = useState("");
 
   const toggleSidebar = () => {
