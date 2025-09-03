@@ -7,7 +7,7 @@ import Content from './Content';
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [activeTool, setActiveTool] = useState('custom-compiler');
+  const [activeTool, setActiveTool] = useState('fusion-compiler');
   const [activeUrl, setActiveUrl] = useState("");
 
   const toggleSidebar = () => {
@@ -44,7 +44,6 @@ function App() {
             <Route path="/vc-low-power" element={<div className="p-6">VC Low Power Page</div>} />
             <Route path="/vc-spyglass" element={<div className="p-6">VC SpyGlass Page</div>} />
             <Route path="/verdi" element={<div className="p-6">Verdi Page</div>} />
-            <Route path="/testmax" element={<div className="p-6">TestMAX ATPG Page</div>} />
             <Route path="/primesim-pro" element={<div className="p-6">PrimeSim Pro Page</div>} />
           </Routes>
         </Content>

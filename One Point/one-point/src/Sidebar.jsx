@@ -2,18 +2,17 @@ import React from 'react';
 
 const Sidebar = ({ isOpen, onToggle, activeTool, setActiveTool, setActiveUrl }) => {
   const toolItems = [
-    { id: 'custom-compiler', label: 'Custom Compiler *', url: 'https://snpsai-copilot-gtm/?product=cc' },
-    { id: 'dso-ai', label: 'DSO.ai', url: 'https://snpsai-copilot-gtm/?product=dso' },
     { id: 'fusion-compiler', label: 'Fusion Compiler *', url: 'https://snpsai-copilot-gtm/?product=fc' },
+    { id: 'primetime', label: 'PrimeTime *', url: 'https://snpsai-copilot-gtm/?product=pt' },
+    { id: 'custom-compiler', label: 'Custom Compiler *', url: 'https://snpsai-copilot-gtm/?product=cc' },
+    { id: 'vcs', label: 'VCS', url: 'https://snpsai-copilot-gtm/?product=vcs' },
+    { id: 'dso-ai', label: 'DSO.ai', url: 'https://snpsai-copilot-gtm/?product=dso' },
     { id: 'ic-validator', label: 'IC Validator', url: 'https://snpsai-copilot-gtm/?product=icv' },
     { id: 'primesim-pro', label: 'PrimeSim Pro', url: 'https://snpsai-copilot-gtm/?product=psim_pro' },
-    { id: 'primetime', label: 'PrimeTime *', url: 'https://snpsai-copilot-gtm/?product=pt' },
     { id: 'vc-formal', label: 'VC Formal', url: 'https://snpsai-copilot-gtm/?product=vcformal' },
     { id: 'vc-low-power', label: 'VC LP', url: 'https://snpsai-copilot-gtm/?product=vclp' },
     { id: 'vc-spyglass', label: 'VC SpyGlass', url: 'https://snpsai-copilot-gtm/?product=vcspyglass' },
-    { id: 'vcs', label: 'VCS', url: 'https://snpsai-copilot-gtm/?product=vcs' },
     { id: 'verdi', label: 'Verdi', url: 'https://snpsai-copilot-gtm/?product=verdi' },
-    { id: 'testmax', label: 'TestMAX ATPG', url: 'https://snpsai-copilot-gtm/?product=testmax' },
     { id: 'synopsys-copilot', label: 'Synopsys.ai Copilot **', url: 'https://snpsai-copilot-gtm/?product=copilot' }
   ];
 
