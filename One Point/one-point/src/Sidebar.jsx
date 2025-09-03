@@ -3,18 +3,17 @@ import React from 'react';
 const Sidebar = ({ isOpen, onToggle, activeTool, setActiveTool, setActiveUrl }) => {
   const toolItems = [
     { id: 'synopsys-copilot', label: 'Synopsys.ai Copilot', url: 'https://example.com/synopsys-copilot' },
-    { id: 'custom-compiler', label: 'Custom Compiler *', url: 'https://snpsai-copilot-gtm/?product=cc' },
-    { id: 'fusion-compiler', label: 'Fusion Compiler *', url: 'https://example.com/fusion-compiler' },
-    { id: 'primetime', label: 'PrimeTime *', url: 'https://example.com/primetime' },
-    { id: 'vcs', label: 'VCS', url: 'https://example.com/vcs' },
-    { id: 'dso-ai', label: 'DSO.ai', url: 'https://example.com/dso-ai' },
-    { id: 'ic-validator', label: 'IC Validator', url: 'https://example.com/ic-validator' },
-    { id: 'vc-formal', label: 'VC Formal', url: 'https://example.com/vc-formal' },
-    { id: 'vc-low-power', label: 'VC Low Power', url: 'https://example.com/vc-low-power' },
-    { id: 'vc-spyglass', label: 'VC SpyGlass', url: 'https://example.com/vc-spyglass' },
-    { id: 'verdi', label: 'Verdi', url: 'https://example.com/verdi' },
-    { id: 'testmax-atpg', label: 'TestMAX ATPG', url: 'https://example.com/testmax-atpg' },
-    { id: 'primesim-pro', label: 'PrimeSim Pro', url: 'https://example.com/primesim-pro' }
+    { id: 'custom-compiler', label: 'Custom Compiler', url: 'https://snpsai-copilot-gtm/?product=cc' },
+    { id: 'dso-ai', label: 'DSO.ai', url: 'https://snpsai-copilot-gtm/?product=dso' },
+    { id: 'fusion-compiler', label: 'Fusion Compiler', url: 'https://snpsai-copilot-gtm/?product=fc' },
+    { id: 'ic-validator', label: 'IC Validator', url: 'https://snpsai-copilot-gtm/?product=icv' },
+    { id: 'primesim-pro', label: 'PrimeSim Pro', url: 'https://snpsai-copilot-gtm/?product=psim_pro' },
+    { id: 'primetime', label: 'PrimeTime', url: 'https://snpsai-copilot-gtm/?product=pt' },
+    { id: 'vc-formal', label: 'VC Formal', url: 'https://snpsai-copilot-gtm/?product=vcformal' },
+    { id: 'vc-low-power', label: 'VC LP', url: 'https://snpsai-copilot-gtm/?product=vclp' },
+    { id: 'vc-spyglass', label: 'VC SpyGlass', url: 'https://snpsai-copilot-gtm/?product=vcspyglass' },
+    { id: 'vcs', label: 'VCS', url: 'https://snpsai-copilot-gtm/?product=vcs' },
+    { id: 'verdi', label: 'Verdi', url: 'https://snpsai-copilot-gtm/?product=verdi' }
   ];
 
   const handleToolClick = (toolId, url) => {
