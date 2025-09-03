@@ -38,10 +38,10 @@ const Sidebar = ({ isOpen, onToggle, activeTool, setActiveTool, setActiveUrl }) 
       
       {/* Sidebar */}
       <aside className={`
-        fixed left-0 top-32 h-full w-64 bg-white border-r border-gray-200 z-40
+        fixed left-0 top-16 h-full w-64 bg-white border-r border-gray-200 z-40
         transform transition-transform duration-300 ease-in-out
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
-        md:translate-x-0 md:relative md:z-30 md:top-32
+        md:translate-x-0 md:relative md:z-30 md:top-16
       `}>
         {/* Mobile Close Button */}
         <button 

@@ -2,7 +2,6 @@ import './App.css'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from 'react';
 import TopHeader from './TopHeader';
-import Header from './Header';
 import Sidebar from './Sidebar';
 import Content from './Content';
 
@@ -21,10 +20,7 @@ function App() {
         {/* TopHeader - Fixed at very top */}
         <TopHeader />
         
-        {/* Header - Below TopHeader */}
-        <Header onMenuToggle={toggleSidebar} />
-        
-        {/* Sidebar - Below both headers */}
+        {/* Sidebar - Below TopHeader */}
         <Sidebar 
           isOpen={isSidebarOpen} 
           onToggle={toggleSidebar}
@@ -33,7 +29,7 @@ function App() {
           setActiveUrl={setActiveUrl}
         />
         
-        {/* Content Area - Below both headers, to the right of sidebar */}
+        {/* Content Area - Below TopHeader, to the right of sidebar */}
         <Content activeUrl={activeUrl}>
           <Routes>
             <Route path="/" element={<div className="p-6">Welcome to Synopsys.ai Copilot 🚀</div>} />
