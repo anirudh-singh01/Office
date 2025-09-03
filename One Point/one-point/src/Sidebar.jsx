@@ -1,24 +1,30 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
 
-const Sidebar = ({ isOpen, onToggle }) => {
-  const location = useLocation();
-
-  const menuItems = [
-    { path: '/', label: 'Synopsys.ai Copilot' },
-    { path: '/compiler', label: 'Custom Compiler' },
-    { path: '/fusion', label: 'Fusion Compiler' },
-    { path: '/primetime', label: 'PrimeTime' },
-    { path: '/vcs', label: 'VCS' },
-    { path: '/dso', label: 'DSO.ai' },
-    { path: '/ic-validator', label: 'IC Validator' },
-    { path: '/vc-formal', label: 'VC Formal' },
-    { path: '/vc-low-power', label: 'VC Low Power' },
-    { path: '/vc-spyglass', label: 'VC SpyGlass' },
-    { path: '/verdi', label: 'Verdi' },
-    { path: '/testmax', label: 'TestMAX ATPG' },
-    { path: '/primesim', label: 'PrimeSim Pro' }
+const Sidebar = ({ isOpen, onToggle, activeTool, setActiveTool, setActiveUrl }) => {
+  const toolItems = [
+    { id: 'synopsys-copilot', label: 'Synopsys.ai Copilot', url: 'https://example.com/synopsys-copilot' },
+    { id: 'custom-compiler', label: 'Custom Compiler *', url: 'https://snpsai-copilot-gtm/?product=cc' },
+    { id: 'fusion-compiler', label: 'Fusion Compiler *', url: 'https://example.com/fusion-compiler' },
+    { id: 'primetime', label: 'PrimeTime *', url: 'https://example.com/primetime' },
+    { id: 'vcs', label: 'VCS', url: 'https://example.com/vcs' },
+    { id: 'dso-ai', label: 'DSO.ai', url: 'https://example.com/dso-ai' },
+    { id: 'ic-validator', label: 'IC Validator', url: 'https://example.com/ic-validator' },
+    { id: 'vc-formal', label: 'VC Formal', url: 'https://example.com/vc-formal' },
+    { id: 'vc-low-power', label: 'VC Low Power', url: 'https://example.com/vc-low-power' },
+    { id: 'vc-spyglass', label: 'VC SpyGlass', url: 'https://example.com/vc-spyglass' },
+    { id: 'verdi', label: 'Verdi', url: 'https://example.com/verdi' },
+    { id: 'testmax-atpg', label: 'TestMAX ATPG', url: 'https://example.com/testmax-atpg' },
+    { id: 'primesim-pro', label: 'PrimeSim Pro', url: 'https://example.com/primesim-pro' }
   ];
+
+  const handleToolClick = (toolId, url) => {
+    setActiveTool(toolId);
+    setActiveUrl(url);
+    // Close mobile menu when item is clicked
+    if (window.innerWidth < 768) {
+      onToggle();
+    }
+  };
 
   return (
     <>
@@ -48,20 +54,14 @@ const Sidebar = ({ isOpen, onToggle }) => {
         </button>
         
         <nav className="flex flex-col p-4 space-y-2">
-          {menuItems.map((item) => {
-            const isActive = location.pathname === item.path;
+          {toolItems.map((item) => {
+            const isActive = activeTool === item.id;
             return (
-              <Link
-                key={item.path}
-                to={item.path}
-                onClick={() => {
-                  // Close mobile menu when item is clicked
-                  if (window.innerWidth < 768) {
-                    onToggle();
-                  }
-                }}
+              <button
+                key={item.id}
+                onClick={() => handleToolClick(item.id, item.url)}
                 className={`
-                  block px-4 py-3 rounded-lg transition-all duration-200 relative
+                  block w-full text-left px-4 py-3 rounded-lg transition-all duration-200 relative
                   ${isActive 
                     ? 'bg-purple-100 text-purple-800 font-bold border-l-4 border-purple-800' 
                     : 'text-gray-700 hover:bg-gray-100 hover:text-purple-800'
@@ -69,7 +69,7 @@ const Sidebar = ({ isOpen, onToggle }) => {
                 `}
               >
                 {item.label}
-              </Link>
+              </button>
             );
           })}
         </nav>

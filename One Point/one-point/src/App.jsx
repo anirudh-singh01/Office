@@ -8,6 +8,8 @@ import Content from './Content';
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [activeTool, setActiveTool] = useState('synopsys-copilot');
+  const [activeUrl, setActiveUrl] = useState("");
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -23,10 +25,16 @@ function App() {
         <Header onMenuToggle={toggleSidebar} />
         
         {/* Sidebar - Below both headers */}
-        <Sidebar isOpen={isSidebarOpen} onToggle={toggleSidebar} />
+        <Sidebar 
+          isOpen={isSidebarOpen} 
+          onToggle={toggleSidebar}
+          activeTool={activeTool}
+          setActiveTool={setActiveTool}
+          setActiveUrl={setActiveUrl}
+        />
         
         {/* Content Area - Below both headers, to the right of sidebar */}
-        <Content>
+        <Content activeUrl={activeUrl}>
           <Routes>
             <Route path="/" element={<div className="p-6">Welcome to Synopsys.ai Copilot 🚀</div>} />
             <Route path="/compiler" element={<div className="p-6">Custom Compiler Page</div>} />
