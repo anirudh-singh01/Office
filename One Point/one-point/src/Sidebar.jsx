@@ -62,8 +62,8 @@ const Sidebar = ({ isOpen, onToggle, activeTool, setActiveTool, setActiveUrl }) 
                 className={`
                   block w-full text-left px-4 py-3 rounded-lg transition-all duration-200 relative
                   ${isActive 
-                    ? 'bg-purple-100 text-purple-800 font-bold border-l-4 border-purple-800' 
-                    : 'text-gray-700 hover:bg-gray-100 hover:text-purple-800'
+                    ? 'bg-[#f3f0f7] text-[#5a2a82] font-bold border-l-4 border-[#5a2a82]' 
+                    : 'text-gray-700 hover:bg-gray-100 hover:text-[#5a2a82]'
                   }
                 `}
               >

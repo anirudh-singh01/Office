@@ -10,7 +10,7 @@ const TopHeader = ({ onMenuToggle }) => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-white border-b-2 border-purple-500 z-50">
+    <header className="fixed top-0 left-0 right-0 bg-white border-b-2 border-[#5a2a82] z-50">
       <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4">
         {/* Left side - Logo and title */}
         <div className="flex items-center space-x-1 sm:space-x-2">
@@ -20,7 +20,7 @@ const TopHeader = ({ onMenuToggle }) => {
             className="h-8 w-auto cursor-pointer hover:opacity-80 transition-opacity"
             onClick={handleLogoClick}
           />
-          <span className="font-bold text-purple-800 uppercase text-sm sm:text-lg">
+          <span className="font-bold text-[#5a2a82] uppercase text-sm sm:text-lg">
             SYNOPSYS.AI COPILOT GTM Web UI Links
           </span>
         </div>
