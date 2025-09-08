@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import synopsysLogo from './assets/synopsys_logo.png';
 
-const TopHeader = ({ onMenuToggle }) => {
+const TopHeader = React.memo(({ onMenuToggle }) => {
   const navigate = useNavigate();
 
-  const handleLogoClick = () => {
+  const handleLogoClick = useCallback(() => {
     navigate('/');
-  };
+  }, [navigate]);
 
   return (
     <header className="fixed top-0 left-0 right-0 bg-white border-b-2 border-[#5a2a82] z-50">
@@ -19,6 +19,10 @@ const TopHeader = ({ onMenuToggle }) => {
             alt="Synopsys Logo" 
             className="h-8 w-auto cursor-pointer hover:opacity-80 transition-opacity"
             onClick={handleLogoClick}
+            loading="eager"
+            decoding="async"
+            width="32"
+            height="32"
           />
           <span className="font-bold text-[#5a2a82] uppercase text-sm sm:text-lg">
             SYNOPSYS.AI COPILOT GTM Web UI Links
@@ -31,6 +35,8 @@ const TopHeader = ({ onMenuToggle }) => {
           <button 
             onClick={onMenuToggle}
             className="p-2 text-gray-500 hover:text-gray-700 md:hidden"
+            aria-label="Open navigation menu"
+            aria-expanded={false}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -38,7 +44,10 @@ const TopHeader = ({ onMenuToggle }) => {
           </button>
           
           {/* Help icon */}
-          <button className="p-1 sm:p-2 text-blue-500 hover:text-blue-600 transition-colors">
+          <button 
+            className="p-1 sm:p-2 text-blue-500 hover:text-blue-600 transition-colors"
+            aria-label="Help and information"
+          >
             <svg 
               className="w-5 h-5 sm:w-6 sm:h-6" 
               fill="none" 
@@ -57,6 +66,6 @@ const TopHeader = ({ onMenuToggle }) => {
       </div>
     </header>
   );
-};
+});
 
 export default TopHeader;

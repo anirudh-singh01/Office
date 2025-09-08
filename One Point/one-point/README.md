@@ -165,7 +165,7 @@ Tools marked with ⭐ include Workflow Assistant (WA) capabilities:
 ### Iframe Security
 The application uses iframe sandboxing for security:
 ```jsx
-sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation"
+sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
 ```
 
 ### Responsive Design

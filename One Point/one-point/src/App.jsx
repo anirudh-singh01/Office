@@ -1,54 +1,73 @@
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import TopHeader from './TopHeader';
-import Sidebar from './Sidebar';
-import Content from './Content';
+import ToolRouter from './ToolRouter';
+import ErrorBoundary from './ErrorBoundary';
+import analytics from './utils/analytics';
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [activeTool, setActiveTool] = useState('fusion-compiler');
-  const [activeUrl, setActiveUrl] = useState("");
 
-  const toggleSidebar = () => {
+  const toggleSidebar = useCallback(() => {
     setIsSidebarOpen(!isSidebarOpen);
-  };
+  }, [isSidebarOpen]);
+
+  // Track initial page load
+  useEffect(() => {
+    analytics.trackPageView('home');
+    
+    // Track performance metrics after page load
+    const trackPerformance = () => {
+      setTimeout(() => {
+        analytics.trackPerformance();
+      }, 1000);
+    };
+    
+    if (document.readyState === 'complete') {
+      trackPerformance();
+    } else {
+      window.addEventListener('load', trackPerformance);
+      return () => window.removeEventListener('load', trackPerformance);
+    }
+  }, []);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      // Close sidebar with Escape key
+      if (e.key === 'Escape' && isSidebarOpen) {
+        setIsSidebarOpen(false);
+        analytics.trackInteraction('sidebar_close', 'keyboard_escape');
+      }
+      
+      // Toggle sidebar with Ctrl/Cmd + B
+      if ((e.ctrlKey || e.metaKey) && e.key === 'b') {
+        e.preventDefault();
+        toggleSidebar();
+        analytics.trackInteraction('sidebar_toggle', 'keyboard_shortcut');
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyPress);
+    return () => document.removeEventListener('keydown', handleKeyPress);
+  }, [isSidebarOpen, toggleSidebar]);
 
   return (
-    <Router>
-      <div className="h-screen bg-gray-50">
-        {/* TopHeader - Fixed at very top */}
-        <TopHeader onMenuToggle={toggleSidebar} />
-        
-        {/* Sidebar - Below TopHeader */}
-        <Sidebar 
-          isOpen={isSidebarOpen} 
-          onToggle={toggleSidebar}
-          activeTool={activeTool}
-          setActiveTool={setActiveTool}
-          setActiveUrl={setActiveUrl}
-        />
-        
-        {/* Content Area - Below TopHeader, to the right of sidebar */}
-        <Content activeUrl={activeUrl}>
+    <ErrorBoundary>
+      <Router>
+        <div className="h-screen bg-gray-50">
+          {/* TopHeader - Fixed at very top */}
+          <TopHeader onMenuToggle={toggleSidebar} />
+          
+          {/* Main Content with Tool Routing */}
           <Routes>
-            <Route path="/" element={<div className="p-6">Welcome to Synopsys.ai Copilot 🚀</div>} />
-            <Route path="/synopsys-copilot" element={<div className="p-6">Synopsys.ai Copilot Page</div>} />
-            <Route path="/custom-compiler" element={<div className="p-6">Custom Compiler Page</div>} />
-            <Route path="/fusion-compiler" element={<div className="p-6">Fusion Compiler Page</div>} />
-            <Route path="/primetime" element={<div className="p-6">PrimeTime Page</div>} />
-            <Route path="/vcs" element={<div className="p-6">VCS Page</div>} />
-            <Route path="/dso-ai" element={<div className="p-6">DSO.ai Page</div>} />
-            <Route path="/ic-validator" element={<div className="p-6">IC Validator Page</div>} />
-            <Route path="/vc-formal" element={<div className="p-6">VC Formal Page</div>} />
-            <Route path="/vc-low-power" element={<div className="p-6">VC Low Power Page</div>} />
-            <Route path="/vc-spyglass" element={<div className="p-6">VC SpyGlass Page</div>} />
-            <Route path="/verdi" element={<div className="p-6">Verdi Page</div>} />
-            <Route path="/primesim-pro" element={<div className="p-6">PrimeSim Pro Page</div>} />
+            <Route path="/" element={<ToolRouter isSidebarOpen={isSidebarOpen} onToggle={toggleSidebar} />} />
+            <Route path="/tool/:toolId" element={<ToolRouter isSidebarOpen={isSidebarOpen} onToggle={toggleSidebar} />} />
           </Routes>
-        </Content>
-      </div>
-    </Router>
+        </div>
+      </Router>
+    </ErrorBoundary>
   );
 }
 
