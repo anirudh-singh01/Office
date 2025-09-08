@@ -60,10 +60,10 @@ const Sidebar = ({ isOpen, onToggle, activeTool, setActiveTool, setActiveUrl }) 
                 key={item.id}
                 onClick={() => handleToolClick(item.id, item.url)}
                                  className={`
-                   block w-full text-left px-4 py-3 rounded-lg relative border-b-2 border-transparent
+                   block w-full text-left px-4 py-3 rounded-lg relative transition-all duration-200 ease-in-out
                    ${isActive 
                      ? 'bg-[#f3f0f7] text-[#5a2a82] font-bold border-l-4 border-[#5a2a82]' 
-                     : 'text-gray-700 hover:bg-gray-100 hover:text-[#5a2a82] hover:border-b-2 hover:border-[#5a2a82]'
+                     : 'text-gray-700 hover:bg-gray-100 hover:text-[#5a2a82] border-b-2 border-transparent hover:border-[#5a2a82]'
                    }
                  `}
               >
