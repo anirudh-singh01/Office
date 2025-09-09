@@ -69,7 +69,7 @@ const ToolRouter = ({ isSidebarOpen, onToggle }) => {
         {!activeUrl && (
           <div className="p-6">
             <h1 className="text-3xl font-bold text-[#5a2a82] mb-4">
-              Welcome to Synopsys.ai Copilot 🚀
+              Welcome to GTM Copilot
             </h1>
             <p className="text-gray-600 mb-6">
               Select a tool from the sidebar to get started with your Synopsys workflow.

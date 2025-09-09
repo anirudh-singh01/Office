@@ -1,12 +1,28 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
+import { copyFileSync } from 'fs'
+import { resolve } from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
+    // Plugin to copy web.config for IIS deployment
+    {
+      name: 'copy-web-config',
+      writeBundle() {
+        try {
+          copyFileSync(
+            resolve(__dirname, 'public/web.config'),
+            resolve(__dirname, 'dist/web.config')
+          )
+        } catch (error) {
+          console.warn('web.config not found in public folder, skipping copy')
+        }
+      }
+    }
   ],
   build: {
     rollupOptions: {
