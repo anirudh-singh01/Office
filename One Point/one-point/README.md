@@ -217,4 +217,3 @@ For technical support or questions about this application, please contact the de
 
 ---
 
-**Built with ❤️ for Synopsys.ai Copilot GTM Team**
