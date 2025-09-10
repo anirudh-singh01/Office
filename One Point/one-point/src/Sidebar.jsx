@@ -44,7 +44,7 @@ const Sidebar = React.memo(({ isOpen, onToggle, activeTool, setActiveTool, setAc
         {/* Mobile Close Button */}
         <button 
           onClick={onToggle}
-          className="absolute top-4 right-4 p-2 text-gray-500 hover:text-gray-700 md:hidden"
+          className="absolute top-4 right-4 p-2 text-gray-500 hover:text-gray-700 md:hidden z-10"
           aria-label="Close sidebar"
           aria-expanded={isOpen}
         >
@@ -53,42 +53,40 @@ const Sidebar = React.memo(({ isOpen, onToggle, activeTool, setActiveTool, setAc
           </svg>
         </button>
         
-        <div className="flex flex-col h-full">
-          {/* Scrollable Navigation */}
-          <nav className="flex-1 overflow-y-auto p-4 space-y-2" role="navigation" aria-label="Main navigation">
-            {tools.map((item) => {
-              const isActive = activeTool === item.id;
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => handleToolClick(item.id, item.url)}
-                  aria-label={`Open ${item.label}`}
-                  aria-current={isActive ? 'page' : undefined}
-                  className={`
-                    sidebar-item block w-full text-left px-4 py-3 rounded-lg relative transition-all duration-200 ease-in-out
-                    ${isActive 
-                      ? 'bg-[#f3f0f7] text-[#5a2a82] font-bold border-l-4 border-[#5a2a82]' 
-                      : 'text-gray-700 hover:bg-gray-100 hover:text-[#5a2a82] border-b-2 border-transparent hover:border-[#5a2a82]'
-                    }
-                  `}
-                >
-                  {item.label}
-                </button>
-              );
-            })}
-          </nav>
-          
-          {/* Fixed Legend/Explanation */}
-          <div className="px-4 pb-4 border-t border-gray-200 pt-4 flex-shrink-0">
-            <div className="text-xs text-gray-600 space-y-1">
-              <div className="flex items-start">
-                <span className="text-gray-500 mr-1">*</span>
-                <span>includes Workflow Assistant (WA) for TCL code generation (just start with /generate)</span>
-              </div>
-              <div className="flex items-start">
-                <span className="text-gray-500 mr-1">**</span>
-                <span>this is for query only</span>
-              </div>
+        {/* Navigation */}
+        <nav className="p-4 space-y-2" role="navigation" aria-label="Main navigation">
+          {tools.map((item) => {
+            const isActive = activeTool === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => handleToolClick(item.id, item.url)}
+                aria-label={`Open ${item.label}`}
+                aria-current={isActive ? 'page' : undefined}
+                className={`
+                  sidebar-item block w-full text-left px-4 py-3 rounded-lg relative transition-all duration-200 ease-in-out
+                  ${isActive 
+                    ? 'bg-[#f3f0f7] text-[#5a2a82] font-bold border-l-4 border-[#5a2a82]' 
+                    : 'text-gray-700 hover:bg-gray-100 hover:text-[#5a2a82] border-b-2 border-transparent hover:border-[#5a2a82]'
+                  }
+                `}
+              >
+                {item.label}
+              </button>
+            );
+          })}
+        </nav>
+        
+        {/* Legend/Explanation */}
+        <div className="px-4 pb-4 border-t border-gray-200 pt-4">
+          <div className="text-xs text-gray-600 space-y-1">
+            <div className="flex items-start">
+              <span className="text-gray-500 mr-1">*</span>
+              <span>includes Workflow Assistant (WA) for TCL code generation (just start with /generate)</span>
+            </div>
+            <div className="flex items-start">
+              <span className="text-gray-500 mr-1">**</span>
+              <span>this is for query only</span>
             </div>
           </div>
         </div>

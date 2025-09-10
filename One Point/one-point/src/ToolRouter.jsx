@@ -56,21 +56,26 @@ const ToolRouter = ({ isSidebarOpen, onToggle }) => {
     navigate(`/tool/${toolId}`);
   };
 
+  // Determine if we should show the sidebar (only when a tool is selected)
+  const shouldShowSidebar = !!activeTool;
+
   return (
     <>
-      {/* Sidebar */}
-      <Sidebar 
-        isOpen={isSidebarOpen} 
-        onToggle={onToggle}
-        activeTool={activeTool}
-        setActiveTool={setActiveTool}
-        setActiveUrl={setActiveUrl}
-        onToolClick={handleToolClick}
-        toolItems={getToolItems()}
-      />
+      {/* Sidebar - Only show when a tool is selected */}
+      {shouldShowSidebar && (
+        <Sidebar 
+          isOpen={isSidebarOpen} 
+          onToggle={onToggle}
+          activeTool={activeTool}
+          setActiveTool={setActiveTool}
+          setActiveUrl={setActiveUrl}
+          onToolClick={handleToolClick}
+          toolItems={getToolItems()}
+        />
+      )}
       
       {/* Content Area */}
-      <Content activeUrl={activeUrl}>
+      <Content activeUrl={activeUrl} showSidebar={shouldShowSidebar}>
         {!activeUrl && (
           <div className="p-6">
             <h1 className="text-3xl font-bold text-[#5a2a82] mb-4">

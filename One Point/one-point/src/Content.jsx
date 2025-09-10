@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Content = ({ activeUrl, children }) => {
+const Content = ({ activeUrl, children, showSidebar = true }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
 
@@ -23,7 +23,9 @@ const Content = ({ activeUrl, children }) => {
   };
 
   return (
-    <main className="fixed left-0 md:left-64 top-16 right-0 bottom-0 bg-gray-50 overflow-auto z-0">
+    <main className={`fixed top-16 right-0 bottom-0 bg-gray-50 overflow-auto z-0 transition-all duration-300 ${
+      showSidebar ? 'left-0 md:left-64' : 'left-0'
+    }`}>
       <div className="h-full w-full pt-4">
         {activeUrl ? (
           <div className="relative h-full w-full">
