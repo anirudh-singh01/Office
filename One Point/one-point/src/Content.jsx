@@ -1,8 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Content = ({ activeUrl, children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
+
+  // Reset loading state when activeUrl changes
+  useEffect(() => {
+    if (activeUrl) {
+      setIsLoading(true);
+      setHasError(false);
+    }
+  }, [activeUrl]);
 
   const handleIframeLoad = () => {
     setIsLoading(false);
