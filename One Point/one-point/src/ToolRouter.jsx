@@ -77,7 +77,7 @@ const ToolRouter = ({ isSidebarOpen, onToggle }) => {
               Welcome to GTM Copilot
             </h1>
             <p className="text-gray-600 mb-6">
-              Select a tool from the sidebar to get started with your Synopsys workflow.
+              Select a tool below to get started with your Synopsys workflow.
             </p>
             <h2 className="text-xl font-semibold text-[#5a2a82] mb-4">Available Tools</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
