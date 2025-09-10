@@ -4,6 +4,13 @@ class Analytics {
     this.events = [];
     this.isEnabled = typeof window !== 'undefined' && window.location.hostname !== 'localhost';
     this.performanceMetrics = {};
+    
+    // Fallback configuration if ENV is not available
+    this.config = {
+      baseUrl: window.ENV?.baseUrl || 'https://snpsai-copilot-gtm',
+      apiUrl: window.ENV?.apiUrl || 'https://snpsai-copilot-gtm/api',
+      environment: window.ENV?.environment || 'production'
+    };
   }
 
   // Track custom events

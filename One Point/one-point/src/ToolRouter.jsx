@@ -4,21 +4,25 @@ import Sidebar from './Sidebar';
 import Content from './Content';
 import analytics from './utils/analytics';
 
-// Tool configuration
-const toolItems = [
-  { id: 'fusion-compiler', label: 'Fusion Compiler *', url: 'https://snpsai-copilot-gtm/?product=fc' },
-  { id: 'primetime', label: 'PrimeTime *', url: 'https://snpsai-copilot-gtm/?product=pt' },
-  { id: 'custom-compiler', label: 'Custom Compiler *', url: 'https://snpsai-copilot-gtm/?product=cc' },
-  { id: 'vcs', label: 'VCS', url: 'https://snpsai-copilot-gtm/?product=vcs' },
-  { id: 'dso-ai', label: 'DSO.ai', url: 'https://snpsai-copilot-gtm/?product=dso' },
-  { id: 'ic-validator', label: 'IC Validator', url: 'https://snpsai-copilot-gtm/?product=icv' },
-  { id: 'primesim-pro', label: 'PrimeSim Pro', url: 'https://snpsai-copilot-gtm/?product=psim_pro' },
-  { id: 'vc-formal', label: 'VC Formal', url: 'https://snpsai-copilot-gtm/?product=vcformal' },
-  { id: 'vc-low-power', label: 'VC LP', url: 'https://snpsai-copilot-gtm/?product=vclp' },
-  { id: 'vc-spyglass', label: 'VC SpyGlass', url: 'https://snpsai-copilot-gtm/?product=vcspyglass' },
-  { id: 'verdi', label: 'Verdi', url: 'https://snpsai-copilot-gtm/?product=verdi' },
-  { id: 'synopsys-copilot', label: 'Synopsys.ai Copilot **', url: 'https://snpsai-copilot-gtm/?product=copilot' }
-];
+// Tool configuration with fallback
+const getToolItems = () => {
+  const baseUrl = window.ENV?.baseUrl || 'https://snpsai-copilot-gtm';
+  
+  return [
+    { id: 'fusion-compiler', label: 'Fusion Compiler *', url: `${baseUrl}/?product=fc` },
+    { id: 'primetime', label: 'PrimeTime *', url: `${baseUrl}/?product=pt` },
+    { id: 'custom-compiler', label: 'Custom Compiler *', url: `${baseUrl}/?product=cc` },
+    { id: 'vcs', label: 'VCS', url: `${baseUrl}/?product=vcs` },
+    { id: 'dso-ai', label: 'DSO.ai', url: `${baseUrl}/?product=dso` },
+    { id: 'ic-validator', label: 'IC Validator', url: `${baseUrl}/?product=icv` },
+    { id: 'primesim-pro', label: 'PrimeSim Pro', url: `${baseUrl}/?product=psim_pro` },
+    { id: 'vc-formal', label: 'VC Formal', url: `${baseUrl}/?product=vcformal` },
+    { id: 'vc-low-power', label: 'VC LP', url: `${baseUrl}/?product=vclp` },
+    { id: 'vc-spyglass', label: 'VC SpyGlass', url: `${baseUrl}/?product=vcspyglass` },
+    { id: 'verdi', label: 'Verdi', url: `${baseUrl}/?product=verdi` },
+    { id: 'synopsys-copilot', label: 'Synopsys.ai Copilot **', url: `${baseUrl}/?product=copilot` }
+  ];
+};
 
 const ToolRouter = ({ isSidebarOpen, onToggle }) => {
   const { toolId } = useParams();
@@ -29,6 +33,7 @@ const ToolRouter = ({ isSidebarOpen, onToggle }) => {
   // Handle tool selection from URL
   useEffect(() => {
     if (toolId) {
+      const toolItems = getToolItems();
       const tool = toolItems.find(item => item.id === toolId);
       if (tool) {
         setActiveTool(toolId);
@@ -61,7 +66,7 @@ const ToolRouter = ({ isSidebarOpen, onToggle }) => {
         setActiveTool={setActiveTool}
         setActiveUrl={setActiveUrl}
         onToolClick={handleToolClick}
-        toolItems={toolItems}
+        toolItems={getToolItems()}
       />
       
       {/* Content Area */}
@@ -76,7 +81,7 @@ const ToolRouter = ({ isSidebarOpen, onToggle }) => {
             </p>
             <h2 className="text-xl font-semibold text-[#5a2a82] mb-4">Available Tools</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {toolItems.map((tool) => (
+              {getToolItems().map((tool) => (
                 <button
                   key={tool.id}
                   onClick={() => handleToolClick(tool.id)}

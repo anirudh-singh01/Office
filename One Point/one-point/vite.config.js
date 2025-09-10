@@ -24,6 +24,26 @@ export default defineConfig(({ mode }) => ({
           console.warn('web.config not found in public folder, skipping copy')
         }
       }
+    },
+    // Plugin to copy environment files
+    {
+      name: 'copy-env-files',
+      writeBundle() {
+        try {
+          const __dirname = fileURLToPath(new URL('.', import.meta.url))
+          // Copy both environment files
+          copyFileSync(
+            resolve(__dirname, 'public/env.js'),
+            resolve(__dirname, 'dist/env.js')
+          )
+          copyFileSync(
+            resolve(__dirname, 'public/env-company.js'),
+            resolve(__dirname, 'dist/env-company.js')
+          )
+        } catch (error) {
+          console.warn('Environment files not found in public folder, skipping copy:', error.message)
+        }
+      }
     }
   ],
   build: {
