@@ -35,7 +35,18 @@ const Content = ({ activeUrl, children }) => {
                 <div className="text-center p-8">
                   <div className="text-red-500 text-6xl mb-4">⚠️</div>
                   <h3 className="text-xl font-semibold text-gray-800 mb-2">Unable to Load Tool</h3>
-                  <p className="text-gray-600 mb-4">There was an error loading the Synopsys tool.</p>
+                  <p className="text-gray-600 mb-4">
+                    There was an error loading the Synopsys tool. This might be due to network connectivity or DNS resolution issues.
+                  </p>
+                  <div className="text-sm text-gray-500 mb-4">
+                    <p>Common causes:</p>
+                    <ul className="list-disc list-inside text-left">
+                      <li>Network connectivity issues</li>
+                      <li>DNS resolution problems</li>
+                      <li>Firewall blocking external domains</li>
+                      <li>Slow network connection</li>
+                    </ul>
+                  </div>
                   <button 
                     onClick={() => {
                       setHasError(false);

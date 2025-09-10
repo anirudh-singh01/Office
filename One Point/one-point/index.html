@@ -17,8 +17,18 @@
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     
-    <!-- Google Fonts - Roboto -->
+    <!-- Google Fonts - Roboto with optimized loading -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+      /* Preload critical font weights */
+      @font-face {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: local('Roboto'), local('Roboto-Regular');
+      }
+    </style>
     
     <title>GTM Copilot</title>
     <meta name="description" content="Access Synopsys.ai Copilot tools including Fusion Compiler, PrimeTime, VCS, DSO.ai, IC Validator, and more. Streamlined interface for Synopsys workflows.">
