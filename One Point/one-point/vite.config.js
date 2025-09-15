@@ -10,39 +10,25 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     tailwindcss(),
-    // Plugin to copy web.config for IIS deployment
+    // Plugin to copy configuration files
     {
-      name: 'copy-web-config',
+      name: 'copy-config-files',
       writeBundle() {
-        try {
-          const __dirname = fileURLToPath(new URL('.', import.meta.url))
-          copyFileSync(
-            resolve(__dirname, 'public/web.config'),
-            resolve(__dirname, 'dist/web.config')
-          )
-        } catch {
-          console.warn('web.config not found in public folder, skipping copy')
-        }
-      }
-    },
-    // Plugin to copy environment files
-    {
-      name: 'copy-env-files',
-      writeBundle() {
-        try {
-          const __dirname = fileURLToPath(new URL('.', import.meta.url))
-          // Copy both environment files
-          copyFileSync(
-            resolve(__dirname, 'public/env.js'),
-            resolve(__dirname, 'dist/env.js')
-          )
-          copyFileSync(
-            resolve(__dirname, 'public/env-company.js'),
-            resolve(__dirname, 'dist/env-company.js')
-          )
-        } catch (error) {
-          console.warn('Environment files not found in public folder, skipping copy:', error.message)
-        }
+        const __dirname = fileURLToPath(new URL('.', import.meta.url))
+        const filesToCopy = [
+          { src: 'public/web.config', dest: 'dist/web.config' },
+          { src: 'public/.htaccess', dest: 'dist/.htaccess' },
+          { src: 'public/env.js', dest: 'dist/env.js' },
+          { src: 'public/env-company.js', dest: 'dist/env-company.js' }
+        ]
+        
+        filesToCopy.forEach(({ src, dest }) => {
+          try {
+            copyFileSync(resolve(__dirname, src), resolve(__dirname, dest))
+          } catch {
+            // Silently skip missing files
+          }
+        })
       }
     }
   ],
@@ -55,15 +41,10 @@ export default defineConfig(({ mode }) => ({
         }
       }
     },
-    // Optimize chunk size
     chunkSizeWarningLimit: 1000,
-    // Enable minification (using default esbuild)
     minify: 'esbuild',
-    // Source maps for production debugging (optional)
     sourcemap: mode === 'development',
-    // Optimize for production
     target: 'es2015',
-    // Ensure consistent build output
     emptyOutDir: true
   },
   // Optimize dependencies

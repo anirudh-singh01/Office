@@ -2,7 +2,6 @@ import React, { useCallback } from 'react';
 import analytics from './utils/analytics';
 
 const Sidebar = React.memo(({ isOpen, onToggle, activeTool, setActiveTool, setActiveUrl, onToolClick, toolItems }) => {
-  const tools = toolItems;
 
   const handleToolClick = useCallback((toolId, url) => {
     // Use the provided onToolClick handler if available, otherwise use the old method
@@ -13,7 +12,7 @@ const Sidebar = React.memo(({ isOpen, onToggle, activeTool, setActiveTool, setAc
       setActiveUrl(url);
       
       // Track tool usage
-      const toolName = tools.find(item => item.id === toolId)?.label || toolId;
+      const toolName = toolItems.find(item => item.id === toolId)?.label || toolId;
       analytics.trackToolUsage(toolId, toolName);
     }
     
@@ -21,7 +20,7 @@ const Sidebar = React.memo(({ isOpen, onToggle, activeTool, setActiveTool, setAc
     if (typeof window !== 'undefined' && window.innerWidth < 768) {
       onToggle();
     }
-  }, [setActiveTool, setActiveUrl, onToggle, tools, onToolClick]);
+  }, [setActiveTool, setActiveUrl, onToggle, toolItems, onToolClick]);
 
   return (
     <>
@@ -35,11 +34,11 @@ const Sidebar = React.memo(({ isOpen, onToggle, activeTool, setActiveTool, setAc
       
       {/* Sidebar */}
       <aside className={`
-        fixed left-0 top-16 h-full w-64 bg-white border-r border-gray-200 z-40
+        fixed left-0 top-16 bottom-0 w-64 bg-white border-r border-gray-200 z-40
         transform transition-transform duration-300 ease-in-out
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
-        md:translate-x-0 md:relative md:z-30 md:top-16
-        overflow-y-auto overflow-x-hidden
+        md:translate-x-0 md:relative md:z-30 md:top-16 md:bottom-auto md:h-full
+        flex flex-col
       `}>
         {/* Mobile Close Button */}
         <button 
@@ -53,9 +52,12 @@ const Sidebar = React.memo(({ isOpen, onToggle, activeTool, setActiveTool, setAc
           </svg>
         </button>
         
+        {/* Scrollable content container */}
+        <div className="flex-1 overflow-y-auto overflow-x-hidden sidebar-scroll">
+        
         {/* Navigation */}
-        <nav className="p-4 space-y-2" role="navigation" aria-label="Main navigation">
-          {tools.map((item) => {
+        <nav className="pt-4 px-4 space-y-2" role="navigation" aria-label="Main navigation">
+          {toolItems.map((item) => {
             const isActive = activeTool === item.id;
             return (
               <button
@@ -78,8 +80,8 @@ const Sidebar = React.memo(({ isOpen, onToggle, activeTool, setActiveTool, setAc
         </nav>
         
         {/* Legend/Explanation */}
-        <div className="px-4 pb-4 border-t border-gray-200 pt-4">
-          <div className="text-xs text-gray-600 space-y-1">
+        <div className="px-4 pb-6 border-t border-gray-200 pt-4 mt-4">
+          <div className="text-xs text-gray-600 space-y-2">
             <div className="flex items-start">
               <span className="text-gray-500 mr-1">*</span>
               <span>includes Workflow Assistant (WA) for TCL code generation (just start with /generate)</span>
@@ -89,6 +91,10 @@ const Sidebar = React.memo(({ isOpen, onToggle, activeTool, setActiveTool, setAc
               <span>this is for query only</span>
             </div>
           </div>
+        </div>
+        
+        {/* Bottom spacer to ensure proper scrolling */}
+        <div className="h-16"></div>
         </div>
       </aside>
     </>

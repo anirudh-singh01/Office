@@ -56,7 +56,7 @@ function App() {
   return (
     <ErrorBoundary>
       <Router>
-        <div className="h-screen bg-gray-50">
+        <div className="h-screen bg-gray-50 overflow-hidden">
           {/* TopHeader - Fixed at very top */}
           <TopHeader onMenuToggle={toggleSidebar} />
           

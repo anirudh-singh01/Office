@@ -83,11 +83,20 @@ npm run dev
 # Build for production
 npm run build
 
+# Build for production (cross-platform)
+npm run build:prod
+
 # Preview production build
 npm run preview
 
+# Preview production build (network accessible)
+npm run preview:prod
+
 # Run ESLint for code quality
 npm run lint
+
+# Fix ESLint issues automatically
+npm run lint:fix
 ```
 
 ## 🏗️ Project Structure
@@ -96,8 +105,7 @@ npm run lint
 one-point/
 ├── src/
 │   ├── assets/
-│   │   ├── synopsys_logo.png    # Synopsys brand logo
-│   │   └── react.svg            # React logo (unused)
+│   │   └── synopsys_logo.png    # Synopsys brand logo
 │   ├── App.jsx                  # Main application component
 │   ├── App.css                  # Application-specific styles
 │   ├── Content.jsx              # Main content area with iframe
@@ -106,7 +114,11 @@ one-point/
 │   ├── Sidebar.jsx              # Navigation sidebar component
 │   └── TopHeader.jsx            # Top navigation header
 ├── public/
-│   └── vite.svg                 # Vite favicon
+│   ├── env.js                   # Environment configuration
+│   ├── env-company.js           # Company environment config
+│   ├── web.config               # IIS configuration
+│   ├── .htaccess                # Apache configuration
+│   └── favicon.ico              # Site favicon
 ├── dist/                        # Production build output
 ├── package.json                 # Project dependencies and scripts
 ├── vite.config.js              # Vite configuration

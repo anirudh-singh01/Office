@@ -23,10 +23,10 @@ const Content = ({ activeUrl, children, showSidebar = true }) => {
   };
 
   return (
-    <main className={`fixed top-16 right-0 bottom-0 bg-gray-50 overflow-auto z-0 transition-all duration-300 ${
+    <main className={`fixed top-16 right-0 bottom-0 bg-gray-50 z-0 transition-all duration-300 ${
       showSidebar ? 'left-0 md:left-64' : 'left-0'
     }`}>
-      <div className="h-full w-full pt-4">
+      <div className="h-full w-full overflow-auto pt-4 content-scroll">
         {activeUrl ? (
           <div className="relative h-full w-full">
             {/* Loading Spinner */}
@@ -68,6 +68,7 @@ const Content = ({ activeUrl, children, showSidebar = true }) => {
                       }
                     }}
                     className="px-4 py-2 bg-[#5a2a82] text-white rounded-lg hover:bg-[#4a1f6b] transition-colors"
+                    aria-label="Retry loading the tool"
                   >
                     Try Again
                   </button>

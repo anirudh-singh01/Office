@@ -16,10 +16,6 @@ class Analytics {
   // Track custom events
   track(eventName, properties = {}) {
     if (!this.isEnabled) {
-      // Only log in development
-      if (process.env.NODE_ENV === 'development') {
-        console.log(`Analytics Event: ${eventName}`, properties);
-      }
       return;
     }
 
@@ -36,11 +32,6 @@ class Analytics {
     this.events.push(event);
     
     // In a real implementation, you would send this to your analytics service
-    // For production, implement actual analytics service integration
-    if (process.env.NODE_ENV === 'development') {
-      console.log('Analytics Event:', event);
-    }
-    
     // Example: Send to Google Analytics, Mixpanel, etc.
     // gtag('event', eventName, properties);
   }
