@@ -31,7 +31,7 @@ body {
     padding: 0 2rem;
     height: 100%;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0;
     position: relative;
     gap: 2rem;
 }
@@ -39,6 +39,12 @@ body {
 .logo {
     display: flex;
     align-items: center;
+}
+
+.logo-image {
+    height: 40px;
+    width: auto;
+    max-width: 200px;
 }
 
 .logo-text {
@@ -294,6 +300,15 @@ body {
     .hamburger-menu {
         left: 0.5rem;
     }
+    
+    .legend-section {
+        padding: 0.75rem 1rem;
+        margin-top: 1.5rem;
+    }
+    
+    .legend-text {
+        font-size: 0.7rem;
+    }
 }
 
 /* Custom Scrollbar for Webkit browsers */
@@ -341,6 +356,30 @@ body {
 /* Smooth scrolling */
 html {
     scroll-behavior: smooth;
+}
+
+/* Legend Section Styles */
+.legend-section {
+    margin-top: 2rem;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #E0E0E0;
+    background-color: #FAFAFA;
+}
+
+.legend-item {
+    margin-bottom: 0.8rem;
+}
+
+.legend-item:last-child {
+    margin-bottom: 0;
+}
+
+.legend-text {
+    font-size: 0.75rem;
+    color: #666666;
+    line-height: 1.4;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    display: block;
 }
 
 /* Focus styles for accessibility */
