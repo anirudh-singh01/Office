@@ -19,6 +19,22 @@ const MENU_CONFIG = {
     'Synopsys.ai Copilot': 'https://snpsai-copilot-gtm/?product=copilot'
 };
 
+// URL routing configuration - maps URL parameters to tool names
+const URL_ROUTES = {
+    'fc': 'Fusion Compiler *',
+    'pt': 'PrimeTime *',
+    'cc': 'Custom Compiler *',
+    'vcs': 'VCS',
+    'dso': 'DSO.ai',
+    'icv': 'IC Validator',
+    'psim_pro': 'PrimeSim Pro',
+    'vcformal': 'VC Formal',
+    'vclp': 'VC Low Power',
+    'vcspyglass': 'VC SpyGlass',
+    'verdi': 'Verdi',
+    'copilot': 'Synopsys.ai Copilot'
+};
+
 /**
  * Main Dashboard Class
  * Manages all dashboard functionality including navigation and mobile menu
@@ -43,7 +59,7 @@ class Dashboard {
         document.addEventListener('DOMContentLoaded', () => {
             this.setupElements();
             this.setupEventListeners();
-            this.setInitialActiveState();
+            this.handleInitialRoute();
         });
     }
 
@@ -73,6 +89,7 @@ class Dashboard {
         this.setupMenuClickListeners();
         this.setupMobileMenuListener();
         this.setupResizeListener();
+        this.setupBrowserNavigationListener();
     }
 
     /**
@@ -109,6 +126,9 @@ class Dashboard {
         
         // Update iframe source
         this.updateIframeSource(menuText, dataSrc);
+        
+        // Update URL to reflect current tool
+        this.updateURL(menuText);
         
         // Close mobile menu if open
         this.closeMobileMenu();
@@ -294,6 +314,83 @@ class Dashboard {
             this.hideLoadingIndicator();
             console.error(`Failed to load iframe: ${url}`);
         };
+    }
+
+    /**
+     * Handle initial route from URL parameters
+     */
+    handleInitialRoute() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const tool = urlParams.get('tool');
+        
+        if (tool && URL_ROUTES[tool]) {
+            const toolName = URL_ROUTES[tool];
+            this.switchToMenuItem(toolName);
+        } else {
+            // Default to Fusion Compiler if no valid tool parameter
+            this.setInitialActiveState();
+        }
+    }
+
+    /**
+     * Update browser URL to reflect current tool
+     * @param {string} menuText - The menu item text
+     */
+    updateURL(menuText) {
+        // Find the URL parameter for this tool
+        const toolParam = Object.keys(URL_ROUTES).find(key => URL_ROUTES[key] === menuText);
+        
+        if (toolParam) {
+            const newURL = `${window.location.pathname}?tool=${toolParam}`;
+            window.history.pushState({ tool: toolParam }, '', newURL);
+            console.log(`URL updated to: ${newURL}`);
+        }
+    }
+
+    /**
+     * Set up browser back/forward navigation listener
+     */
+    setupBrowserNavigationListener() {
+        window.addEventListener('popstate', (event) => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const tool = urlParams.get('tool');
+            
+            if (tool && URL_ROUTES[tool]) {
+                const toolName = URL_ROUTES[tool];
+                this.switchToMenuItem(toolName);
+            } else {
+                // Default to Fusion Compiler if no valid tool parameter
+                this.switchToMenuItem('Fusion Compiler *');
+            }
+        });
+    }
+
+    /**
+     * Get current tool from URL
+     * @returns {string|null} - Current tool name or null
+     */
+    getCurrentToolFromURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const tool = urlParams.get('tool');
+        return tool ? URL_ROUTES[tool] : null;
+    }
+
+    /**
+     * Set initial active state based on URL or default to Fusion Compiler
+     */
+    setInitialActiveState() {
+        const currentTool = this.getCurrentToolFromURL();
+        
+        if (currentTool) {
+            this.switchToMenuItem(currentTool);
+        } else {
+            // Default to Fusion Compiler
+            const initialItem = document.querySelector('.nav-item');
+            if (initialItem) {
+                this.currentActiveItem = initialItem;
+                this.updateURL('Fusion Compiler *');
+            }
+        }
     }
 }
 
