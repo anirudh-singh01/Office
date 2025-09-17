@@ -15,16 +15,25 @@
     <header class="header">
         <div class="header-content">
             <!-- Mobile Hamburger Menu Button -->
-            <button class="hamburger-menu" id="hamburgerMenu">
+            <button class="hamburger-menu" id="hamburgerMenu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="sidebar">
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
             </button>
             <div class="header-text">
                 <div class="logo">
-                    <img src="assets/images/synopsys_logo.png" alt="Synopsys" class="logo-image">
+                    <a href="#" class="logo-link" id="logoLink" aria-label="Return to homepage">
+                        <img src="assets/images/synopsys_logo.png" alt="Synopsys logo" class="logo-image">
+                    </a>
                 </div>
-                <span class="header-title">SYNOPSYS.AI COPILOT GTM WEB UI LINKS</span>
+                <div class="header-titles">
+                    <a href="https://gtmcopilot" target="_blank" rel="noopener noreferrer" class="header-title-link" aria-label="Open GTM Copilot website in new tab">
+                        <span class="header-title">GTM KA WEB UI LINKS</span>
+                    </a>
+                    <a href="https://synopsys.sharepoint.com/sites/CSGKAUsageDashboard" target="_blank" rel="noopener noreferrer" class="header-title-link" aria-label="Open CSG KA Usage Dashboard in new tab">
+                        <span class="header-title">CSG KA Usage Dashboard</span>
+                    </a>
+                </div>
             </div>
         </div>
     </header>
@@ -32,11 +41,11 @@
     <!-- Main Container -->
     <div class="main-container">
         <!-- Sidebar -->
-        <aside class="sidebar">
+        <aside class="sidebar" id="sidebar" role="navigation" aria-label="Tool navigation menu">
             <nav class="sidebar-nav">
                 <ul class="nav-list">
                     <li class="nav-item active">
-                        <a href="#" class="nav-link" data-src="https://snpsai-copilot-gtm/?product=fc">Fusion Compiler *</a>
+                        <a href="#" class="nav-link" data-src="https://snpsai-copilot-gtm/?product=fc" aria-current="page">Fusion Compiler *</a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link" data-src="https://snpsai-copilot-gtm/?product=pt">PrimeTime *</a>
@@ -69,7 +78,7 @@
                         <a href="#" class="nav-link" data-src="https://snpsai-copilot-gtm/?product=verdi">Verdi</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link" data-src="https://snpsai-copilot-gtm/?product=copilot">Synopsys.ai Copilot</a>
+                        <a href="#" class="nav-link" data-src="https://snpsai-copilot-gtm/?product=copilot">Synopsys.ai Copilot **</a>
                     </li>
                 </ul>
                 

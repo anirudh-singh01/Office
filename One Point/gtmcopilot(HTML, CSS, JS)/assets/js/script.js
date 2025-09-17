@@ -3,6 +3,16 @@
  * Handles sidebar navigation, active state management, and iframe content switching
  */
 
+// Development mode flag - set to false for production
+const DEV_MODE = true;
+
+// Console logging utility
+const logger = {
+    log: (message, ...args) => DEV_MODE && console.log(message, ...args),
+    error: (message, ...args) => DEV_MODE && console.error(message, ...args),
+    warn: (message, ...args) => DEV_MODE && console.warn(message, ...args)
+};
+
 // Configuration object for menu items and their corresponding URLs
 const MENU_CONFIG = {
     'Fusion Compiler *': 'https://snpsai-copilot-gtm/?product=fc',
@@ -46,6 +56,7 @@ class Dashboard {
         this.sidebar = null;
         this.hamburgerMenu = null;
         this.sidebarOverlay = null;
+        this.logoLink = null;
         this.isMobileMenuOpen = false;
         
         this.init();
@@ -60,8 +71,8 @@ class Dashboard {
         document.addEventListener('DOMContentLoaded', () => {
             this.setupElements();
             this.setupEventListeners();
-            this.handleInitialRoute();
             this.ensureProperInitialState();
+            this.handleInitialRoute();
         });
     }
 
@@ -69,8 +80,13 @@ class Dashboard {
      * Ensure proper initial state - remove any stray active classes
      */
     ensureProperInitialState() {
-        // Remove active class from all items first
-        this.removeActiveState();
+        // Only remove active classes if there's a URL parameter
+        const currentTool = this.getCurrentToolFromURL();
+        
+        if (currentTool) {
+            // Remove active class from all items first
+            this.removeActiveState();
+        }
         
         // Then set the correct initial state
         this.setInitialActiveState();
@@ -84,15 +100,19 @@ class Dashboard {
         this.sidebar = document.querySelector('.sidebar');
         this.hamburgerMenu = document.getElementById('hamburgerMenu');
         this.sidebarOverlay = document.querySelector('.sidebar-overlay');
+        this.logoLink = document.getElementById('logoLink');
         
         if (!this.iframe) {
-            console.error('Content iframe not found');
+            logger.error('Content iframe not found');
         }
         if (!this.sidebar) {
-            console.error('Sidebar not found');
+            logger.error('Sidebar not found');
         }
         if (!this.hamburgerMenu) {
-            console.error('Hamburger menu button not found');
+            logger.error('Hamburger menu button not found');
+        }
+        if (!this.logoLink) {
+            logger.error('Logo link not found');
         }
         
         // Create overlay if it doesn't exist
@@ -119,6 +139,7 @@ class Dashboard {
     setupEventListeners() {
         this.setupMenuClickListeners();
         this.setupMobileMenuListener();
+        this.setupLogoClickListener();
         this.setupResizeListener();
         this.setupBrowserNavigationListener();
     }
@@ -147,7 +168,7 @@ class Dashboard {
      */
     handleMenuClick(item, link) {
         if (!item || !link) {
-            console.error('Invalid menu item or link provided');
+            logger.error('Invalid menu item or link provided');
             return;
         }
         
@@ -155,7 +176,7 @@ class Dashboard {
         const dataSrc = link.getAttribute('data-src');
         
         if (!menuText) {
-            console.error('Menu item has no text content');
+            logger.error('Menu item has no text content');
             return;
         }
         
@@ -174,7 +195,7 @@ class Dashboard {
         // Close mobile menu if open
         this.closeMobileMenu();
         
-        console.log(`Switched to: ${menuText} - Loading: ${dataSrc}`);
+        logger.log(`Switched to: ${menuText} - Loading: ${dataSrc}`);
     }
 
     /**
@@ -185,6 +206,10 @@ class Dashboard {
         const allNavItems = document.querySelectorAll('.nav-item');
         allNavItems.forEach(item => {
             item.classList.remove('active');
+            const link = item.querySelector('.nav-link');
+            if (link) {
+                link.removeAttribute('aria-current');
+            }
         });
         
         // Clear current active item reference
@@ -197,6 +222,10 @@ class Dashboard {
      */
     setActiveState(item) {
         item.classList.add('active');
+        const link = item.querySelector('.nav-link');
+        if (link) {
+            link.setAttribute('aria-current', 'page');
+        }
         this.currentActiveItem = item;
     }
 
@@ -207,7 +236,7 @@ class Dashboard {
      */
     updateIframeSource(menuText, dataSrc) {
         if (!this.iframe) {
-            console.error('Iframe element not found');
+            logger.error('Iframe element not found');
             return;
         }
         
@@ -215,7 +244,7 @@ class Dashboard {
         const url = dataSrc || MENU_CONFIG[menuText];
         
         if (!url) {
-            console.error(`No URL found for menu item: ${menuText}`);
+            logger.error(`No URL found for menu item: ${menuText}`);
             return;
         }
         
@@ -228,17 +257,17 @@ class Dashboard {
         // Handle iframe load events
         this.iframe.onload = () => {
             this.hideLoadingIndicator();
-            console.log(`Iframe loaded successfully: ${url}`);
+            logger.log(`Iframe loaded successfully: ${url}`);
         };
         
         this.iframe.onerror = () => {
             this.hideLoadingIndicator();
-            console.error(`Failed to load iframe: ${url}`);
+            logger.error(`Failed to load iframe: ${url}`);
             // Optionally show user-friendly error message
             this.showErrorMessage('Failed to load content. Please try again.');
         };
         
-        console.log(`Iframe source updated to: ${url}`);
+        logger.log(`Iframe source updated to: ${url}`);
     }
 
     /**
@@ -250,6 +279,38 @@ class Dashboard {
                 this.toggleMobileMenu();
             });
         }
+    }
+
+    /**
+     * Set up logo click functionality to return to default state
+     */
+    setupLogoClickListener() {
+        if (this.logoLink) {
+            this.logoLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.resetToDefaultState();
+            });
+        }
+    }
+
+    /**
+     * Reset application to default state (like when first opened)
+     */
+    resetToDefaultState() {
+        // Remove active state from all menu items
+        this.removeActiveState();
+        
+        // Set Fusion Compiler as active (default state)
+        this.switchToMenuItem('Fusion Compiler *');
+        
+        // Clear URL parameters to return to default state
+        const newURL = window.location.pathname;
+        window.history.pushState({ product: null }, '', newURL);
+        
+        // Close mobile menu if open
+        this.closeMobileMenu();
+        
+        logger.log('Application reset to default state');
     }
 
     /**
@@ -278,6 +339,11 @@ class Dashboard {
             this.sidebarOverlay.classList.add('active');
         }
         
+        // Update ARIA attributes
+        if (this.hamburgerMenu) {
+            this.hamburgerMenu.setAttribute('aria-expanded', 'true');
+        }
+        
         // Prevent body scroll when menu is open
         document.body.style.overflow = 'hidden';
     }
@@ -293,6 +359,11 @@ class Dashboard {
         
         if (this.sidebarOverlay) {
             this.sidebarOverlay.classList.remove('active');
+        }
+        
+        // Update ARIA attributes
+        if (this.hamburgerMenu) {
+            this.hamburgerMenu.setAttribute('aria-expanded', 'false');
         }
         
         // Restore body scroll
@@ -318,7 +389,7 @@ class Dashboard {
      */
     updateMenuConfig(newConfig) {
         Object.assign(MENU_CONFIG, newConfig);
-        console.log('Menu configuration updated');
+        logger.log('Menu configuration updated');
     }
 
     /**
@@ -381,7 +452,7 @@ class Dashboard {
      */
     switchToMenuItem(menuText) {
         if (!menuText || typeof menuText !== 'string') {
-            console.error('Invalid menu text provided');
+            logger.error('Invalid menu text provided');
             return;
         }
         
@@ -395,7 +466,7 @@ class Dashboard {
             }
         }
         
-        console.warn(`Menu item not found: ${menuText}`);
+        logger.warn(`Menu item not found: ${menuText}`);
     }
 
     /**
@@ -404,12 +475,12 @@ class Dashboard {
      */
     loadIframeContent(url) {
         if (!this.iframe) {
-            console.error('Iframe element not found');
+            logger.error('Iframe element not found');
             return;
         }
         
         if (!url || typeof url !== 'string') {
-            console.error('Invalid URL provided');
+            logger.error('Invalid URL provided');
             return;
         }
         
@@ -418,12 +489,12 @@ class Dashboard {
         
         this.iframe.onload = () => {
             this.hideLoadingIndicator();
-            console.log(`Iframe loaded successfully: ${url}`);
+            logger.log(`Iframe loaded successfully: ${url}`);
         };
         
         this.iframe.onerror = () => {
             this.hideLoadingIndicator();
-            console.error(`Failed to load iframe: ${url}`);
+            logger.error(`Failed to load iframe: ${url}`);
             this.showErrorMessage('Failed to load content. Please try again.');
         };
     }
@@ -455,7 +526,7 @@ class Dashboard {
         if (productParam) {
             const newURL = `${window.location.pathname}?product=${productParam}`;
             window.history.pushState({ product: productParam }, '', newURL);
-            console.log(`URL updated to: ${newURL}`);
+            logger.log(`URL updated to: ${newURL}`);
         }
     }
 
@@ -507,6 +578,22 @@ class Dashboard {
                     if (dataSrc && this.iframe) {
                         this.iframe.src = dataSrc;
                     }
+                }
+                // Update URL to reflect the default selection
+                this.updateURL('Fusion Compiler *');
+            } else {
+                // If no active item found, activate the first one
+                const firstItem = document.querySelector('.nav-item');
+                if (firstItem) {
+                    this.setActiveState(firstItem);
+                    const link = firstItem.querySelector('.nav-link');
+                    if (link) {
+                        const dataSrc = link.getAttribute('data-src');
+                        if (dataSrc && this.iframe) {
+                            this.iframe.src = dataSrc;
+                        }
+                    }
+                    this.updateURL('Fusion Compiler *');
                 }
             }
         }

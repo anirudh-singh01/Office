@@ -16,6 +16,13 @@
     --body-text-size: 16px;
     --small-text-size: 14px;
     --legend-text-size: 12px;
+    
+    /* Layout dimensions */
+    --header-height-desktop: 85px;
+    --header-height-tablet: 75px;
+    --header-height-mobile: 70px;
+    --sidebar-width: 280px;
+    --touch-target-min-size: 44px;
 }
 
 /* Reset and Base Styles */
@@ -108,7 +115,7 @@ body {
     right: 0;
     background-color: var(--white);
     z-index: 1000;
-    height: 85px;
+    height: var(--header-height-desktop);
     border-bottom: 2px solid var(--primary-purple);
 }
 
@@ -128,15 +135,54 @@ body {
     gap: 0.5rem;
 }
 
+.header-titles {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 .logo {
     display: flex;
     align-items: center;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.logo-link:hover {
+    opacity: 0.8;
+}
+
+.logo-link:focus {
+    outline: 2px solid var(--primary-purple);
+    outline-offset: 2px;
+    border-radius: 4px;
 }
 
 .logo-image {
     height: 40px;
     width: auto;
     max-width: 200px;
+}
+
+.header-title-link {
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.2s ease;
+}
+
+.header-title-link:hover {
+    opacity: 0.8;
+}
+
+.header-title-link:focus {
+    outline: 2px solid var(--primary-purple);
+    outline-offset: 2px;
+    border-radius: 4px;
 }
 
 .header-title {
@@ -150,18 +196,18 @@ body {
 /* Main Container */
 .main-container {
     display: flex;
-    margin-top: 85px; /* Account for fixed header */
-    min-height: calc(100vh - 85px);
+    margin-top: var(--header-height-desktop); /* Account for fixed header */
+    min-height: calc(100vh - var(--header-height-desktop));
 }
 
 /* Sidebar Styles */
 .sidebar {
-    width: 280px;
+    width: var(--sidebar-width);
     background-color: var(--white);
     position: fixed;
     left: 0;
-    top: 85px;
-    height: calc(100vh - 85px);
+    top: var(--header-height-desktop);
+    height: calc(100vh - var(--header-height-desktop));
     overflow-y: auto;
     transition: transform 0.3s ease;
     scrollbar-width: thin;
@@ -228,16 +274,16 @@ body {
 /* Main Content Area */
 .main-content {
     flex: 1;
-    margin-left: 280px; /* Account for sidebar width */
+    margin-left: var(--sidebar-width); /* Account for sidebar width */
     background-color: var(--light-gray);
-    min-height: calc(100vh - 85px);
+    min-height: calc(100vh - var(--header-height-desktop));
     display: flex;
     flex-direction: column;
 }
 
 .content-area {
     padding: 1px;
-    min-height: calc(100vh - 85px);
+    min-height: calc(100vh - var(--header-height-desktop));
     position: relative;
     overflow: hidden;
     flex: 1;
@@ -316,7 +362,7 @@ body {
 /* Responsive Design */
 @media (max-width: 768px) {
     .header {
-        height: 75px;
+        height: var(--header-height-tablet);
     }
     
     .header-content {
@@ -325,12 +371,15 @@ body {
         height: 100%;
     }
     
-    .logo-text {
-        font-size: 1.4rem;
-    }
     
     .logo-image {
         height: 35px;
+    }
+    
+    .header-titles {
+        flex-direction: column;
+        gap: 0.25rem;
+        align-items: flex-start;
     }
     
     .header-title {
@@ -338,15 +387,15 @@ body {
     }
     
     .main-container {
-        margin-top: 75px;
-        min-height: calc(100vh - 75px);
+        margin-top: var(--header-height-tablet);
+        min-height: calc(100vh - var(--header-height-tablet));
     }
     
     .sidebar {
-        top: 75px;
-        height: calc(100vh - 75px);
+        top: var(--header-height-tablet);
+        height: calc(100vh - var(--header-height-tablet));
         transform: translateX(-100%);
-        width: 280px;
+        width: var(--sidebar-width);
         z-index: 999;
     }
     
@@ -356,23 +405,31 @@ body {
     
     .main-content {
         margin-left: 0;
-        min-height: calc(100vh - 75px);
+        min-height: calc(100vh - var(--header-height-tablet));
         background-color: var(--light-gray);
     }
     
     .content-area {
-        min-height: calc(100vh - 75px);
-        padding: 16px;
+        min-height: calc(100vh - var(--header-height-tablet));
+        padding: 1px;
     }
     
     .hamburger-menu {
         display: flex;
+        min-width: var(--touch-target-min-size);
+        min-height: var(--touch-target-min-size);
+    }
+    
+    .nav-link {
+        min-height: var(--touch-target-min-size);
+        display: flex;
+        align-items: center;
     }
 }
 
 @media (max-width: 480px) {
     .header {
-        height: 70px;
+        height: var(--header-height-mobile);
     }
     
     .header-content {
@@ -383,12 +440,13 @@ body {
         height: 100%;
     }
     
-    .logo-text {
-        font-size: 1.2rem;
-    }
     
     .logo-image {
         height: 30px;
+    }
+    
+    .header-titles {
+        gap: 0.2rem;
     }
     
     .header-title {
@@ -396,24 +454,24 @@ body {
     }
     
     .main-container {
-        margin-top: 70px;
-        min-height: calc(100vh - 70px);
+        margin-top: var(--header-height-mobile);
+        min-height: calc(100vh - var(--header-height-mobile));
     }
     
     .sidebar {
-        top: 70px;
-        height: calc(100vh - 70px);
+        top: var(--header-height-mobile);
+        height: calc(100vh - var(--header-height-mobile));
         width: 100%;
     }
     
     .main-content {
-        min-height: calc(100vh - 70px);
+        min-height: calc(100vh - var(--header-height-mobile));
         background-color: var(--light-gray);
     }
     
     .content-area {
-        min-height: calc(100vh - 70px);
-        padding: 16px;
+        min-height: calc(100vh - var(--header-height-mobile));
+        padding: 1px;
     }
     
     .nav-link {
@@ -501,18 +559,4 @@ html {
     display: none;
     max-width: 90vw;
     text-align: center;
-}
-
-/* Improved mobile touch targets */
-@media (max-width: 768px) {
-    .nav-link {
-        min-height: 44px;
-        display: flex;
-        align-items: center;
-    }
-    
-    .hamburger-menu {
-        min-width: 44px;
-        min-height: 44px;
-    }
 }
