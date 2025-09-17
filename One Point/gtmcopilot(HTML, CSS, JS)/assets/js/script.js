@@ -433,28 +433,28 @@ class Dashboard {
      */
     handleInitialRoute() {
         const urlParams = new URLSearchParams(window.location.search);
-        const tool = urlParams.get('tool');
+        const product = urlParams.get('product');
         
-        if (tool && URL_ROUTES[tool]) {
-            const toolName = URL_ROUTES[tool];
-            this.switchToMenuItem(toolName);
+        if (product && URL_ROUTES[product]) {
+            const productName = URL_ROUTES[product];
+            this.switchToMenuItem(productName);
         } else {
-            // Default to Fusion Compiler if no valid tool parameter
+            // Default to Fusion Compiler if no valid product parameter
             this.setInitialActiveState();
         }
     }
 
     /**
-     * Update browser URL to reflect current tool
+     * Update browser URL to reflect current product
      * @param {string} menuText - The menu item text
      */
     updateURL(menuText) {
-        // Find the URL parameter for this tool
-        const toolParam = Object.keys(URL_ROUTES).find(key => URL_ROUTES[key] === menuText);
+        // Find the URL parameter for this product
+        const productParam = Object.keys(URL_ROUTES).find(key => URL_ROUTES[key] === menuText);
         
-        if (toolParam) {
-            const newURL = `${window.location.pathname}?tool=${toolParam}`;
-            window.history.pushState({ tool: toolParam }, '', newURL);
+        if (productParam) {
+            const newURL = `${window.location.pathname}?product=${productParam}`;
+            window.history.pushState({ product: productParam }, '', newURL);
             console.log(`URL updated to: ${newURL}`);
         }
     }
@@ -465,26 +465,26 @@ class Dashboard {
     setupBrowserNavigationListener() {
         window.addEventListener('popstate', (event) => {
             const urlParams = new URLSearchParams(window.location.search);
-            const tool = urlParams.get('tool');
+            const product = urlParams.get('product');
             
-            if (tool && URL_ROUTES[tool]) {
-                const toolName = URL_ROUTES[tool];
-                this.switchToMenuItem(toolName);
+            if (product && URL_ROUTES[product]) {
+                const productName = URL_ROUTES[product];
+                this.switchToMenuItem(productName);
             } else {
-                // Default to Fusion Compiler if no valid tool parameter
+                // Default to Fusion Compiler if no valid product parameter
                 this.switchToMenuItem('Fusion Compiler *');
             }
         });
     }
 
     /**
-     * Get current tool from URL
-     * @returns {string|null} - Current tool name or null
+     * Get current product from URL
+     * @returns {string|null} - Current product name or null
      */
     getCurrentToolFromURL() {
         const urlParams = new URLSearchParams(window.location.search);
-        const tool = urlParams.get('tool');
-        return tool ? URL_ROUTES[tool] : null;
+        const product = urlParams.get('product');
+        return product ? URL_ROUTES[product] : null;
     }
 
     /**
