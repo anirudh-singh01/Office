@@ -45,6 +45,7 @@ class Dashboard {
         this.iframe = null;
         this.sidebar = null;
         this.hamburgerMenu = null;
+        this.sidebarOverlay = null;
         this.isMobileMenuOpen = false;
         
         this.init();
@@ -60,7 +61,19 @@ class Dashboard {
             this.setupElements();
             this.setupEventListeners();
             this.handleInitialRoute();
+            this.ensureProperInitialState();
         });
+    }
+
+    /**
+     * Ensure proper initial state - remove any stray active classes
+     */
+    ensureProperInitialState() {
+        // Remove active class from all items first
+        this.removeActiveState();
+        
+        // Then set the correct initial state
+        this.setInitialActiveState();
     }
 
     /**
@@ -70,6 +83,7 @@ class Dashboard {
         this.iframe = document.getElementById('content-frame');
         this.sidebar = document.querySelector('.sidebar');
         this.hamburgerMenu = document.getElementById('hamburgerMenu');
+        this.sidebarOverlay = document.querySelector('.sidebar-overlay');
         
         if (!this.iframe) {
             console.error('Content iframe not found');
@@ -80,6 +94,23 @@ class Dashboard {
         if (!this.hamburgerMenu) {
             console.error('Hamburger menu button not found');
         }
+        
+        // Create overlay if it doesn't exist
+        if (!this.sidebarOverlay) {
+            this.createSidebarOverlay();
+        }
+    }
+
+    /**
+     * Create sidebar overlay for mobile
+     */
+    createSidebarOverlay() {
+        this.sidebarOverlay = document.createElement('div');
+        this.sidebarOverlay.className = 'sidebar-overlay';
+        this.sidebarOverlay.addEventListener('click', () => {
+            this.closeMobileMenu();
+        });
+        document.body.appendChild(this.sidebarOverlay);
     }
 
     /**
@@ -115,8 +146,18 @@ class Dashboard {
      * @param {HTMLElement} link - The nav link element
      */
     handleMenuClick(item, link) {
+        if (!item || !link) {
+            console.error('Invalid menu item or link provided');
+            return;
+        }
+        
         const menuText = link.textContent.trim();
         const dataSrc = link.getAttribute('data-src');
+        
+        if (!menuText) {
+            console.error('Menu item has no text content');
+            return;
+        }
         
         // Remove active class from current active item
         this.removeActiveState();
@@ -137,12 +178,17 @@ class Dashboard {
     }
 
     /**
-     * Remove active state from current active menu item
+     * Remove active state from all menu items
      */
     removeActiveState() {
-        if (this.currentActiveItem) {
-            this.currentActiveItem.classList.remove('active');
-        }
+        // Remove active class from all nav items
+        const allNavItems = document.querySelectorAll('.nav-item');
+        allNavItems.forEach(item => {
+            item.classList.remove('active');
+        });
+        
+        // Clear current active item reference
+        this.currentActiveItem = null;
     }
 
     /**
@@ -160,10 +206,18 @@ class Dashboard {
      * @param {string} dataSrc - The data-src attribute from the clicked link
      */
     updateIframeSource(menuText, dataSrc) {
-        if (!this.iframe) return;
+        if (!this.iframe) {
+            console.error('Iframe element not found');
+            return;
+        }
         
         // Use data-src if available, otherwise fall back to MENU_CONFIG
-        const url = dataSrc || MENU_CONFIG[menuText] || 'https://example.com';
+        const url = dataSrc || MENU_CONFIG[menuText];
+        
+        if (!url) {
+            console.error(`No URL found for menu item: ${menuText}`);
+            return;
+        }
         
         // Add loading indicator
         this.showLoadingIndicator();
@@ -180,6 +234,8 @@ class Dashboard {
         this.iframe.onerror = () => {
             this.hideLoadingIndicator();
             console.error(`Failed to load iframe: ${url}`);
+            // Optionally show user-friendly error message
+            this.showErrorMessage('Failed to load content. Please try again.');
         };
         
         console.log(`Iframe source updated to: ${url}`);
@@ -217,6 +273,13 @@ class Dashboard {
             this.sidebar.classList.add('open');
             this.isMobileMenuOpen = true;
         }
+        
+        if (this.sidebarOverlay) {
+            this.sidebarOverlay.classList.add('active');
+        }
+        
+        // Prevent body scroll when menu is open
+        document.body.style.overflow = 'hidden';
     }
 
     /**
@@ -227,6 +290,13 @@ class Dashboard {
             this.sidebar.classList.remove('open');
             this.isMobileMenuOpen = false;
         }
+        
+        if (this.sidebarOverlay) {
+            this.sidebarOverlay.classList.remove('active');
+        }
+        
+        // Restore body scroll
+        document.body.style.overflow = '';
     }
 
     /**
@@ -241,15 +311,6 @@ class Dashboard {
         });
     }
 
-    /**
-     * Set initial active state (Synopsys.ai Copilot)
-     */
-    setInitialActiveState() {
-        const initialItem = document.querySelector('.nav-item.active');
-        if (initialItem) {
-            this.currentActiveItem = initialItem;
-        }
-    }
 
     /**
      * Public method to update menu configuration
@@ -280,19 +341,61 @@ class Dashboard {
     }
 
     /**
+     * Show error message to user
+     * @param {string} message - Error message to display
+     */
+    showErrorMessage(message) {
+        // Create error message element if it doesn't exist
+        let errorElement = document.getElementById('error-message');
+        if (!errorElement) {
+            errorElement = document.createElement('div');
+            errorElement.id = 'error-message';
+            errorElement.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: #ff4444;
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 8px;
+                z-index: 10000;
+                font-family: 'Segoe UI', sans-serif;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            `;
+            document.body.appendChild(errorElement);
+        }
+        
+        errorElement.textContent = message;
+        errorElement.style.display = 'block';
+        
+        // Auto-hide after 5 seconds
+        setTimeout(() => {
+            errorElement.style.display = 'none';
+        }, 5000);
+    }
+
+    /**
      * Public method to programmatically switch to a menu item
      * @param {string} menuText - The menu item text to switch to
      */
     switchToMenuItem(menuText) {
+        if (!menuText || typeof menuText !== 'string') {
+            console.error('Invalid menu text provided');
+            return;
+        }
+        
         const navItems = document.querySelectorAll('.nav-item');
         
         for (let item of navItems) {
             const link = item.querySelector('.nav-link');
             if (link && link.textContent.trim() === menuText) {
                 this.handleMenuClick(item, link);
-                break;
+                return;
             }
         }
+        
+        console.warn(`Menu item not found: ${menuText}`);
     }
 
     /**
@@ -300,7 +403,15 @@ class Dashboard {
      * @param {string} url - The URL to load in the iframe
      */
     loadIframeContent(url) {
-        if (!this.iframe) return;
+        if (!this.iframe) {
+            console.error('Iframe element not found');
+            return;
+        }
+        
+        if (!url || typeof url !== 'string') {
+            console.error('Invalid URL provided');
+            return;
+        }
         
         this.showLoadingIndicator();
         this.iframe.src = url;
@@ -313,6 +424,7 @@ class Dashboard {
         this.iframe.onerror = () => {
             this.hideLoadingIndicator();
             console.error(`Failed to load iframe: ${url}`);
+            this.showErrorMessage('Failed to load content. Please try again.');
         };
     }
 
@@ -384,11 +496,18 @@ class Dashboard {
         if (currentTool) {
             this.switchToMenuItem(currentTool);
         } else {
-            // Default to Fusion Compiler
-            const initialItem = document.querySelector('.nav-item');
+            // Default to Fusion Compiler - find the first nav item with active class
+            const initialItem = document.querySelector('.nav-item.active');
             if (initialItem) {
                 this.currentActiveItem = initialItem;
-                this.updateURL('Fusion Compiler *');
+                // Ensure the iframe loads the correct content
+                const link = initialItem.querySelector('.nav-link');
+                if (link) {
+                    const dataSrc = link.getAttribute('data-src');
+                    if (dataSrc && this.iframe) {
+                        this.iframe.src = dataSrc;
+                    }
+                }
             }
         }
     }
