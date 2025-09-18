@@ -38,14 +38,80 @@
         </div>
     </header>
 
+    <!-- Welcome Page -->
+    <div class="welcome-page" id="welcomePage">
+        <div class="welcome-container">
+            <div class="welcome-content">
+                <div class="welcome-header">
+                    <h1 class="welcome-title">Welcome to GTM Copilot</h1>
+                    <p class="welcome-subtitle">Select a tool below to get started with your Synopsys workflow.</p>
+                </div>
+
+                <div class="welcome-tools">
+                    <h2 class="tools-section-title">Available Tools</h2>
+                    <div class="tools-grid">
+                        <div class="tool-card" data-tool="Fusion Compiler *">
+                            <h3>Fusion Compiler *</h3>
+                            <p>Click to open Fusion Compiler *</p>
+                        </div>
+                        <div class="tool-card" data-tool="PrimeTime *">
+                            <h3>PrimeTime *</h3>
+                            <p>Click to open PrimeTime *</p>
+                        </div>
+                        <div class="tool-card" data-tool="Custom Compiler *">
+                            <h3>Custom Compiler *</h3>
+                            <p>Click to open Custom Compiler *</p>
+                        </div>
+                        <div class="tool-card" data-tool="VCS">
+                            <h3>VCS</h3>
+                            <p>Click to open VCS</p>
+                        </div>
+                        <div class="tool-card" data-tool="DSO.ai">
+                            <h3>DSO.ai</h3>
+                            <p>Click to open DSO.ai</p>
+                        </div>
+                        <div class="tool-card" data-tool="IC Validator">
+                            <h3>IC Validator</h3>
+                            <p>Click to open IC Validator</p>
+                        </div>
+                        <div class="tool-card" data-tool="PrimeSim Pro">
+                            <h3>PrimeSim Pro</h3>
+                            <p>Click to open PrimeSim Pro</p>
+                        </div>
+                        <div class="tool-card" data-tool="VC Formal">
+                            <h3>VC Formal</h3>
+                            <p>Click to open VC Formal</p>
+                        </div>
+                        <div class="tool-card" data-tool="VC Low Power">
+                            <h3>VC Low Power</h3>
+                            <p>Click to open VC Low Power</p>
+                        </div>
+                        <div class="tool-card" data-tool="VC SpyGlass">
+                            <h3>VC SpyGlass</h3>
+                            <p>Click to open VC SpyGlass</p>
+                        </div>
+                        <div class="tool-card" data-tool="Verdi">
+                            <h3>Verdi</h3>
+                            <p>Click to open Verdi</p>
+                        </div>
+                        <div class="tool-card" data-tool="Synopsys.ai Copilot **">
+                            <h3>Synopsys.ai Copilot **</h3>
+                            <p>Click to open Synopsys.ai Copilot **</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Main Container -->
-    <div class="main-container">
+    <div class="main-container" id="mainContainer" style="display: none;">
         <!-- Sidebar -->
         <aside class="sidebar" id="sidebar" role="navigation" aria-label="Tool navigation menu">
             <nav class="sidebar-nav">
                 <ul class="nav-list">
-                    <li class="nav-item active">
-                        <a href="#" class="nav-link" data-src="https://snpsai-copilot-gtm/?product=fc" aria-current="page">Fusion Compiler *</a>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-src="https://snpsai-copilot-gtm/?product=fc">Fusion Compiler *</a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link" data-src="https://snpsai-copilot-gtm/?product=pt">PrimeTime *</a>
@@ -97,9 +163,24 @@
         <!-- Main Content Area -->
         <main class="main-content">
             <div class="content-area">
+                <!-- Loading Screen -->
+                <div class="loading-screen" id="loadingScreen">
+                    <div class="loading-container">
+                        <div class="loading-spinner">
+                            <div class="spinner-ring"></div>
+                            <div class="spinner-ring"></div>
+                            <div class="spinner-ring"></div>
+                        </div>
+                        <div class="loading-text">
+                            <h3>Loading Tool</h3>
+                            <p id="loadingToolName">Please wait...</p>
+                        </div>
+                    </div>
+                </div>
+                
                 <iframe 
                     id="content-frame" 
-                    src="https://snpsai-copilot-gtm/?product=fc" 
+                    src="" 
                     style="width:100%;height:100%;border:0;" 
                     title="Tool Frame"
                     frameborder="0"

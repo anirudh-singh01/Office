@@ -58,6 +58,11 @@ class Dashboard {
         this.sidebarOverlay = null;
         this.logoLink = null;
         this.isMobileMenuOpen = false;
+        this.welcomePage = null;
+        this.mainContainer = null;
+        this.hasSeenWelcome = false;
+        this.loadingScreen = null;
+        this.loadingToolName = null;
         
         this.init();
     }
@@ -71,8 +76,7 @@ class Dashboard {
         document.addEventListener('DOMContentLoaded', () => {
             this.setupElements();
             this.setupEventListeners();
-            this.ensureProperInitialState();
-            this.handleInitialRoute();
+            this.checkWelcomePageState();
         });
     }
 
@@ -96,12 +100,22 @@ class Dashboard {
      * Cache DOM elements for better performance
      */
     setupElements() {
+        this.welcomePage = document.getElementById('welcomePage');
+        this.mainContainer = document.getElementById('mainContainer');
         this.iframe = document.getElementById('content-frame');
         this.sidebar = document.querySelector('.sidebar');
         this.hamburgerMenu = document.getElementById('hamburgerMenu');
         this.sidebarOverlay = document.querySelector('.sidebar-overlay');
         this.logoLink = document.getElementById('logoLink');
+        this.loadingScreen = document.getElementById('loadingScreen');
+        this.loadingToolName = document.getElementById('loadingToolName');
         
+        if (!this.welcomePage) {
+            logger.error('Welcome page not found');
+        }
+        if (!this.mainContainer) {
+            logger.error('Main container not found');
+        }
         if (!this.iframe) {
             logger.error('Content iframe not found');
         }
@@ -113,6 +127,12 @@ class Dashboard {
         }
         if (!this.logoLink) {
             logger.error('Logo link not found');
+        }
+        if (!this.loadingScreen) {
+            logger.error('Loading screen not found');
+        }
+        if (!this.loadingToolName) {
+            logger.error('Loading tool name element not found');
         }
         
         // Create overlay if it doesn't exist
@@ -137,11 +157,111 @@ class Dashboard {
      * Set up all event listeners
      */
     setupEventListeners() {
+        this.setupWelcomePageListeners();
         this.setupMenuClickListeners();
         this.setupMobileMenuListener();
         this.setupLogoClickListener();
         this.setupResizeListener();
         this.setupBrowserNavigationListener();
+    }
+
+    /**
+     * Set up welcome page event listeners
+     */
+    setupWelcomePageListeners() {
+        // Set up tool card click listeners
+        this.setupToolCardListeners();
+    }
+
+    /**
+     * Check if user should see welcome page
+     */
+    checkWelcomePageState() {
+        // Check if there's a URL parameter indicating a specific tool
+        const urlParams = new URLSearchParams(window.location.search);
+        const product = urlParams.get('product');
+        
+        if (product && URL_ROUTES[product]) {
+            // User has a specific tool in URL, show dashboard
+            this.showDashboard();
+            // Initialize dashboard functionality
+            this.ensureProperInitialState();
+        } else {
+            // No specific tool, show welcome page
+            this.showWelcomePage();
+        }
+    }
+
+    /**
+     * Show welcome page
+     */
+    showWelcomePage() {
+        if (this.welcomePage && this.mainContainer) {
+            this.welcomePage.style.display = 'flex';
+            this.mainContainer.style.display = 'none';
+            logger.log('Welcome page displayed');
+        }
+    }
+
+    /**
+     * Show main dashboard
+     */
+    showDashboard() {
+        if (this.welcomePage && this.mainContainer) {
+            this.welcomePage.style.display = 'none';
+            this.mainContainer.style.display = 'flex';
+            logger.log('Dashboard displayed');
+        }
+    }
+
+
+    /**
+     * Set up tool card click listeners on welcome page
+     */
+    setupToolCardListeners() {
+        const toolCards = document.querySelectorAll('.tool-card');
+        
+        toolCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const toolName = card.getAttribute('data-tool');
+                if (toolName) {
+                    this.selectToolFromWelcome(toolName);
+                }
+            });
+            
+            // Add keyboard accessibility
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    const toolName = card.getAttribute('data-tool');
+                    if (toolName) {
+                        this.selectToolFromWelcome(toolName);
+                    }
+                }
+            });
+            
+            // Make cards focusable
+            card.setAttribute('tabindex', '0');
+            card.setAttribute('role', 'button');
+            card.setAttribute('aria-label', `Select ${card.getAttribute('data-tool')}`);
+        });
+    }
+
+    /**
+     * Handle tool selection from welcome page
+     * @param {string} toolName - The name of the selected tool
+     */
+    selectToolFromWelcome(toolName) {
+        // Show dashboard first
+        this.showDashboard();
+        
+        // Initialize dashboard functionality
+        this.ensureProperInitialState();
+        
+        // Switch to the selected tool
+        this.switchToMenuItem(toolName);
+        
+        logger.log(`User selected tool from welcome page: ${toolName}`);
     }
 
     /**
@@ -248,20 +368,20 @@ class Dashboard {
             return;
         }
         
-        // Add loading indicator
-        this.showLoadingIndicator();
+        // Show loading screen
+        this.showLoadingScreen(menuText);
         
         // Update iframe source
         this.iframe.src = url;
         
         // Handle iframe load events
         this.iframe.onload = () => {
-            this.hideLoadingIndicator();
+            this.hideLoadingScreen();
             logger.log(`Iframe loaded successfully: ${url}`);
         };
         
         this.iframe.onerror = () => {
-            this.hideLoadingIndicator();
+            this.hideLoadingScreen();
             logger.error(`Failed to load iframe: ${url}`);
             // Optionally show user-friendly error message
             this.showErrorMessage('Failed to load content. Please try again.');
@@ -297,20 +417,17 @@ class Dashboard {
      * Reset application to default state (like when first opened)
      */
     resetToDefaultState() {
-        // Remove active state from all menu items
-        this.removeActiveState();
+        // Always return to welcome page when logo is clicked
+        this.showWelcomePage();
         
-        // Set Fusion Compiler as active (default state)
-        this.switchToMenuItem('Fusion Compiler *');
-        
-        // Clear URL parameters to return to default state
+        // Clear URL parameters to return to clean state
         const newURL = window.location.pathname;
         window.history.pushState({ product: null }, '', newURL);
         
         // Close mobile menu if open
         this.closeMobileMenu();
         
-        logger.log('Application reset to default state');
+        logger.log('Application reset to welcome page');
     }
 
     /**
@@ -393,7 +510,33 @@ class Dashboard {
     }
 
     /**
-     * Show loading indicator while iframe loads
+     * Show loading screen while iframe loads
+     * @param {string} toolName - The name of the tool being loaded
+     */
+    showLoadingScreen(toolName) {
+        if (this.loadingScreen && this.loadingToolName) {
+            // Update the tool name in the loading screen
+            this.loadingToolName.textContent = toolName;
+            
+            // Show the loading screen
+            this.loadingScreen.classList.add('active');
+            
+            logger.log(`Loading screen shown for: ${toolName}`);
+        }
+    }
+
+    /**
+     * Hide loading screen after iframe loads
+     */
+    hideLoadingScreen() {
+        if (this.loadingScreen) {
+            this.loadingScreen.classList.remove('active');
+            logger.log('Loading screen hidden');
+        }
+    }
+
+    /**
+     * Show loading indicator while iframe loads (legacy method)
      */
     showLoadingIndicator() {
         if (this.iframe) {
@@ -403,7 +546,7 @@ class Dashboard {
     }
 
     /**
-     * Hide loading indicator after iframe loads
+     * Hide loading indicator after iframe loads (legacy method)
      */
     hideLoadingIndicator() {
         if (this.iframe) {
@@ -473,7 +616,7 @@ class Dashboard {
      * Public method to update iframe source programmatically
      * @param {string} url - The URL to load in the iframe
      */
-    loadIframeContent(url) {
+    loadIframeContent(url, toolName = 'Tool') {
         if (!this.iframe) {
             logger.error('Iframe element not found');
             return;
@@ -484,16 +627,16 @@ class Dashboard {
             return;
         }
         
-        this.showLoadingIndicator();
+        this.showLoadingScreen(toolName);
         this.iframe.src = url;
         
         this.iframe.onload = () => {
-            this.hideLoadingIndicator();
+            this.hideLoadingScreen();
             logger.log(`Iframe loaded successfully: ${url}`);
         };
         
         this.iframe.onerror = () => {
-            this.hideLoadingIndicator();
+            this.hideLoadingScreen();
             logger.error(`Failed to load iframe: ${url}`);
             this.showErrorMessage('Failed to load content. Please try again.');
         };
@@ -510,7 +653,7 @@ class Dashboard {
             const productName = URL_ROUTES[product];
             this.switchToMenuItem(productName);
         } else {
-            // Default to Fusion Compiler if no valid product parameter
+            // No product parameter - no default selection
             this.setInitialActiveState();
         }
     }
@@ -539,11 +682,13 @@ class Dashboard {
             const product = urlParams.get('product');
             
             if (product && URL_ROUTES[product]) {
+                // There's a product parameter, show dashboard and switch to that tool
+                this.showDashboard();
                 const productName = URL_ROUTES[product];
                 this.switchToMenuItem(productName);
             } else {
-                // Default to Fusion Compiler if no valid product parameter
-                this.switchToMenuItem('Fusion Compiler *');
+                // No product parameter, show welcome page
+                this.showWelcomePage();
             }
         });
     }
@@ -559,7 +704,7 @@ class Dashboard {
     }
 
     /**
-     * Set initial active state based on URL or default to Fusion Compiler
+     * Set initial active state based on URL or default to no selection
      */
     setInitialActiveState() {
         const currentTool = this.getCurrentToolFromURL();
@@ -567,35 +712,16 @@ class Dashboard {
         if (currentTool) {
             this.switchToMenuItem(currentTool);
         } else {
-            // Default to Fusion Compiler - find the first nav item with active class
-            const initialItem = document.querySelector('.nav-item.active');
-            if (initialItem) {
-                this.currentActiveItem = initialItem;
-                // Ensure the iframe loads the correct content
-                const link = initialItem.querySelector('.nav-link');
-                if (link) {
-                    const dataSrc = link.getAttribute('data-src');
-                    if (dataSrc && this.iframe) {
-                        this.iframe.src = dataSrc;
-                    }
-                }
-                // Update URL to reflect the default selection
-                this.updateURL('Fusion Compiler *');
-            } else {
-                // If no active item found, activate the first one
-                const firstItem = document.querySelector('.nav-item');
-                if (firstItem) {
-                    this.setActiveState(firstItem);
-                    const link = firstItem.querySelector('.nav-link');
-                    if (link) {
-                        const dataSrc = link.getAttribute('data-src');
-                        if (dataSrc && this.iframe) {
-                            this.iframe.src = dataSrc;
-                        }
-                    }
-                    this.updateURL('Fusion Compiler *');
-                }
+            // No default selection - user should choose from welcome page
+            // Clear any existing active states
+            this.removeActiveState();
+            
+            // Ensure iframe is empty
+            if (this.iframe) {
+                this.iframe.src = '';
             }
+            
+            logger.log('No initial tool selected - user should choose from welcome page');
         }
     }
 }
