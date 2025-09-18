@@ -26,7 +26,7 @@ const MENU_CONFIG = {
     'VC Low Power': 'https://snpsai-copilot-gtm/?product=vclp',
     'VC SpyGlass': 'https://snpsai-copilot-gtm/?product=vcspyglass',
     'Verdi': 'https://snpsai-copilot-gtm/?product=verdi',
-    'Synopsys.ai Copilot': 'https://snpsai-copilot-gtm/?product=copilot'
+    'Synopsys.ai Copilot **': 'https://snpsai-copilot-gtm/?product=copilot'
 };
 
 // URL routing configuration - maps URL parameters to tool names
@@ -42,7 +42,7 @@ const URL_ROUTES = {
     'vclp': 'VC Low Power',
     'vcspyglass': 'VC SpyGlass',
     'verdi': 'Verdi',
-    'copilot': 'Synopsys.ai Copilot'
+    'copilot': 'Synopsys.ai Copilot **'
 };
 
 /**
