@@ -760,6 +760,18 @@ html {
 .tool-card:nth-child(12) { animation-delay: 1.9s; }
 
 /* Responsive Welcome Page */
+@media (min-width: 1400px) {
+    .welcome-container {
+        max-width: 1400px;
+    }
+    
+    .tools-grid {
+        max-width: 1400px;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 1.75rem;
+    }
+}
+
 @media (max-width: 1200px) {
     .tools-grid {
         grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
