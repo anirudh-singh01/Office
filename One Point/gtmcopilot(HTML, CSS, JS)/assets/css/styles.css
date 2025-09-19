@@ -179,11 +179,13 @@ body {
     font-weight: 500;
     position: relative;
     background: transparent;
+    border: 2px solid transparent;
 }
 
 .header-title-link:hover {
     background-color: #f8f5fc;
     color: #5a2a82;
+    border-color: #5a2a82;
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(90, 42, 130, 0.15);
 }
@@ -192,6 +194,8 @@ body {
     outline: 2px solid #5a2a82;
     outline-offset: 2px;
     background-color: #f8f5fc;
+    color: #5a2a82;
+    border-color: #5a2a82;
 }
 
 .header-title-link:active {
@@ -637,10 +641,11 @@ html {
 
 .tools-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-    max-width: 1100px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 1400px;
     margin: 0 auto;
+    padding: 0 1rem;
 }
 
 .tool-card {
@@ -755,6 +760,40 @@ html {
 .tool-card:nth-child(12) { animation-delay: 1.9s; }
 
 /* Responsive Welcome Page */
+@media (min-width: 1400px) {
+    .welcome-container {
+        max-width: 1600px;
+        padding: 2rem 3rem;
+    }
+    
+    .tools-grid {
+        max-width: 1600px;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        padding: 0 2rem;
+    }
+    
+    .tool-card {
+        padding: 2rem;
+    }
+    
+    .tool-card h3 {
+        font-size: 1.125rem;
+    }
+    
+    .tool-card p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 1200px) {
+    .tools-grid {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.25rem;
+        max-width: 1200px;
+    }
+}
+
 @media (max-width: 768px) {
     .welcome-page {
         top: var(--header-height-tablet);
@@ -779,8 +818,9 @@ html {
     }
     
     .tools-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
         gap: 1rem;
+        padding: 0 0.5rem;
     }
     
     .tool-card {
@@ -822,6 +862,7 @@ html {
     .tools-grid {
         grid-template-columns: 1fr;
         gap: 0.875rem;
+        padding: 0;
     }
     
     .tool-card {
