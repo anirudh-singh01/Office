@@ -760,32 +760,6 @@ html {
 .tool-card:nth-child(12) { animation-delay: 1.9s; }
 
 /* Responsive Welcome Page */
-@media (min-width: 1400px) {
-    .welcome-container {
-        max-width: 1600px;
-        padding: 2rem 3rem;
-    }
-    
-    .tools-grid {
-        max-width: 1600px;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        padding: 0 2rem;
-    }
-    
-    .tool-card {
-        padding: 2rem;
-    }
-    
-    .tool-card h3 {
-        font-size: 1.125rem;
-    }
-    
-    .tool-card p {
-        font-size: 1rem;
-    }
-}
-
 @media (max-width: 1200px) {
     .tools-grid {
         grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
