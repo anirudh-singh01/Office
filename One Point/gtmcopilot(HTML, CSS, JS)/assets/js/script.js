@@ -58,6 +58,7 @@ class Dashboard {
         this.sidebarOverlay = null;
         this.logoLink = null;
         this.isMobileMenuOpen = false;
+        this.isSidebarCollapsed = false;
         this.welcomePage = null;
         this.mainContainer = null;
         this.hasSeenWelcome = false;
@@ -199,6 +200,8 @@ class Dashboard {
         if (this.welcomePage && this.mainContainer) {
             this.welcomePage.style.display = 'flex';
             this.mainContainer.style.display = 'none';
+            // Hide hamburger menu on welcome page
+            document.body.classList.add('welcome-page-active');
             logger.log('Welcome page displayed');
         }
     }
@@ -210,6 +213,8 @@ class Dashboard {
         if (this.welcomePage && this.mainContainer) {
             this.welcomePage.style.display = 'none';
             this.mainContainer.style.display = 'flex';
+            // Show hamburger menu on dashboard
+            document.body.classList.remove('welcome-page-active');
             logger.log('Dashboard displayed');
         }
     }
@@ -391,12 +396,18 @@ class Dashboard {
     }
 
     /**
-     * Set up mobile hamburger menu functionality
+     * Set up hamburger menu functionality for both mobile and desktop
      */
     setupMobileMenuListener() {
         if (this.hamburgerMenu) {
             this.hamburgerMenu.addEventListener('click', () => {
-                this.toggleMobileMenu();
+                if (window.innerWidth <= 1024) {
+                    // Mobile/Tablet/Small Laptop behavior: toggle overlay menu
+                    this.toggleMobileMenu();
+                } else {
+                    // Large Desktop behavior: toggle sidebar collapse
+                    this.toggleSidebarCollapse();
+                }
             });
         }
     }
@@ -440,6 +451,42 @@ class Dashboard {
             this.openMobileMenu();
         } else {
             this.closeMobileMenu();
+        }
+    }
+
+    /**
+     * Toggle sidebar collapse state for desktop
+     */
+    toggleSidebarCollapse() {
+        this.isSidebarCollapsed = !this.isSidebarCollapsed;
+        const mainContent = document.querySelector('.main-content');
+        
+        if (this.isSidebarCollapsed) {
+            // Collapse sidebar
+            if (this.sidebar) {
+                this.sidebar.classList.add('collapsed');
+            }
+            if (mainContent) {
+                mainContent.classList.add('sidebar-collapsed');
+            }
+            // Update ARIA attributes
+            if (this.hamburgerMenu) {
+                this.hamburgerMenu.setAttribute('aria-expanded', 'false');
+            }
+            logger.log('Sidebar collapsed');
+        } else {
+            // Expand sidebar
+            if (this.sidebar) {
+                this.sidebar.classList.remove('collapsed');
+            }
+            if (mainContent) {
+                mainContent.classList.remove('sidebar-collapsed');
+            }
+            // Update ARIA attributes
+            if (this.hamburgerMenu) {
+                this.hamburgerMenu.setAttribute('aria-expanded', 'true');
+            }
+            logger.log('Sidebar expanded');
         }
     }
 
@@ -492,9 +539,34 @@ class Dashboard {
      */
     setupResizeListener() {
         window.addEventListener('resize', () => {
-            // Close mobile menu on desktop resize
-            if (window.innerWidth > 768 && this.isMobileMenuOpen) {
-                this.closeMobileMenu();
+            if (window.innerWidth > 1024) {
+                // Switched to large desktop mode
+                if (this.isMobileMenuOpen) {
+                    this.closeMobileMenu();
+                }
+                // If sidebar was collapsed, expand it on large desktop
+                if (this.isSidebarCollapsed && this.sidebar) {
+                    this.sidebar.classList.remove('collapsed');
+                    const mainContent = document.querySelector('.main-content');
+                    if (mainContent) {
+                        mainContent.classList.remove('sidebar-collapsed');
+                    }
+                    this.isSidebarCollapsed = false;
+                }
+            } else {
+                // Switched to mobile/tablet/small laptop mode
+                // Reset sidebar collapse state and close mobile menu if open
+                if (this.isMobileMenuOpen) {
+                    this.closeMobileMenu();
+                }
+                if (this.isSidebarCollapsed && this.sidebar) {
+                    this.sidebar.classList.remove('collapsed');
+                    const mainContent = document.querySelector('.main-content');
+                    if (mainContent) {
+                        mainContent.classList.remove('sidebar-collapsed');
+                    }
+                    this.isSidebarCollapsed = false;
+                }
             }
         });
     }
