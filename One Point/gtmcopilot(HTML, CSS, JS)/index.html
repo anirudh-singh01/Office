@@ -47,6 +47,16 @@
                     <p class="welcome-subtitle">Select a tool below to get started with using Synopsys.ai Copilot KA</p>
                 </div>
 
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <div class="search-bar">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="toolSearch" placeholder="Search tools..." autocomplete="off">
+                        <button type="button" id="clearSearch" class="clear-search" aria-label="Clear search">✕</button>
+                    </div>
+                    <div class="search-results-info" id="searchResultsInfo"></div>
+                </div>
+
                 <div class="welcome-tools">
                     <h2 class="tools-section-title">Available Tools</h2>
                     <div class="tools-grid">
@@ -119,6 +129,16 @@
         <!-- Sidebar -->
         <aside class="sidebar" id="sidebar" role="navigation" aria-label="Tool navigation menu">
             <nav class="sidebar-nav">
+                <!-- Sidebar Search Bar -->
+                <div class="sidebar-search-container">
+                    <div class="sidebar-search-bar">
+                        <span class="sidebar-search-icon">🔍</span>
+                        <input type="text" id="sidebarToolSearch" placeholder="Search tools..." autocomplete="off">
+                        <button type="button" id="sidebarClearSearch" class="sidebar-clear-search" aria-label="Clear search">✕</button>
+                    </div>
+                    <div class="sidebar-search-results-info" id="sidebarSearchResultsInfo"></div>
+                </div>
+                
                 <ul class="nav-list">
                     <li class="nav-item">
                         <a href="#" class="nav-link" data-src="https://snpsai-copilot-gtm/?product=fc">Fusion Compiler *</a>

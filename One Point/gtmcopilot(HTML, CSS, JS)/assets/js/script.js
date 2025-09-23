@@ -164,6 +164,8 @@ class Dashboard {
         this.setupLogoClickListener();
         this.setupResizeListener();
         this.setupBrowserNavigationListener();
+        this.setupSearchFunctionality();
+        this.setupSidebarSearchFunctionality();
     }
 
     /**
@@ -743,6 +745,245 @@ class Dashboard {
             window.history.pushState({ product: productParam }, '', newURL);
             logger.log(`URL updated to: ${newURL}`);
         }
+    }
+
+    /**
+     * Set up search functionality for tools
+     */
+    setupSearchFunctionality() {
+        const searchInput = document.getElementById('toolSearch');
+        const clearButton = document.getElementById('clearSearch');
+        const resultsInfo = document.getElementById('searchResultsInfo');
+        
+        if (!searchInput || !clearButton || !resultsInfo) {
+            logger.error('Search elements not found');
+            return;
+        }
+        
+        // Search input event listener
+        searchInput.addEventListener('input', (e) => {
+            this.handleSearch(e.target.value);
+        });
+        
+        // Clear button event listener
+        clearButton.addEventListener('click', () => {
+            this.clearSearch();
+        });
+        
+        // Keyboard shortcuts
+        searchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                this.clearSearch();
+                searchInput.blur();
+            }
+        });
+        
+        logger.log('Search functionality initialized');
+    }
+    
+    /**
+     * Handle search input
+     * @param {string} searchTerm - The search term entered by user
+     */
+    handleSearch(searchTerm) {
+        const clearButton = document.getElementById('clearSearch');
+        const resultsInfo = document.getElementById('searchResultsInfo');
+        const toolCards = document.querySelectorAll('.tool-card');
+        
+        if (!searchTerm || searchTerm.trim() === '') {
+            this.clearSearch();
+            return;
+        }
+        
+        // Show clear button
+        clearButton.classList.add('visible');
+        
+        const searchLower = searchTerm.toLowerCase().trim();
+        let visibleCount = 0;
+        
+        toolCards.forEach(card => {
+            const toolName = card.getAttribute('data-tool').toLowerCase();
+            const toolTitle = card.querySelector('h3').textContent.toLowerCase();
+            const toolDescription = card.querySelector('p').textContent.toLowerCase();
+            
+            // Check if search term matches tool name, title, or description
+            const isMatch = toolName.includes(searchLower) || 
+                          toolTitle.includes(searchLower) || 
+                          toolDescription.includes(searchLower);
+            
+            if (isMatch) {
+                card.style.display = 'block';
+                card.style.animation = 'fadeInUp 0.3s ease-out';
+                visibleCount++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        
+        // Update results info
+        if (visibleCount === 0) {
+            resultsInfo.textContent = 'No tools found matching your search';
+            resultsInfo.style.color = '#ef4444';
+        } else if (visibleCount === toolCards.length) {
+            resultsInfo.textContent = '';
+        } else {
+            resultsInfo.textContent = `Found ${visibleCount} tool${visibleCount === 1 ? '' : 's'}`;
+            resultsInfo.style.color = '#6b7280';
+        }
+        
+        logger.log(`Search completed: "${searchTerm}" - ${visibleCount} results`);
+    }
+    
+    /**
+     * Clear search and show all tools
+     */
+    clearSearch() {
+        const searchInput = document.getElementById('toolSearch');
+        const clearButton = document.getElementById('clearSearch');
+        const resultsInfo = document.getElementById('searchResultsInfo');
+        const toolCards = document.querySelectorAll('.tool-card');
+        
+        // Clear search input
+        if (searchInput) {
+            searchInput.value = '';
+        }
+        
+        // Hide clear button
+        if (clearButton) {
+            clearButton.classList.remove('visible');
+        }
+        
+        // Clear results info
+        if (resultsInfo) {
+            resultsInfo.textContent = '';
+        }
+        
+        // Show all tool cards
+        toolCards.forEach(card => {
+            card.style.display = 'block';
+            card.style.animation = 'fadeInUp 0.3s ease-out';
+        });
+        
+        logger.log('Search cleared - all tools visible');
+    }
+
+    /**
+     * Set up sidebar search functionality for tools
+     */
+    setupSidebarSearchFunctionality() {
+        const sidebarSearchInput = document.getElementById('sidebarToolSearch');
+        const sidebarClearButton = document.getElementById('sidebarClearSearch');
+        const sidebarResultsInfo = document.getElementById('sidebarSearchResultsInfo');
+        
+        if (!sidebarSearchInput || !sidebarClearButton || !sidebarResultsInfo) {
+            logger.error('Sidebar search elements not found');
+            return;
+        }
+        
+        // Search input event listener
+        sidebarSearchInput.addEventListener('input', (e) => {
+            this.handleSidebarSearch(e.target.value);
+        });
+        
+        // Clear button event listener
+        sidebarClearButton.addEventListener('click', () => {
+            this.clearSidebarSearch();
+        });
+        
+        // Keyboard shortcuts
+        sidebarSearchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                this.clearSidebarSearch();
+                sidebarSearchInput.blur();
+            }
+        });
+        
+        logger.log('Sidebar search functionality initialized');
+    }
+    
+    /**
+     * Handle sidebar search input
+     * @param {string} searchTerm - The search term entered by user
+     */
+    handleSidebarSearch(searchTerm) {
+        const sidebarClearButton = document.getElementById('sidebarClearSearch');
+        const sidebarResultsInfo = document.getElementById('sidebarSearchResultsInfo');
+        const navItems = document.querySelectorAll('.nav-item');
+        
+        if (!searchTerm || searchTerm.trim() === '') {
+            this.clearSidebarSearch();
+            return;
+        }
+        
+        // Show clear button
+        sidebarClearButton.classList.add('visible');
+        
+        const searchLower = searchTerm.toLowerCase().trim();
+        let visibleCount = 0;
+        
+        navItems.forEach(item => {
+            const link = item.querySelector('.nav-link');
+            if (!link) return;
+            
+            const toolText = link.textContent.toLowerCase();
+            
+            // Check if search term matches tool name
+            const isMatch = toolText.includes(searchLower);
+            
+            if (isMatch) {
+                item.style.display = 'block';
+                item.style.animation = 'fadeInUp 0.2s ease-out';
+                visibleCount++;
+            } else {
+                item.style.display = 'none';
+            }
+        });
+        
+        // Update results info
+        if (visibleCount === 0) {
+            sidebarResultsInfo.textContent = 'No tools found';
+            sidebarResultsInfo.style.color = '#ef4444';
+        } else if (visibleCount === navItems.length) {
+            sidebarResultsInfo.textContent = '';
+        } else {
+            sidebarResultsInfo.textContent = `${visibleCount} tool${visibleCount === 1 ? '' : 's'}`;
+            sidebarResultsInfo.style.color = '#6b7280';
+        }
+        
+        logger.log(`Sidebar search completed: "${searchTerm}" - ${visibleCount} results`);
+    }
+    
+    /**
+     * Clear sidebar search and show all tools
+     */
+    clearSidebarSearch() {
+        const sidebarSearchInput = document.getElementById('sidebarToolSearch');
+        const sidebarClearButton = document.getElementById('sidebarClearSearch');
+        const sidebarResultsInfo = document.getElementById('sidebarSearchResultsInfo');
+        const navItems = document.querySelectorAll('.nav-item');
+        
+        // Clear search input
+        if (sidebarSearchInput) {
+            sidebarSearchInput.value = '';
+        }
+        
+        // Hide clear button
+        if (sidebarClearButton) {
+            sidebarClearButton.classList.remove('visible');
+        }
+        
+        // Clear results info
+        if (sidebarResultsInfo) {
+            sidebarResultsInfo.textContent = '';
+        }
+        
+        // Show all nav items
+        navItems.forEach(item => {
+            item.style.display = 'block';
+            item.style.animation = 'fadeInUp 0.2s ease-out';
+        });
+        
+        logger.log('Sidebar search cleared - all tools visible');
     }
 
     /**
