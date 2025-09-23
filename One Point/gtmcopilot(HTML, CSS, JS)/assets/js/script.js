@@ -401,7 +401,7 @@ class Dashboard {
     setupMobileMenuListener() {
         if (this.hamburgerMenu) {
             this.hamburgerMenu.addEventListener('click', () => {
-                if (window.innerWidth <= 1024) {
+                if (window.innerWidth <= 1366) {
                     // Mobile/Tablet/Small Laptop behavior: toggle overlay menu
                     this.toggleMobileMenu();
                 } else {
@@ -539,8 +539,8 @@ class Dashboard {
      */
     setupResizeListener() {
         window.addEventListener('resize', () => {
-            if (window.innerWidth > 1024) {
-                // Switched to large desktop mode
+            if (window.innerWidth > 1366) {
+                // Switched to large desktop mode (15.5+ inch screens)
                 if (this.isMobileMenuOpen) {
                     this.closeMobileMenu();
                 }
@@ -554,7 +554,7 @@ class Dashboard {
                     this.isSidebarCollapsed = false;
                 }
             } else {
-                // Switched to mobile/tablet/small laptop mode
+                // Switched to mobile/tablet/small laptop mode (below 15.5 inch screens)
                 // Reset sidebar collapse state and close mobile menu if open
                 if (this.isMobileMenuOpen) {
                     this.closeMobileMenu();
