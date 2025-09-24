@@ -458,19 +458,25 @@ body {
 }
 
 .hamburger-menu:active {
-    opacity: 0.6;
+    transform: scale(0.95);
+    opacity: 0.8;
 }
 
 .hamburger-menu:focus {
-    outline: 2px solid var(--primary-purple);
-    outline-offset: 2px;
+    outline: none;
 }
 
 .hamburger-line {
     width: 25px;
     height: 3px;
     background-color: var(--primary-purple);
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
+    border-radius: 2px;
+}
+
+.hamburger-menu:active .hamburger-line {
+    background-color: var(--primary-purple-hover);
+    transform: scale(0.9);
 }
 
 /* Mobile Sidebar Overlay */
@@ -1000,6 +1006,10 @@ html {
 .tool-card:nth-child(10) { animation-delay: 1.7s; }
 .tool-card:nth-child(11) { animation-delay: 1.8s; }
 .tool-card:nth-child(12) { animation-delay: 1.9s; }
+.tool-card:nth-child(13) { animation-delay: 2.0s; }
+.tool-card:nth-child(14) { animation-delay: 2.1s; }
+.tool-card:nth-child(15) { animation-delay: 2.2s; }
+.tool-card:nth-child(16) { animation-delay: 2.3s; }
 
 /* Responsive Welcome Page */
 @media (min-width: 1400px) {

@@ -26,7 +26,11 @@ const MENU_CONFIG = {
     'VC Low Power': 'https://snpsai-copilot-gtm/?product=vclp',
     'VC SpyGlass': 'https://snpsai-copilot-gtm/?product=vcspyglass',
     'Verdi': 'https://snpsai-copilot-gtm/?product=verdi',
-    'Synopsys.ai Copilot **': 'https://snpsai-copilot-gtm/?product=copilot'
+    'Synopsys.ai Copilot **': 'https://snpsai-copilot-gtm/?product=copilot',
+    'TestMAX ATPG': 'https://snpsai-copilot-gtm/?product=tmax_atpg',
+    'S-Litho': 'https://snpsai-copilot-gtm/?product=slitho',
+    'PrimeSim SPICE': 'https://snpsai-copilot-gtm/?product=psim_spice',
+    'PrimeSim XA': 'https://snpsai-copilot-gtm/?product=psim_xa'
 };
 
 // URL routing configuration - maps URL parameters to tool names
@@ -42,7 +46,11 @@ const URL_ROUTES = {
     'vclp': 'VC Low Power',
     'vcspyglass': 'VC SpyGlass',
     'verdi': 'Verdi',
-    'copilot': 'Synopsys.ai Copilot **'
+    'copilot': 'Synopsys.ai Copilot **',
+    'tmax_atpg': 'TestMAX ATPG',
+    'slitho': 'S-Litho',
+    'psim_spice': 'PrimeSim SPICE',
+    'psim_xa': 'PrimeSim XA'
 };
 
 /**
