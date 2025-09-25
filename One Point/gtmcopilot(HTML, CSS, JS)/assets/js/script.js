@@ -15,42 +15,42 @@ const logger = {
 
 // Configuration object for menu items and their corresponding URLs
 const MENU_CONFIG = {
-    'Fusion Compiler *': 'https://snpsai-copilot-gtm/?product=fc',
-    'PrimeTime *': 'https://snpsai-copilot-gtm/?product=pt',
     'Custom Compiler *': 'https://snpsai-copilot-gtm/?product=cc',
-    'VCS': 'https://snpsai-copilot-gtm/?product=vcs',
     'DSO.ai': 'https://snpsai-copilot-gtm/?product=dso',
+    'Fusion Compiler *': 'https://snpsai-copilot-gtm/?product=fc',
     'IC Validator': 'https://snpsai-copilot-gtm/?product=icv',
     'PrimeSim Pro': 'https://snpsai-copilot-gtm/?product=psim_pro',
+    'PrimeSim SPICE': 'https://snpsai-copilot-gtm/?product=psim_spice',
+    'PrimeSim XA': 'https://snpsai-copilot-gtm/?product=psim_xa',
+    'PrimeTime *': 'https://snpsai-copilot-gtm/?product=pt',
+    'S-Litho': 'https://snpsai-copilot-gtm/?product=slitho',
+    'Synopsys.ai Copilot **': 'https://snpsai-copilot-gtm/?product=copilot',
+    'TestMAX ATPG': 'https://snpsai-copilot-gtm/?product=tmax_atpg',
+    'VCS': 'https://snpsai-copilot-gtm/?product=vcs',
     'VC Formal': 'https://snpsai-copilot-gtm/?product=vcformal',
     'VC Low Power': 'https://snpsai-copilot-gtm/?product=vclp',
     'VC SpyGlass': 'https://snpsai-copilot-gtm/?product=vcspyglass',
-    'Verdi': 'https://snpsai-copilot-gtm/?product=verdi',
-    'Synopsys.ai Copilot **': 'https://snpsai-copilot-gtm/?product=copilot',
-    'TestMAX ATPG': 'https://snpsai-copilot-gtm/?product=tmax_atpg',
-    'S-Litho': 'https://snpsai-copilot-gtm/?product=slitho',
-    'PrimeSim SPICE': 'https://snpsai-copilot-gtm/?product=psim_spice',
-    'PrimeSim XA': 'https://snpsai-copilot-gtm/?product=psim_xa'
+    'Verdi': 'https://snpsai-copilot-gtm/?product=verdi'
 };
 
 // URL routing configuration - maps URL parameters to tool names
 const URL_ROUTES = {
-    'fc': 'Fusion Compiler *',
-    'pt': 'PrimeTime *',
     'cc': 'Custom Compiler *',
-    'vcs': 'VCS',
     'dso': 'DSO.ai',
+    'fc': 'Fusion Compiler *',
     'icv': 'IC Validator',
     'psim_pro': 'PrimeSim Pro',
+    'psim_spice': 'PrimeSim SPICE',
+    'psim_xa': 'PrimeSim XA',
+    'pt': 'PrimeTime *',
+    'slitho': 'S-Litho',
+    'copilot': 'Synopsys.ai Copilot **',
+    'tmax_atpg': 'TestMAX ATPG',
+    'vcs': 'VCS',
     'vcformal': 'VC Formal',
     'vclp': 'VC Low Power',
     'vcspyglass': 'VC SpyGlass',
-    'verdi': 'Verdi',
-    'copilot': 'Synopsys.ai Copilot **',
-    'tmax_atpg': 'TestMAX ATPG',
-    'slitho': 'S-Litho',
-    'psim_spice': 'PrimeSim SPICE',
-    'psim_xa': 'PrimeSim XA'
+    'verdi': 'Verdi'
 };
 
 /**
