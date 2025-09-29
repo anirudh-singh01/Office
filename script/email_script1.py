@@ -137,11 +137,11 @@ def main():
                                                         <tr>
                                                             <td width="33%" style="text-align: center; vertical-align: top;">
                                                                 <div style="font-size: 24px; font-weight: bold; color: #667eea; font-family: Arial, sans-serif;">{likes}</div>
-                                                                <div style="font-size: 12px; color: #666; font-family: Arial, sans-serif;">Positive Feedback</div>
+                                                                <div style="font-size: 12px; color: #666; font-family: Arial, sans-serif;">Likes</div>
                                                             </td>
                                                             <td width="33%" style="text-align: center; vertical-align: top;">
                                                                 <div style="font-size: 24px; font-weight: bold; color: #dc3545; font-family: Arial, sans-serif;">{dislikes}</div>
-                                                                <div style="font-size: 12px; color: #666; font-family: Arial, sans-serif;">Areas for Improvement</div>
+                                                                <div style="font-size: 12px; color: #666; font-family: Arial, sans-serif;">Dislikes</div>
                                                             </td>
                                                             <td width="34%" style="text-align: center; vertical-align: top;">
                                                                 <div style="font-size: 24px; font-weight: bold; color: #28a745; font-family: Arial, sans-serif;">{week}</div>
@@ -168,11 +168,11 @@ def main():
                                                 <td style="padding: 12px 15px; border-bottom: 1px solid #ddd; color: #333; font-family: Arial, sans-serif;">{week}, {year}</td>
                                             </tr>
                                             <tr>
-                                                <td style="padding: 12px 15px; border-bottom: 1px solid #ddd; color: #495057; font-weight: bold; font-family: Arial, sans-serif;">Positive Feedback</td>
+                                                <td style="padding: 12px 15px; border-bottom: 1px solid #ddd; color: #495057; font-weight: bold; font-family: Arial, sans-serif;">Likes</td>
                                                 <td style="padding: 12px 15px; border-bottom: 1px solid #ddd; text-align: center; font-weight: bold; font-family: Arial, sans-serif; {like_color}">{likes}</td>
                                             </tr>
                                             <tr>
-                                                <td style="padding: 12px 15px; border-bottom: 1px solid #ddd; color: #495057; font-weight: bold; font-family: Arial, sans-serif;">Improvement Areas</td>
+                                                <td style="padding: 12px 15px; border-bottom: 1px solid #ddd; color: #495057; font-weight: bold; font-family: Arial, sans-serif;">Dislikes</td>
                                                 <td style="padding: 12px 15px; border-bottom: 1px solid #ddd; text-align: center; font-weight: bold; color: #dc3545; font-family: Arial, sans-serif;">{dislikes}</td>
                                             </tr>
                                             <tr>
@@ -192,7 +192,7 @@ def main():
                                     <td style="background-color: #f8f9fa; padding: 20px; text-align: center; border-top: 1px solid #ddd;">
                                         <p style="color: #6c757d; margin: 0; font-size: 14px; font-family: Arial, sans-serif;">
                                             Best regards,<br>
-                                            <strong style="color: #495057;">Performance Analytics Team</strong>
+                                            <strong style="color: #495057;">knowledge-initiative@synopsys.com</strong>
                                         </p>
                                         <p style="color: #adb5bd; margin: 10px 0 0 0; font-size: 12px; font-family: Arial, sans-serif;">
                                             This is an automated report. Please do not reply to this email.
