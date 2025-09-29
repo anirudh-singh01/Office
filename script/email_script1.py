@@ -99,7 +99,7 @@ def main():
             # Create Outlook mail
             mail = outlook.CreateItem(0)
             mail.To = email
-            mail.Subject = f"Feedback Report - {week}, {year} ({tool})"
+            mail.Subject = f"Demo Mail - Feedback Report - {week}, {year} ({tool})"
             
             # HTML Body
             html_body = f"""
