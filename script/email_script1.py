@@ -1,9 +1,7 @@
 import pandas as pd
 import win32com.client as win32
-from openpyxl import load_workbook
 import re
 import os
-import sys
 
 def validate_email(email):
     """Basic email validation"""
@@ -12,7 +10,7 @@ def validate_email(email):
 
 def main():
     # Configuration
-    file_path = "your_file.xlsx"  # Update with your actual file path
+    file_path = r"C:\Users\sanirudh\Downloads\Book.xlsx"  # Update with your actual file path
     
     # Error handling and validation
     try:
@@ -86,6 +84,9 @@ def main():
                 print(f"Warning: Invalid numeric values for {user}")
                 likes = 0
                 dislikes = 0
+            
+            # Handle year as string
+            year = str(year) if not pd.isna(year) else "N/A"
 
             # Conditional color for Like
             if likes < 5:
