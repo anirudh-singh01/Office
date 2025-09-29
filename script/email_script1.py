@@ -9,8 +9,8 @@ def validate_email(email):
     return re.match(pattern, email) is not None
 
 def main():
-    # Configuration
-    file_path = r"C:\Users\sanirudh\Downloads\Book.xlsx"  # Update with your actual file path
+    # Configuration - File path to your Excel file
+    file_path = r"C:\Users\sanirudh\Downloads\Book.xlsx"
     
     # Error handling and validation
     try:
