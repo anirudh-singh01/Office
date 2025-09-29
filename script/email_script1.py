@@ -101,93 +101,108 @@ def main():
             mail.To = email
             mail.Subject = f"Demo Mail - Feedback Report - {week}, {year} ({tool})"
             
-            # HTML Body
+            # HTML Body - Outlook Classic Compatible
             html_body = f"""
             <html>
-            <body style="font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; background-color: #f8f9fa; text-align: center;">
-                <div style="max-width: 600px; margin: 0 auto; background-color: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); overflow: hidden; text-align: left;">
-                    
-                    <!-- Header -->
-                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; text-align: center;">
-                        <h1 style="color: white; margin: 0; font-size: 24px; font-weight: 300;">Weekly Feedback Report</h1>
-                        <p style="color: rgba(255,255,255,0.9); margin: 10px 0 0 0; font-size: 14px;">Performance Analytics Dashboard</p>
-                    </div>
-                    
-                    <!-- Content -->
-                    <div style="padding: 30px;">
-                        <h2 style="color: #333; margin: 0 0 20px 0; font-size: 18px;">Dear {user},</h2>
-                        
-                        <p style="color: #666; line-height: 1.6; margin: 0 0 25px 0;">
-                            We hope this message finds you well. Please find below your comprehensive feedback report for the specified period. This report contains valuable insights into your performance metrics and areas for continued excellence.
-                        </p>
-                        
-                        <!-- Performance Summary -->
-                        <div style="background-color: #f8f9fa; padding: 20px; border-radius: 6px; margin: 20px 0;">
-                            <h3 style="color: #333; margin: 0 0 15px 0; font-size: 16px;">Performance Summary</h3>
-                            <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
-                                <div style="text-align: center; margin: 10px;">
-                                    <div style="font-size: 24px; font-weight: bold; color: #667eea;">{likes}</div>
-                                    <div style="font-size: 12px; color: #666;">Positive Feedback</div>
-                                </div>
-                                <div style="text-align: center; margin: 10px;">
-                                    <div style="font-size: 24px; font-weight: bold; color: #dc3545;">{dislikes}</div>
-                                    <div style="font-size: 12px; color: #666;">Areas for Improvement</div>
-                                </div>
-                                <div style="text-align: center; margin: 10px;">
-                                    <div style="font-size: 24px; font-weight: bold; color: #28a745;">{week}</div>
-                                    <div style="font-size: 12px; color: #666;">Reporting Period</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Detailed Report Table -->
-                        <table style="width: 100%; border-collapse: collapse; margin: 25px 0; background-color: white;">
-                            <thead>
-                                <tr style="background-color: #f8f9fa;">
-                                    <th style="padding: 15px; text-align: left; border-bottom: 2px solid #dee2e6; color: #495057; font-weight: 600;">Metric</th>
-                                    <th style="padding: 15px; text-align: left; border-bottom: 2px solid #dee2e6; color: #495057; font-weight: 600;">Value</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+            <body style="font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f8f9fa;">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f8f9fa;">
+                    <tr>
+                        <td align="center">
+                            <table width="600" cellpadding="0" cellspacing="0" border="0" style="background-color: white; border: 1px solid #ddd;">
+                                
+                                <!-- Header -->
                                 <tr>
-                                    <td style="padding: 12px 15px; border-bottom: 1px solid #dee2e6; color: #495057; font-weight: 500;">Tool</td>
-                                    <td style="padding: 12px 15px; border-bottom: 1px solid #dee2e6; color: #333;">{tool}</td>
+                                    <td style="background-color: #667eea; padding: 30px; text-align: center;">
+                                        <h1 style="color: white; margin: 0; font-size: 24px; font-weight: bold; font-family: Arial, sans-serif;">Weekly Feedback Report</h1>
+                                        <p style="color: white; margin: 10px 0 0 0; font-size: 14px; font-family: Arial, sans-serif;">Performance Analytics Dashboard</p>
+                                    </td>
                                 </tr>
+                                
+                                <!-- Content -->
                                 <tr>
-                                    <td style="padding: 12px 15px; border-bottom: 1px solid #dee2e6; color: #495057; font-weight: 500;">Period</td>
-                                    <td style="padding: 12px 15px; border-bottom: 1px solid #dee2e6; color: #333;">{week}, {year}</td>
+                                    <td style="padding: 30px;">
+                                        <h2 style="color: #333; margin: 0 0 20px 0; font-size: 18px; font-family: Arial, sans-serif;">Dear {user},</h2>
+                                        
+                                        <p style="color: #666; line-height: 1.5; margin: 0 0 25px 0; font-family: Arial, sans-serif;">
+                                            We hope this message finds you well. Please find below your comprehensive feedback report for the specified period. This report contains valuable insights into your performance metrics and areas for continued excellence.
+                                        </p>
+                                        
+                                        <!-- Performance Summary -->
+                                        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f8f9fa; margin: 20px 0;">
+                                            <tr>
+                                                <td style="padding: 20px;">
+                                                    <h3 style="color: #333; margin: 0 0 15px 0; font-size: 16px; font-family: Arial, sans-serif;">Performance Summary</h3>
+                                                    
+                                                    <table width="100%" cellpadding="10" cellspacing="0" border="0">
+                                                        <tr>
+                                                            <td width="33%" style="text-align: center; vertical-align: top;">
+                                                                <div style="font-size: 24px; font-weight: bold; color: #667eea; font-family: Arial, sans-serif;">{likes}</div>
+                                                                <div style="font-size: 12px; color: #666; font-family: Arial, sans-serif;">Positive Feedback</div>
+                                                            </td>
+                                                            <td width="33%" style="text-align: center; vertical-align: top;">
+                                                                <div style="font-size: 24px; font-weight: bold; color: #dc3545; font-family: Arial, sans-serif;">{dislikes}</div>
+                                                                <div style="font-size: 12px; color: #666; font-family: Arial, sans-serif;">Areas for Improvement</div>
+                                                            </td>
+                                                            <td width="34%" style="text-align: center; vertical-align: top;">
+                                                                <div style="font-size: 24px; font-weight: bold; color: #28a745; font-family: Arial, sans-serif;">{week}</div>
+                                                                <div style="font-size: 12px; color: #666; font-family: Arial, sans-serif;">Reporting Period</div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        
+                                        <!-- Detailed Report Table -->
+                                        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin: 25px 0; border: 1px solid #ddd;">
+                                            <tr style="background-color: #f8f9fa;">
+                                                <td style="padding: 15px; border-bottom: 2px solid #ddd; color: #495057; font-weight: bold; font-family: Arial, sans-serif;" width="40%">Metric</td>
+                                                <td style="padding: 15px; border-bottom: 2px solid #ddd; color: #495057; font-weight: bold; font-family: Arial, sans-serif;" width="60%">Value</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 12px 15px; border-bottom: 1px solid #ddd; color: #495057; font-weight: bold; font-family: Arial, sans-serif;">Tool</td>
+                                                <td style="padding: 12px 15px; border-bottom: 1px solid #ddd; color: #333; font-family: Arial, sans-serif;">{tool}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 12px 15px; border-bottom: 1px solid #ddd; color: #495057; font-weight: bold; font-family: Arial, sans-serif;">Period</td>
+                                                <td style="padding: 12px 15px; border-bottom: 1px solid #ddd; color: #333; font-family: Arial, sans-serif;">{week}, {year}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 12px 15px; border-bottom: 1px solid #ddd; color: #495057; font-weight: bold; font-family: Arial, sans-serif;">Positive Feedback</td>
+                                                <td style="padding: 12px 15px; border-bottom: 1px solid #ddd; text-align: center; font-weight: bold; font-family: Arial, sans-serif; {like_color}">{likes}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 12px 15px; border-bottom: 1px solid #ddd; color: #495057; font-weight: bold; font-family: Arial, sans-serif;">Improvement Areas</td>
+                                                <td style="padding: 12px 15px; border-bottom: 1px solid #ddd; text-align: center; font-weight: bold; color: #dc3545; font-family: Arial, sans-serif;">{dislikes}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 12px 15px; border-bottom: 1px solid #ddd; color: #495057; font-weight: bold; font-family: Arial, sans-serif;">Comments</td>
+                                                <td style="padding: 12px 15px; border-bottom: 1px solid #ddd; color: #333; font-style: italic; font-family: Arial, sans-serif;">{comment}</td>
+                                            </tr>
+                                        </table>
+                                        
+                                        <p style="color: #666; line-height: 1.5; margin: 25px 0 0 0; font-family: Arial, sans-serif;">
+                                            Thank you for your continued dedication and hard work. Should you have any questions about this report or would like to discuss your performance in detail, please don't hesitate to reach out.
+                                        </p>
+                                    </td>
                                 </tr>
+                                
+                                <!-- Footer -->
                                 <tr>
-                                    <td style="padding: 12px 15px; border-bottom: 1px solid #dee2e6; color: #495057; font-weight: 500;">Positive Feedback</td>
-                                    <td style="padding: 12px 15px; border-bottom: 1px solid #dee2e6; {like_color} text-align: center; font-weight: bold;">{likes}</td>
+                                    <td style="background-color: #f8f9fa; padding: 20px; text-align: center; border-top: 1px solid #ddd;">
+                                        <p style="color: #6c757d; margin: 0; font-size: 14px; font-family: Arial, sans-serif;">
+                                            Best regards,<br>
+                                            <strong style="color: #495057;">Performance Analytics Team</strong>
+                                        </p>
+                                        <p style="color: #adb5bd; margin: 10px 0 0 0; font-size: 12px; font-family: Arial, sans-serif;">
+                                            This is an automated report. Please do not reply to this email.
+                                        </p>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <td style="padding: 12px 15px; border-bottom: 1px solid #dee2e6; color: #495057; font-weight: 500;">Improvement Areas</td>
-                                    <td style="padding: 12px 15px; border-bottom: 1px solid #dee2e6; text-align: center; font-weight: bold; color: #dc3545;">{dislikes}</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 12px 15px; border-bottom: 1px solid #dee2e6; color: #495057; font-weight: 500;">Comments</td>
-                                    <td style="padding: 12px 15px; border-bottom: 1px solid #dee2e6; color: #333; font-style: italic;">{comment}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        
-                        <p style="color: #666; line-height: 1.6; margin: 25px 0 0 0;">
-                            Thank you for your continued dedication and hard work. Should you have any questions about this report or would like to discuss your performance in detail, please don't hesitate to reach out.
-                        </p>
-                    </div>
-                    
-                    <!-- Footer -->
-                    <div style="background-color: #f8f9fa; padding: 20px; text-align: center; border-top: 1px solid #dee2e6;">
-                        <p style="color: #6c757d; margin: 0; font-size: 14px;">
-                            Best regards,<br>
-                            <strong style="color: #495057;">Performance Analytics Team</strong>
-                        </p>
-                        <p style="color: #adb5bd; margin: 10px 0 0 0; font-size: 12px;">
-                            This is an automated report. Please do not reply to this email.
-                        </p>
-                    </div>
-                </div>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
             </body>
             </html>
             """
