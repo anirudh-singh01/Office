@@ -34,20 +34,30 @@ df = load_ka_data()
 # Get data summary for large dataset info
 data_summary = get_data_summary(df)
 
-# Display dataset info for large files
-if data_summary['total_rows'] > 10000:
-    st.info(f"📊 **Large Dataset Detected**: {data_summary['total_rows']:,} rows, {data_summary['memory_usage_mb']:.1f} MB memory usage")
+# (Removed informational banner about large datasets)
 
-# Fix for serialization crash: ensure mgmt columns are all strings
-mgmt_cols = [f"Mgmnt Chain {i}" for i in range(1, 12)]
+# Fix for serialization crash and schema variance: detect mgmt chain columns dynamically
+mgmt_cols = [
+    col for col in df.columns
+    if col.lower().startswith("mgmt chain") or col.lower().startswith("mgmnt chain")
+]
+# Optionally include direct manager as part of hierarchy if present
+if "Direct Manager" in df.columns and "Direct Manager" not in mgmt_cols:
+    mgmt_cols.append("Direct Manager")
 for col in mgmt_cols:
-    if col in df.columns:
-        df[col] = df[col].astype(str)
+    df[col] = df[col].astype(str)
 
 synopsys_palette = [
     "#E0C3FC", "#C792F5", "#A96DE2", "#8A4DD0", "#6E2BC2",
     "#5023A4", "#3A3FBD", "#2267D0", "#2D95E6", "#54C4FD"
 ]
+# Ensure iso_year exists for Year filtering
+if "iso_year" not in df.columns and "Date" in df.columns:
+    try:
+        df["iso_year"] = df["Date"].dt.isocalendar().year
+    except Exception:
+        pass
+
 default_weeks = sorted(df["year_week_label"].dropna().unique())[-10:]
 min_date = df["Date"].min()
 max_date = df["Date"].max()
@@ -56,12 +66,31 @@ with st.expander("🔎 Filters", expanded=True):
     # Move KA User filter to the top
     valid_users = df[df["Full Name"].notna()]
     all_users = sorted(valid_users["Username"].dropna().unique())
-    selected_ka_users = st.multiselect("KA User", all_users, default=all_users)
+    selected_ka_users = st.multiselect("KA User", all_users, default=[])
 
     cols = st.columns(2)
     all_tools = df["tool"].dropna().unique().tolist()
     default_tools = ["vcspyglass", "vclp", "pt", "cc", "spyglass", "fc", "vcs", "Verdi", "icv", "vcformal", "dso", "psim_pro"]
-    selected_tools = cols[0].multiselect("Select Tools", all_tools, default=[t for t in default_tools if t in all_tools])
+
+    # Auto-select tools based on KA User selection
+    if "tools_ms" not in st.session_state:
+        st.session_state["tools_ms"] = [t for t in default_tools if t in all_tools]
+    prev_ka = st.session_state.get("prev_ka_users", [])
+    if set(prev_ka) != set(selected_ka_users):
+        if selected_ka_users:
+            user_tools = sorted(df[df["Username"].isin(selected_ka_users)]["tool"].dropna().unique().tolist())
+            st.session_state["tools_ms"] = user_tools or st.session_state["tools_ms"]
+        else:
+            # If KA selection cleared, revert to default list
+            st.session_state["tools_ms"] = [t for t in default_tools if t in all_tools]
+    st.session_state["prev_ka_users"] = selected_ka_users
+
+    selected_tools = cols[0].multiselect(
+        "Select Tools",
+        all_tools,
+        default=st.session_state["tools_ms"],
+        key="tools_ms",
+    )
 
     all_mgmt = sorted(set(str(val).strip() for col in mgmt_cols if col in df.columns for val in df[col].dropna().unique()))
     default_mgmt = ["Thumaty, Kalyan (THUMATY)"] if "Thumaty, Kalyan (THUMATY)" in all_mgmt else []
@@ -107,7 +136,8 @@ if "Month" in date_filter_options and selected_months:
 if "Week" in date_filter_options and selected_weeks:
     filtered_df = filtered_df[filtered_df["year_week_label"].isin(selected_weeks)]
 
-ka_df = filtered_df[filtered_df["Username"].isin(selected_ka_users)]
+selected_or_all_users = selected_ka_users or all_users
+ka_df = filtered_df[filtered_df["Username"].isin(selected_or_all_users)]
 
 # ================= Metrics =================
 col1, col2, col3, col4 = st.columns(4)
@@ -237,8 +267,21 @@ except Exception:
     dialog_open = False
 
 if dialog_open:
-    @st.dialog("💬 Chatbot Assistant")
-    def chatbot_dialog():
-        render_chatbot(df)
-
-    chatbot_dialog()
+    if hasattr(st, "dialog"):
+        @st.dialog("💬 Chatbot Assistant")
+        def chatbot_dialog():
+            render_chatbot(df)
+        chatbot_dialog()
+    else:
+        # Fallback: lightweight anchored panel at the bottom of the page
+        with st.container():
+            st.markdown("""
+            <style>
+            .chat-fallback {position: fixed; bottom: 90px; right: 20px; width: 360px; z-index: 1001;}
+            .chat-fallback .box {background: #ffffff; border: 1px solid #DDD; border-radius: 10px; box-shadow: 0 6px 14px rgba(0,0,0,0.15); padding: 10px;}
+            </style>
+            <div class="chat-fallback"><div class="box"></div></div>
+            """, unsafe_allow_html=True)
+            # Render chatbot content (will appear in document flow but visually near the floating box)
+            st.markdown("### 💬 Chatbot Assistant")
+            render_chatbot(df)
