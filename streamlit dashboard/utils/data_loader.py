@@ -1,5 +1,4 @@
 import pandas as pd
-import streamlit as st
 
 # Utility to remove unwanted Excel junk columns
 def clean_excel(df):
