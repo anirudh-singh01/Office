@@ -174,26 +174,25 @@ y1_max_tool = tool_summary["total_queries"].max() if not tool_summary.empty else
 fig_tool_analysis = go.Figure()
 fig_tool_analysis.add_trace(go.Bar(
     x=tool_summary["tool"],
-    y=tool_summary["feedback_pct"],
-    name="Feedback %",
-    marker_color=synopsys_palette[8],
-    opacity=0.35,
-    yaxis="y2",
-    text=tool_summary["feedback_pct"],
-    texttemplate="%{text:.2f}%",
-    textposition="inside",
-    textfont=dict(color="white"),
+    y=tool_summary["total_queries"],
+    name="Total Queries",
+    marker_color=synopsys_palette[3],
+    opacity=0.6,
+    yaxis="y1",
+    text=tool_summary["total_queries"],
+    texttemplate="%{text:,}",
+    textposition="outside",
     cliponaxis=False
 ))
 fig_tool_analysis.add_trace(go.Scatter(
     x=tool_summary["tool"],
-    y=tool_summary["total_queries"],
+    y=tool_summary["feedback_pct"],
     mode="lines+markers+text",
-    name="Total Queries",
-    line=dict(color=synopsys_palette[3], width=3),
-    yaxis="y1",
-    text=tool_summary["total_queries"],
-    texttemplate="%{text:,}",
+    name="Feedback %",
+    line=dict(color=synopsys_palette[8], width=3),
+    yaxis="y2",
+    text=tool_summary["feedback_pct"],
+    texttemplate="%{text:.2f}%",
     textposition="top center",
     cliponaxis=False
 ))
@@ -226,31 +225,30 @@ y1_max_weekly = weekly_summary["total_queries"].max() if not weekly_summary.empt
 
 fig_weekly = go.Figure()
 
-# Add Feedback % as bar chart first
+# Add Total Queries as bar chart first (left axis)
 fig_weekly.add_trace(go.Bar(
-    x=weekly_summary["year_week_label"],
-    y=weekly_summary["feedback_pct"],
-    name="Feedback %",
-    marker_color=synopsys_palette[-1],
-    opacity=0.35,
-    yaxis="y2",
-    text=weekly_summary["feedback_pct"],
-    texttemplate="%{text:.2f}%",
-    textposition="inside",
-    textfont=dict(color="white"),
-    cliponaxis=False
-))
-
-# Add Total Queries as line chart second (to render on top)
-fig_weekly.add_trace(go.Scatter(
     x=weekly_summary["year_week_label"],
     y=weekly_summary["total_queries"],
     name="Total Queries",
-    mode="lines+markers+text",
-    line=dict(color=synopsys_palette[5], width=3),
+    marker_color=synopsys_palette[5],
+    opacity=0.6,
     yaxis="y1",
     text=weekly_summary["total_queries"],
     texttemplate="%{text:,}",
+    textposition="outside",
+    cliponaxis=False
+))
+
+# Add Feedback % as line chart second (right axis, on top)
+fig_weekly.add_trace(go.Scatter(
+    x=weekly_summary["year_week_label"],
+    y=weekly_summary["feedback_pct"],
+    name="Feedback %",
+    mode="lines+markers+text",
+    line=dict(color=synopsys_palette[-1], width=3),
+    yaxis="y2",
+    text=weekly_summary["feedback_pct"],
+    texttemplate="%{text:.2f}%",
     textposition="top center",
     cliponaxis=False
 ))
