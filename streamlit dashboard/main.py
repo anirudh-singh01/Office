@@ -172,38 +172,47 @@ tool_summary["feedback_pct"] = tool_summary.apply(
 y1_max_tool = tool_summary["total_queries"].max() if not tool_summary.empty else 0
 
 fig_tool_analysis = go.Figure()
+
+# Add bars first (Feedback %)
 fig_tool_analysis.add_trace(go.Bar(
     x=tool_summary["tool"],
     y=tool_summary["feedback_pct"],
     name="Feedback %",
-    marker_color=synopsys_palette[8],
+    marker_color=synopsys_palette[2],  # Blue color for bars
     yaxis="y2",
     text=tool_summary["feedback_pct"],
     texttemplate="%{text:.2f}%",
     textposition="outside",
-    cliponaxis=False
+    cliponaxis=False,
+    opacity=0.8
 ))
+
+# Add line overlay (Total Queries)
 fig_tool_analysis.add_trace(go.Scatter(
     x=tool_summary["tool"],
     y=tool_summary["total_queries"],
     mode="lines+markers+text",
     name="Total Queries",
-    line=dict(color=synopsys_palette[3], width=3),
+    line=dict(color=synopsys_palette[7], width=4),  # Orange color for line
+    marker=dict(size=8, color=synopsys_palette[7]),
     yaxis="y1",
     text=tool_summary["total_queries"],
     texttemplate="%{text:,}",
     textposition="top center",
-    cliponaxis=False
+    cliponaxis=False,
+    connectgaps=True
 ))
+
 fig_tool_analysis.update_layout(
     title="Tool Usage Analysis",
     xaxis_title="Tool",
-    yaxis=dict(title="Queries / Users", side="left", range=[0, y1_max_tool * 1.15 if y1_max_tool else 1], automargin=True),
+    yaxis=dict(title="Total Queries", side="left", range=[0, y1_max_tool * 1.2 if y1_max_tool else 1], automargin=True),
     yaxis2=dict(title="Feedback %", overlaying="y", side="right", ticksuffix="%", range=[0, 110], automargin=True),
     font=dict(size=16),
-    barmode="group",
     legend=dict(orientation="v", yanchor="top", y=1, xanchor="left", x=1.05),
-    margin=dict(r=80, t=80)
+    margin=dict(r=80, t=80),
+    plot_bgcolor='white',
+    grid=True
 )
 
 # ================= Graph 2: Weekly Total Queries & Feedback % Trend =================
@@ -224,41 +233,46 @@ y1_max_weekly = weekly_summary["total_queries"].max() if not weekly_summary.empt
 
 fig_weekly = go.Figure()
 
-# Add Feedback % as bar chart first (right axis)
+# Add bars first (Feedback %)
 fig_weekly.add_trace(go.Bar(
     x=weekly_summary["year_week_label"],
     y=weekly_summary["feedback_pct"],
     name="Feedback %",
-    marker_color=synopsys_palette[-1],
+    marker_color=synopsys_palette[2],  # Blue color for bars
     yaxis="y2",
     text=weekly_summary["feedback_pct"],
     texttemplate="%{text:.2f}%",
     textposition="outside",
-    cliponaxis=False
+    cliponaxis=False,
+    opacity=0.8
 ))
 
-# Add Total Queries as line chart second (left axis, on top)
+# Add line overlay (Total Queries)
 fig_weekly.add_trace(go.Scatter(
     x=weekly_summary["year_week_label"],
     y=weekly_summary["total_queries"],
     name="Total Queries",
     mode="lines+markers+text",
-    line=dict(color=synopsys_palette[5], width=3),
+    line=dict(color=synopsys_palette[7], width=4),  # Orange color for line
+    marker=dict(size=8, color=synopsys_palette[7]),
     yaxis="y1",
     text=weekly_summary["total_queries"],
     texttemplate="%{text:,}",
     textposition="top center",
-    cliponaxis=False
+    cliponaxis=False,
+    connectgaps=True
 ))
 
 fig_weekly.update_layout(
     title="Weekly Total Queries & Feedback % Trend",
     xaxis_title="Week",
-    yaxis=dict(title="Total Queries", side="left", range=[0, y1_max_weekly * 1.15 if y1_max_weekly else 1], automargin=True),
+    yaxis=dict(title="Total Queries", side="left", range=[0, y1_max_weekly * 1.2 if y1_max_weekly else 1], automargin=True),
     yaxis2=dict(title="Feedback %", overlaying="y", side="right", ticksuffix="%", range=[0, 110], automargin=True),
     font=dict(size=16),
     legend=dict(orientation="v", yanchor="top", y=1, xanchor="left", x=1.05),
-    margin=dict(r=80, t=80)
+    margin=dict(r=80, t=80),
+    plot_bgcolor='white',
+    grid=True
 )
 
 # ================= Graph 3: KA User Feedback =================
