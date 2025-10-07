@@ -170,16 +170,6 @@ tool_summary["feedback_pct"] = tool_summary.apply(
 )
 
 fig_tool_analysis = go.Figure()
-fig_tool_analysis.add_trace(go.Bar(
-    x=tool_summary["tool"],
-    y=tool_summary["feedback_pct"],
-    name="Feedback %",
-    marker_color=synopsys_palette[8],
-    yaxis="y2",
-    text=tool_summary["feedback_pct"],
-    texttemplate="%{text:.2f}%",
-    textposition="outside"
-))
 fig_tool_analysis.add_trace(go.Scatter(
     x=tool_summary["tool"],
     y=tool_summary["total_queries"],
@@ -190,6 +180,16 @@ fig_tool_analysis.add_trace(go.Scatter(
     text=tool_summary["total_queries"],
     texttemplate="%{text:,}",
     textposition="top center"
+))
+fig_tool_analysis.add_trace(go.Bar(
+    x=tool_summary["tool"],
+    y=tool_summary["feedback_pct"],
+    name="Feedback %",
+    marker_color=synopsys_palette[8],
+    yaxis="y2",
+    text=tool_summary["feedback_pct"],
+    texttemplate="%{text:.2f}%",
+    textposition="outside"
 ))
 fig_tool_analysis.update_layout(
     title="Tool Usage Analysis",
@@ -218,19 +218,7 @@ weekly_summary["feedback_pct"] = weekly_summary.apply(
 
 fig_weekly = go.Figure()
 
-# Add Feedback % as bar chart
-fig_weekly.add_trace(go.Bar(
-    x=weekly_summary["year_week_label"],
-    y=weekly_summary["feedback_pct"],
-    name="Feedback %",
-    marker_color=synopsys_palette[-1],
-    yaxis="y2",
-    text=weekly_summary["feedback_pct"],
-    texttemplate="%{text:.2f}%",
-    textposition="outside"
-))
-
-# Add Total Queries as line chart
+# Add Total Queries as line chart first
 fig_weekly.add_trace(go.Scatter(
     x=weekly_summary["year_week_label"],
     y=weekly_summary["total_queries"],
@@ -241,6 +229,18 @@ fig_weekly.add_trace(go.Scatter(
     text=weekly_summary["total_queries"],
     texttemplate="%{text:,}",
     textposition="top center"
+))
+
+# Add Feedback % as bar chart second
+fig_weekly.add_trace(go.Bar(
+    x=weekly_summary["year_week_label"],
+    y=weekly_summary["feedback_pct"],
+    name="Feedback %",
+    marker_color=synopsys_palette[-1],
+    yaxis="y2",
+    text=weekly_summary["feedback_pct"],
+    texttemplate="%{text:.2f}%",
+    textposition="outside"
 ))
 
 fig_weekly.update_layout(
