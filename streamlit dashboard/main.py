@@ -169,7 +169,20 @@ tool_summary["feedback_pct"] = tool_summary.apply(
     lambda row: (row["feedback_given"] / row["feedback_total"] * 100) if row["feedback_total"] > 0 else 0, axis=1
 )
 
+y1_max_tool = tool_summary["total_queries"].max() if not tool_summary.empty else 0
+
 fig_tool_analysis = go.Figure()
+fig_tool_analysis.add_trace(go.Bar(
+    x=tool_summary["tool"],
+    y=tool_summary["feedback_pct"],
+    name="Feedback %",
+    marker_color=synopsys_palette[8],
+    yaxis="y2",
+    text=tool_summary["feedback_pct"],
+    texttemplate="%{text:.2f}%",
+    textposition="outside",
+    cliponaxis=False
+))
 fig_tool_analysis.add_trace(go.Scatter(
     x=tool_summary["tool"],
     y=tool_summary["total_queries"],
@@ -179,27 +192,18 @@ fig_tool_analysis.add_trace(go.Scatter(
     yaxis="y1",
     text=tool_summary["total_queries"],
     texttemplate="%{text:,}",
-    textposition="top center"
-))
-fig_tool_analysis.add_trace(go.Bar(
-    x=tool_summary["tool"],
-    y=tool_summary["feedback_pct"],
-    name="Feedback %",
-    marker_color=synopsys_palette[8],
-    yaxis="y2",
-    text=tool_summary["feedback_pct"],
-    texttemplate="%{text:.2f}%",
-    textposition="outside"
+    textposition="top center",
+    cliponaxis=False
 ))
 fig_tool_analysis.update_layout(
     title="Tool Usage Analysis",
     xaxis_title="Tool",
-    yaxis=dict(title="Queries / Users", side="left"),
-    yaxis2=dict(title="Feedback %", overlaying="y", side="right", ticksuffix="%"),
+    yaxis=dict(title="Queries / Users", side="left", range=[0, y1_max_tool * 1.15 if y1_max_tool else 1], automargin=True),
+    yaxis2=dict(title="Feedback %", overlaying="y", side="right", ticksuffix="%", range=[0, 110], automargin=True),
     font=dict(size=16),
     barmode="group",
     legend=dict(orientation="v", yanchor="top", y=1, xanchor="left", x=1.05),
-    margin=dict(r=80)
+    margin=dict(r=80, t=80)
 )
 
 # ================= Graph 2: Weekly Total Queries & Feedback % Trend =================
@@ -216,9 +220,24 @@ weekly_summary["feedback_pct"] = weekly_summary.apply(
     lambda row: (row["feedback_given"] / row["feedback_total"] * 100) if row["feedback_total"] > 0 else 0, axis=1
 )
 
+y1_max_weekly = weekly_summary["total_queries"].max() if not weekly_summary.empty else 0
+
 fig_weekly = go.Figure()
 
-# Add Total Queries as line chart first
+# Add Feedback % as bar chart first
+fig_weekly.add_trace(go.Bar(
+    x=weekly_summary["year_week_label"],
+    y=weekly_summary["feedback_pct"],
+    name="Feedback %",
+    marker_color=synopsys_palette[-1],
+    yaxis="y2",
+    text=weekly_summary["feedback_pct"],
+    texttemplate="%{text:.2f}%",
+    textposition="outside",
+    cliponaxis=False
+))
+
+# Add Total Queries as line chart second (to render on top)
 fig_weekly.add_trace(go.Scatter(
     x=weekly_summary["year_week_label"],
     y=weekly_summary["total_queries"],
@@ -228,29 +247,18 @@ fig_weekly.add_trace(go.Scatter(
     yaxis="y1",
     text=weekly_summary["total_queries"],
     texttemplate="%{text:,}",
-    textposition="top center"
-))
-
-# Add Feedback % as bar chart second
-fig_weekly.add_trace(go.Bar(
-    x=weekly_summary["year_week_label"],
-    y=weekly_summary["feedback_pct"],
-    name="Feedback %",
-    marker_color=synopsys_palette[-1],
-    yaxis="y2",
-    text=weekly_summary["feedback_pct"],
-    texttemplate="%{text:.2f}%",
-    textposition="outside"
+    textposition="top center",
+    cliponaxis=False
 ))
 
 fig_weekly.update_layout(
     title="Weekly Total Queries & Feedback % Trend",
     xaxis_title="Week",
-    yaxis=dict(title="Total Queries", side="left"),
-    yaxis2=dict(title="Feedback %", overlaying="y", side="right", ticksuffix="%"),
+    yaxis=dict(title="Total Queries", side="left", range=[0, y1_max_weekly * 1.15 if y1_max_weekly else 1], automargin=True),
+    yaxis2=dict(title="Feedback %", overlaying="y", side="right", ticksuffix="%", range=[0, 110], automargin=True),
     font=dict(size=16),
     legend=dict(orientation="v", yanchor="top", y=1, xanchor="left", x=1.05),
-    margin=dict(r=80)
+    margin=dict(r=80, t=80)
 )
 
 # ================= Graph 3: KA User Feedback =================
