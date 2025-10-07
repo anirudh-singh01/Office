@@ -4,13 +4,11 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 from utils.data_loader import load_ka_data, get_data_summary
-from utils.chatbot import render_chatbot
 
 # Set global config
 st.set_page_config(page_title="Synopsys Executive Dashboard", layout="wide")
 st.markdown("<style>footer {visibility: hidden;}</style>", unsafe_allow_html=True)
 
-## Chatbot functions moved to utils/chatbot.py
 
 # --- MAIN DASHBOARD CONTENT ---
 st.markdown("""
@@ -31,21 +29,16 @@ st.markdown("""
 # Load data with progress indicator
 df = load_ka_data()
 
+# Check if data is empty
+if df.empty:
+    st.error("❌ No data loaded! Please check your Excel file.")
+    st.stop()
+
 # Get data summary for large dataset info
 data_summary = get_data_summary(df)
 
 # (Removed informational banner about large datasets)
 
-# Fix for serialization crash and schema variance: detect mgmt chain columns dynamically
-mgmt_cols = [
-    col for col in df.columns
-    if col.lower().startswith("mgmt chain") or col.lower().startswith("mgmnt chain")
-]
-# Optionally include direct manager as part of hierarchy if present
-if "Direct Manager" in df.columns and "Direct Manager" not in mgmt_cols:
-    mgmt_cols.append("Direct Manager")
-for col in mgmt_cols:
-    df[col] = df[col].astype(str)
 
 synopsys_palette = [
     "#E0C3FC", "#C792F5", "#A96DE2", "#8A4DD0", "#6E2BC2",
@@ -58,7 +51,7 @@ if "iso_year" not in df.columns and "Date" in df.columns:
     except Exception:
         pass
 
-default_weeks = sorted(df["year_week_label"].dropna().unique())[-10:]
+default_weeks = sorted(df["year_week_label"].dropna().unique())[-10:] if not df["year_week_label"].dropna().empty else []
 min_date = df["Date"].min()
 max_date = df["Date"].max()
 
@@ -66,10 +59,20 @@ with st.expander("🔎 Filters", expanded=True):
     # Move KA User filter to the top
     valid_users = df[df["Full Name"].notna()]
     all_users = sorted(valid_users["Username"].dropna().unique())
+    
+    if not all_users:
+        st.error("❌ No valid users found in the data!")
+        st.stop()
+    
     selected_ka_users = st.multiselect("KA User", all_users, default=[])
 
     cols = st.columns(2)
     all_tools = df["tool"].dropna().unique().tolist()
+    
+    if not all_tools:
+        st.error("❌ No tools found in the data!")
+        st.stop()
+    
     default_tools = ["vcspyglass", "vclp", "pt", "cc", "spyglass", "fc", "vcs", "Verdi", "icv", "vcformal", "dso", "psim_pro"]
 
     # Auto-select tools based on KA User selection
@@ -92,10 +95,6 @@ with st.expander("🔎 Filters", expanded=True):
         key="tools_ms",
     )
 
-    all_mgmt = sorted(set(str(val).strip() for col in mgmt_cols if col in df.columns for val in df[col].dropna().unique()))
-    default_mgmt = ["Thumaty, Kalyan (THUMATY)"] if "Thumaty, Kalyan (THUMATY)" in all_mgmt else []
-    selected_mgmt = cols[1].multiselect("Select Management Chain", all_mgmt, default=default_mgmt)
-
     date_filter_options = st.multiselect("Select Filter Granularity", ["Year", "Month", "Week", "Custom"], default=["Week"])
     selected_years, selected_months, selected_weeks, selected_range = [], [], [], []
 
@@ -116,12 +115,6 @@ if not selected_tools:
 
 # ================= Filter Logic =================
 filtered_df = df[df["tool"].isin(selected_tools)]
-if selected_mgmt:
-    mgmt_mask = pd.Series(False, index=filtered_df.index)
-    for col in mgmt_cols:
-        if col in filtered_df.columns:
-            mgmt_mask |= filtered_df[col].isin(selected_mgmt)
-    filtered_df = filtered_df[mgmt_mask]
 
 if "Custom" in date_filter_options and len(selected_range) == 2:
     filtered_df = filtered_df[
@@ -195,7 +188,7 @@ fig_tool_analysis.add_trace(go.Scatter(
     yaxis="y2"
 ))
 fig_tool_analysis.update_layout(
-    title="Tool Usage Analysis (Graph 1)",
+    title="Tool Usage Analysis",
     xaxis_title="Tool",
     yaxis=dict(title="Queries / Users", side="left"),
     yaxis2=dict(title="Feedback %", overlaying="y", side="right"),
@@ -240,7 +233,7 @@ fig_weekly.add_trace(go.Scatter(
 ))
 
 fig_weekly.update_layout(
-    title="Weekly Total Queries & Feedback % Trend (Graph 2)",
+    title="Weekly Total Queries & Feedback % Trend",
     xaxis_title="Week",
     yaxis=dict(title="Total Queries", side="left"),
     yaxis2=dict(title="Feedback %", overlaying="y", side="right"),
@@ -253,7 +246,7 @@ ka_feedback = ka_df["metadata.feedback_rating"].dropna().astype(str).str.lower()
 ka_feedback.columns = ["Feedback Type", "Count"]
 fig_ka_feedback = px.pie(
     ka_feedback, names="Feedback Type", values="Count",
-    title="KA User Feedback Distribution (Graph 3)",
+    title="KA User Feedback Distribution",
     color_discrete_sequence=synopsys_palette
 )
 fig_ka_feedback.update_layout(
@@ -279,47 +272,3 @@ with st.expander("⬇ Download Filtered Data"):
         filtered_df["metadata.feedback_comment"] = filtered_df["metadata.feedback_comment"].astype(str)
     csv = filtered_df.to_csv(index=False).encode("utf-8")
     st.download_button("Download CSV", csv, "filtered_data.csv", "text/csv")
-
-# --- CHATBOT: Floating FAB + Dialog ---
-
-# Floating button HTML/CSS (bottom-right)
-st.markdown(
-    """
-    <style>
-    .chat-fab { position: fixed; bottom: 20px; right: 20px; z-index: 1000; }
-    .chat-fab button { 
-        background-color: #6E2BC2; color: white; border: none; border-radius: 50%;
-        width: 60px; height: 60px; font-size: 26px; box-shadow: 0 6px 14px rgba(0,0,0,0.25);
-        cursor: pointer; transition: transform 0.15s ease-in-out; 
-    }
-    .chat-fab button:hover { background-color: #5023A4; transform: scale(1.06); }
-    </style>
-    <div class="chat-fab">
-      <button onclick="(function(){
-        const url = new URL(window.location);
-        const isOpen = url.searchParams.get('chat') === '1';
-        if (isOpen) { url.searchParams.delete('chat'); } else { url.searchParams.set('chat','1'); }
-        window.location.href = url.toString();
-      })()" title="Chat with assistant">💬</button>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
-
-# Dialog to host the chatbot when query param chat=1
-try:
-    dialog_open = st.query_params.get("chat") == "1"
-except Exception:
-    dialog_open = False
-
-if dialog_open:
-    # Modern dialog approach for Streamlit >= 1.31.0
-    if hasattr(st, "dialog"):
-        @st.dialog("💬 Chatbot Assistant", width="large")
-        def chatbot_dialog():
-            render_chatbot(df)
-        chatbot_dialog()
-    else:
-        # Fallback: dedicated sidebar/expander for older Streamlit versions
-        with st.expander("💬 Chatbot Assistant", expanded=True):
-            render_chatbot(df)

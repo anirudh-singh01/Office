@@ -12,14 +12,21 @@ def load_ka_data():
     Loads and cleans the main KA data Excel file with optimizations for large datasets.
     """
     # Show loading progress
-    with st.spinner("Loading data... This may take a moment for large files."):
+    with st.spinner("Loading data..."):
         # Read Excel with optimized settings for large files
-        df = pd.read_excel(
-            r"PASTE_YOUR_EXCEL_FILE_PATH_HERE", 
-            sheet_name="Sheet1",
-            engine='openpyxl',  # More memory efficient for large files
-            dtype_backend='pyarrow'  # Use PyArrow for better performance
-        )
+        try:
+            df = pd.read_excel(
+                r"PASTE_YOUR_EXCEL_FILE_PATH_HERE", 
+                sheet_name="Sheet1",
+                engine='openpyxl',  # More memory efficient for large files
+                dtype_backend='pyarrow'  # Use PyArrow for better performance
+            )
+        except FileNotFoundError:
+            st.error("❌ Excel file not found! Please update the file path in utils/data_loader.py (line 18)")
+            st.stop()
+        except Exception as e:
+            st.error(f"❌ Error loading Excel file: {str(e)}")
+            st.stop()
         
         # Clean up Excel artifacts
         df = clean_excel(df)
@@ -27,12 +34,20 @@ def load_ka_data():
         # Optimize data types to reduce memory usage
         df = optimize_dtypes(df)
         
+        # Validate required columns
+        required_columns = ["Date", "Username", "tool", "metadata.feedback_rating"]
+        missing_columns = [col for col in required_columns if col not in df.columns]
+        if missing_columns:
+            st.error(f"❌ Missing required columns: {missing_columns}")
+            st.stop()
+        
         # Normalize data types
         df["Date"] = pd.to_datetime(df["Date"], errors="coerce")
         df["metadata.feedback_rating"] = df["metadata.feedback_rating"].astype(str).str.lower()
         
-        # Show data info
-        st.success(f"✅ Loaded {len(df):,} rows with {len(df.columns)} columns")
+        # Create year_week_label if it doesn't exist
+        if "year_week_label" not in df.columns:
+            df["year_week_label"] = df["Date"].dt.strftime('%Y-W%U')
         
     return df
 
