@@ -39,7 +39,11 @@ def load_ka_data():
         missing_columns = [col for col in required_columns if col not in df.columns]
         if missing_columns:
             st.error(f"❌ Missing required columns: {missing_columns}")
+            st.error(f"Available columns: {list(df.columns)}")
             st.stop()
+        
+        # Log successful data loading for large datasets
+        st.success(f"✅ Data loaded successfully! {len(df):,} rows, {len(df.columns)} columns")
         
         # Normalize data types
         df["Date"] = pd.to_datetime(df["Date"], errors="coerce")
@@ -49,17 +53,28 @@ def load_ka_data():
         if "year_week_label" not in df.columns:
             df["year_week_label"] = df["Date"].dt.strftime('%Y-W%U')
         
+        # Validate data integrity for large datasets
+        null_dates = df["Date"].isnull().sum()
+        if null_dates > 0:
+            st.warning(f"⚠️ Found {null_dates:,} rows with invalid dates - these will be excluded from analysis")
+        
+        # Log data quality metrics
+        st.info(f"📊 Data Quality: {df['Username'].nunique():,} unique users, {df['tool'].nunique()} unique tools, Date range: {df['Date'].min().strftime('%Y-%m-%d')} to {df['Date'].max().strftime('%Y-%m-%d')}")
+        
     return df
 
 def optimize_dtypes(df):
     """
-    Optimize data types to reduce memory usage for large datasets.
+    Optimize data types to reduce memory usage for large datasets (lakhs+ rows).
     """
+    original_memory = df.memory_usage(deep=True).sum() / 1024 / 1024
+    
     # Convert object columns to category where appropriate
     for col in df.columns:
         if df[col].dtype == 'object':
             # If column has many repeated values, convert to category
-            if df[col].nunique() / len(df) < 0.5:  # Less than 50% unique values
+            unique_ratio = df[col].nunique() / len(df)
+            if unique_ratio < 0.5:  # Less than 50% unique values
                 df[col] = df[col].astype('category')
     
     # Convert numeric columns to appropriate types
@@ -71,6 +86,19 @@ def optimize_dtypes(df):
         elif df[col].dtype == 'float64':
             # Downcast floats
             df[col] = pd.to_numeric(df[col], downcast='float')
+    
+    # Optimize datetime columns
+    for col in df.columns:
+        if df[col].dtype == 'datetime64[ns]':
+            # Convert to datetime64[ns] with timezone if needed
+            df[col] = pd.to_datetime(df[col], errors='coerce')
+    
+    optimized_memory = df.memory_usage(deep=True).sum() / 1024 / 1024
+    memory_saved = original_memory - optimized_memory
+    memory_reduction = (memory_saved / original_memory * 100) if original_memory > 0 else 0
+    
+    if memory_saved > 10:  # Only show if significant memory saved
+        st.info(f"💾 Memory optimization: {memory_saved:.1f} MB saved ({memory_reduction:.1f}% reduction)")
     
     return df
 

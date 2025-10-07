@@ -37,8 +37,6 @@ if df.empty:
 # Get data summary for large dataset info
 data_summary = get_data_summary(df)
 
-# (Removed informational banner about large datasets)
-
 
 synopsys_palette = [
     "#E0C3FC", "#C792F5", "#A96DE2", "#8A4DD0", "#6E2BC2",
@@ -49,61 +47,65 @@ if "iso_year" not in df.columns and "Date" in df.columns:
     try:
         df["iso_year"] = df["Date"].dt.isocalendar().year
     except Exception:
-        pass
+        df["iso_year"] = df["Date"].dt.year
 
 default_weeks = sorted(df["year_week_label"].dropna().unique())[-10:] if not df["year_week_label"].dropna().empty else []
 min_date = df["Date"].min()
 max_date = df["Date"].max()
 
 with st.expander("🔎 Filters", expanded=True):
-    # Move KA User filter to the top
-    valid_users = df[df["Full Name"].notna()]
-    all_users = sorted(valid_users["Username"].dropna().unique())
-    
-    if not all_users:
-        st.error("❌ No valid users found in the data!")
-        st.stop()
-    
-    selected_ka_users = st.multiselect("KA User", all_users, default=[])
-
+    # Create two columns for KA User and Select Tools side by side
     cols = st.columns(2)
-    all_tools = df["tool"].dropna().unique().tolist()
     
-    if not all_tools:
-        st.error("❌ No tools found in the data!")
-        st.stop()
+    # KA User filter in left column
+    with cols[0]:
+        valid_users = df[df["Full Name"].notna()]
+        all_users = sorted(valid_users["Username"].dropna().unique())
+        
+        if not all_users:
+            st.error("❌ No valid users found in the data!")
+            st.stop()
+        
+        selected_ka_users = st.multiselect("KA User", all_users, default=[])
     
-    default_tools = ["vcspyglass", "vclp", "pt", "cc", "spyglass", "fc", "vcs", "Verdi", "icv", "vcformal", "dso", "psim_pro"]
+    # Select Tools filter in right column
+    with cols[1]:
+        all_tools = df["tool"].dropna().unique().tolist()
+        
+        if not all_tools:
+            st.error("❌ No tools found in the data!")
+            st.stop()
+        
+        # Auto-select tools based on KA User selection
+        if "tools_ms" not in st.session_state:
+            st.session_state["tools_ms"] = all_tools
+        prev_ka = st.session_state.get("prev_ka_users", [])
+        if set(prev_ka) != set(selected_ka_users):
+            if selected_ka_users:
+                user_tools = sorted(df[df["Username"].isin(selected_ka_users)]["tool"].dropna().unique().tolist())
+                st.session_state["tools_ms"] = user_tools or st.session_state["tools_ms"]
+            else:
+                # If KA selection cleared, revert to all tools
+                st.session_state["tools_ms"] = all_tools
+        st.session_state["prev_ka_users"] = selected_ka_users
 
-    # Auto-select tools based on KA User selection
-    if "tools_ms" not in st.session_state:
-        st.session_state["tools_ms"] = [t for t in default_tools if t in all_tools]
-    prev_ka = st.session_state.get("prev_ka_users", [])
-    if set(prev_ka) != set(selected_ka_users):
-        if selected_ka_users:
-            user_tools = sorted(df[df["Username"].isin(selected_ka_users)]["tool"].dropna().unique().tolist())
-            st.session_state["tools_ms"] = user_tools or st.session_state["tools_ms"]
-        else:
-            # If KA selection cleared, revert to default list
-            st.session_state["tools_ms"] = [t for t in default_tools if t in all_tools]
-    st.session_state["prev_ka_users"] = selected_ka_users
-
-    selected_tools = cols[0].multiselect(
-        "Select Tools",
-        all_tools,
-        default=st.session_state["tools_ms"],
-        key="tools_ms",
-    )
+        selected_tools = st.multiselect(
+            "Select Tools",
+            all_tools,
+            default=all_tools,
+            key="tools_ms",
+        )
 
     date_filter_options = st.multiselect("Select Filter Granularity", ["Year", "Month", "Week", "Custom"], default=["Week"])
     selected_years, selected_months, selected_weeks, selected_range = [], [], [], []
+    
+    # Create month mapping once for reuse
+    month_labels = {i: pd.to_datetime(f"2025-{i}-01").strftime('%B') for i in range(1, 13)}
 
     if "Year" in date_filter_options:
         selected_years = st.multiselect("Select Year(s)", sorted(df["iso_year"].dropna().unique()))
     if "Month" in date_filter_options:
-        df["Month"] = df["Date"].dt.month
-        month_labels = {i: pd.to_datetime(f"2025-{i}-01").strftime('%B') for i in range(1, 13)}
-        selected_months = st.multiselect("Select Month(s)", [month_labels[i] for i in range(1, 13)])
+        selected_months = st.multiselect("Select Month(s)", list(month_labels.values()))
     if "Week" in date_filter_options:
         selected_weeks = st.multiselect("Select Week(s)", sorted(df["year_week_label"].dropna().unique()), default=default_weeks)
     if "Custom" in date_filter_options:
@@ -124,19 +126,25 @@ if "Custom" in date_filter_options and len(selected_range) == 2:
 if "Year" in date_filter_options and selected_years:
     filtered_df = filtered_df[filtered_df["iso_year"].isin(selected_years)]
 if "Month" in date_filter_options and selected_months:
-    month_map = {pd.to_datetime(f"2025-{i}-01").strftime('%B'): i for i in range(1, 13)}
-    filtered_df = filtered_df[filtered_df["Date"].dt.month.isin([month_map[m] for m in selected_months])]
+    # Reuse month_labels mapping from above
+    month_map = {v: k for k, v in month_labels.items()}  # Reverse mapping: month_name -> month_number
+    month_numbers = [month_map[m] for m in selected_months]
+    filtered_df = filtered_df[filtered_df["Date"].dt.month.isin(month_numbers)]
 if "Week" in date_filter_options and selected_weeks:
     filtered_df = filtered_df[filtered_df["year_week_label"].isin(selected_weeks)]
 
+# Apply KA User filter to all data for consistent filtering across all graphs
 selected_or_all_users = selected_ka_users or all_users
-ka_df = filtered_df[filtered_df["Username"].isin(selected_or_all_users)]
+filtered_df = filtered_df[filtered_df["Username"].isin(selected_or_all_users)]
+
+# ================= Process feedback data once for reuse =================
+filtered_df["feedback"] = filtered_df["metadata.feedback_rating"].astype(str).str.lower()
 
 # ================= Metrics =================
 col1, col2, col3, col4 = st.columns(4)
 unique_users = filtered_df["Username"].nunique()
 total_queries = len(filtered_df)
-feedback = filtered_df["metadata.feedback_rating"].dropna().astype(str).str.lower()
+feedback = filtered_df["feedback"].dropna()
 feedback_given = feedback.isin(["like", "dislike", "comment"]).sum()
 feedback_total = feedback.isin(["like", "dislike", "comment", "none"]).sum()
 feedback_pct = (feedback_given / feedback_total * 100) if feedback_total > 0 else 0
@@ -149,8 +157,6 @@ col4.metric("👍 Feedback %", f"{feedback_pct:.2f}%")
 st.markdown("---")
 
 # ================= Graph 1: Tool Analysis =================
-# Process feedback data once
-filtered_df["feedback"] = filtered_df["metadata.feedback_rating"].astype(str).str.lower()
 
 tool_summary = filtered_df.groupby("tool").agg(
     total_queries=("Username", "count"),
@@ -198,8 +204,8 @@ fig_tool_analysis.update_layout(
 )
 
 # ================= Graph 2: Weekly Total Queries & Feedback % Trend =================
+# Use existing feedback column instead of recreating
 weekly_df = filtered_df.copy()
-weekly_df["feedback"] = weekly_df["metadata.feedback_rating"].astype(str).str.lower()
 
 weekly_summary = weekly_df.groupby("year_week_label").agg(
     total_queries=("Username", "count"),
@@ -213,7 +219,7 @@ weekly_summary["feedback_pct"] = weekly_summary.apply(
 
 fig_weekly = go.Figure()
 
-# Make Feedback % a BAR 
+# Add Feedback % as bar chart
 fig_weekly.add_trace(go.Bar(
     x=weekly_summary["year_week_label"],
     y=weekly_summary["feedback_pct"],
@@ -222,7 +228,7 @@ fig_weekly.add_trace(go.Bar(
     yaxis="y1"
 ))
 
-# Make Total Queries a LINE
+# Add Total Queries as line chart
 fig_weekly.add_trace(go.Scatter(
     x=weekly_summary["year_week_label"],
     y=weekly_summary["total_queries"],
@@ -242,11 +248,14 @@ fig_weekly.update_layout(
 )
 
 # ================= Graph 3: KA User Feedback =================
-ka_feedback = ka_df["metadata.feedback_rating"].dropna().astype(str).str.lower().value_counts().reset_index()
+# Use filtered_df directly since it's already filtered by selected KA users
+ka_feedback = filtered_df["feedback"].dropna().value_counts().reset_index()
 ka_feedback.columns = ["Feedback Type", "Count"]
+# Determine appropriate title based on filtering
+feedback_title = "Selected Users Feedback Distribution" if selected_ka_users else "All Users Feedback Distribution"
 fig_ka_feedback = px.pie(
     ka_feedback, names="Feedback Type", values="Count",
-    title="KA User Feedback Distribution",
+    title=feedback_title,
     color_discrete_sequence=synopsys_palette
 )
 fig_ka_feedback.update_layout(
@@ -268,7 +277,9 @@ with right_col:
 
 
 with st.expander("⬇ Download Filtered Data"):
-    if "metadata.feedback_comment" in filtered_df.columns:
-        filtered_df["metadata.feedback_comment"] = filtered_df["metadata.feedback_comment"].astype(str)
-    csv = filtered_df.to_csv(index=False).encode("utf-8")
+    # Ensure all columns are string-compatible for CSV export
+    export_df = filtered_df.copy()
+    if "metadata.feedback_comment" in export_df.columns:
+        export_df["metadata.feedback_comment"] = export_df["metadata.feedback_comment"].astype(str)
+    csv = export_df.to_csv(index=False).encode("utf-8")
     st.download_button("Download CSV", csv, "filtered_data.csv", "text/csv")
