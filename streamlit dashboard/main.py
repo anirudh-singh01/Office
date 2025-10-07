@@ -175,32 +175,31 @@ fig_tool_analysis.add_trace(go.Bar(
     y=tool_summary["feedback_pct"],
     name="Feedback %",
     marker_color=synopsys_palette[8],
-    yaxis="y1"
+    yaxis="y2",
+    text=tool_summary["feedback_pct"],
+    texttemplate="%{text:.2f}%",
+    textposition="outside"
 ))
 fig_tool_analysis.add_trace(go.Scatter(
     x=tool_summary["tool"],
     y=tool_summary["total_queries"],
-    mode="lines+markers",
+    mode="lines+markers+text",
     name="Total Queries",
     line=dict(color=synopsys_palette[3], width=3),
-    yaxis="y2"
-))
-fig_tool_analysis.add_trace(go.Scatter(
-    x=tool_summary["tool"],
-    y=tool_summary["unique_users"],
-    mode="lines+markers",
-    name="Unique Users",
-    line=dict(color=synopsys_palette[1], width=3),
-    yaxis="y2"
+    yaxis="y1",
+    text=tool_summary["total_queries"],
+    texttemplate="%{text:,}",
+    textposition="top center"
 ))
 fig_tool_analysis.update_layout(
     title="Tool Usage Analysis",
     xaxis_title="Tool",
     yaxis=dict(title="Queries / Users", side="left"),
-    yaxis2=dict(title="Feedback %", overlaying="y", side="right"),
+    yaxis2=dict(title="Feedback %", overlaying="y", side="right", ticksuffix="%"),
     font=dict(size=16),
     barmode="group",
-    legend=dict(orientation="v", yanchor="top", y=1, xanchor="left", x=1.05)
+    legend=dict(orientation="v", yanchor="top", y=1, xanchor="left", x=1.05),
+    margin=dict(r=80)
 )
 
 # ================= Graph 2: Weekly Total Queries & Feedback % Trend =================
@@ -225,7 +224,10 @@ fig_weekly.add_trace(go.Bar(
     y=weekly_summary["feedback_pct"],
     name="Feedback %",
     marker_color=synopsys_palette[-1],
-    yaxis="y1"
+    yaxis="y2",
+    text=weekly_summary["feedback_pct"],
+    texttemplate="%{text:.2f}%",
+    textposition="outside"
 ))
 
 # Add Total Queries as line chart
@@ -233,18 +235,22 @@ fig_weekly.add_trace(go.Scatter(
     x=weekly_summary["year_week_label"],
     y=weekly_summary["total_queries"],
     name="Total Queries",
-    mode="lines+markers",
+    mode="lines+markers+text",
     line=dict(color=synopsys_palette[5], width=3),
-    yaxis="y2"
+    yaxis="y1",
+    text=weekly_summary["total_queries"],
+    texttemplate="%{text:,}",
+    textposition="top center"
 ))
 
 fig_weekly.update_layout(
     title="Weekly Total Queries & Feedback % Trend",
     xaxis_title="Week",
     yaxis=dict(title="Total Queries", side="left"),
-    yaxis2=dict(title="Feedback %", overlaying="y", side="right"),
+    yaxis2=dict(title="Feedback %", overlaying="y", side="right", ticksuffix="%"),
     font=dict(size=16),
-    legend=dict(orientation="v", yanchor="top", y=1, xanchor="left", x=1.05)
+    legend=dict(orientation="v", yanchor="top", y=1, xanchor="left", x=1.05),
+    margin=dict(r=80)
 )
 
 # ================= Graph 3: KA User Feedback =================
