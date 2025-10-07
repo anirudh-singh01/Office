@@ -177,10 +177,12 @@ fig_tool_analysis.add_trace(go.Bar(
     y=tool_summary["feedback_pct"],
     name="Feedback %",
     marker_color=synopsys_palette[8],
+    opacity=0.35,
     yaxis="y2",
     text=tool_summary["feedback_pct"],
     texttemplate="%{text:.2f}%",
-    textposition="outside",
+    textposition="inside",
+    textfont=dict(color="white"),
     cliponaxis=False
 ))
 fig_tool_analysis.add_trace(go.Scatter(
@@ -230,10 +232,12 @@ fig_weekly.add_trace(go.Bar(
     y=weekly_summary["feedback_pct"],
     name="Feedback %",
     marker_color=synopsys_palette[-1],
+    opacity=0.35,
     yaxis="y2",
     text=weekly_summary["feedback_pct"],
     texttemplate="%{text:.2f}%",
-    textposition="outside",
+    textposition="inside",
+    textfont=dict(color="white"),
     cliponaxis=False
 ))
 
