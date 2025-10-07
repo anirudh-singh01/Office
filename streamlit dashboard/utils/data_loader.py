@@ -16,7 +16,7 @@ def load_ka_data():
         # Read Excel with optimized settings for large files
         df = pd.read_excel(
             r"PASTE_YOUR_EXCEL_FILE_PATH_HERE", 
-            sheet_name="KA_Data",
+            sheet_name="Sheet1",
             engine='openpyxl',  # More memory efficient for large files
             dtype_backend='pyarrow'  # Use PyArrow for better performance
         )

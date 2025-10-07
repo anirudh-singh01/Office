@@ -204,7 +204,49 @@ fig_tool_analysis.update_layout(
     legend=dict(orientation="v", yanchor="top", y=1, xanchor="left", x=1.05)
 )
 
-## (Graph 2 removed per request)
+# ================= Graph 2: Weekly Total Queries & Feedback % Trend =================
+weekly_df = filtered_df.copy()
+weekly_df["feedback"] = weekly_df["metadata.feedback_rating"].astype(str).str.lower()
+
+weekly_summary = weekly_df.groupby("year_week_label").agg(
+    total_queries=("Username", "count"),
+    feedback_given=("feedback", lambda x: x.isin(["like", "dislike", "comment"]).sum()),
+    feedback_total=("feedback", lambda x: x.isin(["like", "dislike", "comment", "none"]).sum())
+).reset_index()
+
+weekly_summary["feedback_pct"] = weekly_summary.apply(
+    lambda row: (row["feedback_given"] / row["feedback_total"] * 100) if row["feedback_total"] > 0 else 0, axis=1
+)
+
+fig_weekly = go.Figure()
+
+# Make Feedback % a BAR 
+fig_weekly.add_trace(go.Bar(
+    x=weekly_summary["year_week_label"],
+    y=weekly_summary["feedback_pct"],
+    name="Feedback %",
+    marker_color=synopsys_palette[-1],
+    yaxis="y1"
+))
+
+# Make Total Queries a LINE
+fig_weekly.add_trace(go.Scatter(
+    x=weekly_summary["year_week_label"],
+    y=weekly_summary["total_queries"],
+    name="Total Queries",
+    mode="lines+markers",
+    line=dict(color=synopsys_palette[5], width=3),
+    yaxis="y2"
+))
+
+fig_weekly.update_layout(
+    title="Weekly Total Queries & Feedback % Trend (Graph 2)",
+    xaxis_title="Week",
+    yaxis=dict(title="Total Queries", side="left"),
+    yaxis2=dict(title="Feedback %", overlaying="y", side="right"),
+    font=dict(size=16),
+    legend=dict(orientation="v", yanchor="top", y=1, xanchor="left", x=1.05)
+)
 
 # ================= Graph 3: KA User Feedback =================
 ka_feedback = ka_df["metadata.feedback_rating"].dropna().astype(str).str.lower().value_counts().reset_index()
@@ -220,6 +262,10 @@ fig_ka_feedback.update_layout(
 )
 
 # ================= Layout =================
+# Graph 2 at the top (full width)
+st.plotly_chart(fig_weekly, use_container_width=True)
+
+# Graphs 1 and 3 side by side
 left_col, right_col = st.columns(2)
 with left_col:
     st.plotly_chart(fig_tool_analysis, use_container_width=True)
@@ -267,21 +313,13 @@ except Exception:
     dialog_open = False
 
 if dialog_open:
+    # Modern dialog approach for Streamlit >= 1.31.0
     if hasattr(st, "dialog"):
-        @st.dialog("💬 Chatbot Assistant")
+        @st.dialog("💬 Chatbot Assistant", width="large")
         def chatbot_dialog():
             render_chatbot(df)
         chatbot_dialog()
     else:
-        # Fallback: lightweight anchored panel at the bottom of the page
-        with st.container():
-            st.markdown("""
-            <style>
-            .chat-fallback {position: fixed; bottom: 90px; right: 20px; width: 360px; z-index: 1001;}
-            .chat-fallback .box {background: #ffffff; border: 1px solid #DDD; border-radius: 10px; box-shadow: 0 6px 14px rgba(0,0,0,0.15); padding: 10px;}
-            </style>
-            <div class="chat-fallback"><div class="box"></div></div>
-            """, unsafe_allow_html=True)
-            # Render chatbot content (will appear in document flow but visually near the floating box)
-            st.markdown("### 💬 Chatbot Assistant")
+        # Fallback: dedicated sidebar/expander for older Streamlit versions
+        with st.expander("💬 Chatbot Assistant", expanded=True):
             render_chatbot(df)
