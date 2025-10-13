@@ -30,7 +30,7 @@ const MENU_CONFIG = {
     'VC Formal': 'https://snpsai-copilot-gtm/?product=vcformal',
     'VC Low Power': 'https://snpsai-copilot-gtm/?product=vclp',
     'VC SpyGlass': 'https://snpsai-copilot-gtm/?product=vcspyglass',
-    'Verdi': 'https://snpsai-copilot-gtm/?product=verdi'
+    'Verdi': 'https://snpsai-copilot-gtm/?product=verdi',
 };
 
 // URL routing configuration - maps URL parameters to tool names
@@ -50,7 +50,7 @@ const URL_ROUTES = {
     'vcformal': 'VC Formal',
     'vclp': 'VC Low Power',
     'vcspyglass': 'VC SpyGlass',
-    'verdi': 'Verdi'
+    'verdi': 'Verdi',
 };
 
 /**
