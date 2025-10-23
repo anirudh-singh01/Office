@@ -34,24 +34,14 @@ const PATHS = {
 
 /**
  * Escape HTML special characters to prevent injection
- * @param {string} text - Text to escape
- * @returns {string} - Escaped text
  */
 function escapeHtml(text) {
-    const map = {
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        "'": '&#39;'
-    };
+    const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
     return text.replace(/[&<>"']/g, (m) => map[m]);
 }
 
 /**
  * Validate URL format
- * @param {string} url - URL to validate
- * @returns {boolean} - True if valid URL
  */
 function isValidUrl(url) {
     try {
@@ -64,8 +54,6 @@ function isValidUrl(url) {
 
 /**
  * Check if file exists
- * @param {string} filePath - Path to check
- * @returns {boolean} - True if file exists
  */
 function fileExists(filePath) {
     try {
@@ -77,8 +65,6 @@ function fileExists(filePath) {
 
 /**
  * Safely read file content with error handling
- * @param {string} filePath - Path to file
- * @returns {string} - File content
  */
 function readFile(filePath) {
     try {
@@ -90,8 +76,6 @@ function readFile(filePath) {
 
 /**
  * Safely write file content with error handling
- * @param {string} filePath - Path to file
- * @param {string} content - Content to write
  */
 function writeFile(filePath, content) {
     try {
@@ -103,8 +87,6 @@ function writeFile(filePath, content) {
 
 /**
  * Check if tool already exists in HTML
- * @param {string} displayName - Tool display name
- * @returns {boolean} - True if tool exists
  */
 function toolExists(displayName) {
     try {
@@ -117,8 +99,6 @@ function toolExists(displayName) {
 
 /**
  * Check if product ID already exists in URL_ROUTES
- * @param {string} productId - Product ID to check
- * @returns {boolean} - True if exists
  */
 function productIdExists(productId) {
     try {
@@ -131,18 +111,15 @@ function productIdExists(productId) {
 
 /**
  * Generate a unique product ID from tool name
- * @param {string} toolName - The name of the tool
- * @returns {string} - Generated product ID
  */
 function generateProductId(toolName) {
     let baseId = toolName
         .toLowerCase()
-        .replace(/[^a-z0-9\s]/g, '') // Remove special characters
+        .replace(/[^a-z0-9\s]/g, '')
         .trim()
-        .replace(/\s+/g, '_') // Replace spaces with underscores
-        .replace(/__+/g, '_'); // Replace multiple underscores with single
+        .replace(/\s+/g, '_')
+        .replace(/__+/g, '_');
     
-    // Check for collisions and add suffix if needed
     let productId = baseId;
     let suffix = 1;
     
@@ -156,7 +133,6 @@ function generateProductId(toolName) {
 
 /**
  * Parse and validate command line arguments
- * @returns {object} - Parsed tool information
  */
 function parseArguments() {
     const args = process.argv.slice(2);
@@ -201,7 +177,6 @@ function parseArguments() {
 
 /**
  * Create a backup of a file
- * @param {string} filePath - Path to the file to backup
  */
 function createBackup(filePath) {
     if (!fileExists(filePath)) {
@@ -215,13 +190,11 @@ function createBackup(filePath) {
 
 /**
  * Add tool card to welcome page in index.html
- * @param {string} displayName - Display name of the tool
  */
 function addToolCardToHTML(displayName) {
     const htmlContent = readFile(PATHS.html);
     const escapedDisplayName = escapeHtml(displayName);
     
-    // Create tool card HTML with proper indentation
     const toolCard = `                        <div class="tool-card" data-tool="${escapedDisplayName}">
                             <h3>${escapedDisplayName}</h3>
                             <p>Click to open ${escapedDisplayName}</p>
@@ -243,7 +216,6 @@ function addToolCardToHTML(displayName) {
         throw new Error('Could not find tools grid section in HTML');
     }
     
-    // Insert the new tool card before the closing div of tools-grid
     const newContent = htmlContent.slice(0, toolsGridEndIndex) + toolCard + '\n' + htmlContent.slice(toolsGridEndIndex);
     writeFile(PATHS.html, newContent);
     console.log(`${colors.green}✓${colors.reset} Tool card added to welcome page`);
@@ -251,20 +223,16 @@ function addToolCardToHTML(displayName) {
 
 /**
  * Add navigation item to sidebar in index.html
- * @param {string} displayName - Display name of the tool
- * @param {string} toolUrl - URL of the tool
  */
 function addNavItemToHTML(displayName, toolUrl) {
     const htmlContent = readFile(PATHS.html);
     const escapedDisplayName = escapeHtml(displayName);
     const escapedToolUrl = escapeHtml(toolUrl);
     
-    // Create nav item HTML with proper indentation
     const navItem = `                    <li class="nav-item">
                         <a href="#" class="nav-link" data-src="${escapedToolUrl}">${escapedDisplayName}</a>
                     </li>`;
     
-    // Find the closing </ul> tag in the sidebar
     const navListEndMarker = '                </ul>';
     const navListEndIndex = htmlContent.indexOf(navListEndMarker);
     
@@ -272,7 +240,6 @@ function addNavItemToHTML(displayName, toolUrl) {
         throw new Error('Could not find navigation list end in HTML');
     }
     
-    // Insert the new nav item before the closing </ul>
     const newContent = htmlContent.slice(0, navListEndIndex) + navItem + '\n' + htmlContent.slice(navListEndIndex);
     writeFile(PATHS.html, newContent);
     console.log(`${colors.green}✓${colors.reset} Navigation item added to sidebar`);
@@ -280,14 +247,10 @@ function addNavItemToHTML(displayName, toolUrl) {
 
 /**
  * Add entry to JavaScript configuration object
- * @param {string} configName - Name of the config object (MENU_CONFIG or URL_ROUTES)
- * @param {string} key - Key for the entry
- * @param {string} value - Value for the entry
  */
 function addToConfig(configName, key, value) {
     const scriptContent = readFile(PATHS.script);
     
-    // Find the configuration object
     const configStart = scriptContent.indexOf(`const ${configName} = {`);
     const configEnd = scriptContent.indexOf('};', configStart);
     
@@ -299,7 +262,6 @@ function addToConfig(configName, key, value) {
     const configContent = scriptContent.slice(configStart, configEnd);
     const lines = configContent.split('\n');
     
-    // Find the last non-empty line that's not just whitespace
     let lastEntryLineIndex = -1;
     for (let i = lines.length - 1; i >= 0; i--) {
         const trimmedLine = lines[i].trim();
@@ -328,7 +290,6 @@ function addToConfig(configName, key, value) {
     const newEntry = `    '${key}': '${value}',`;
     const updatedConfigEnd = scriptContent.indexOf('};', configStart);
     
-    // Insert before the closing brace
     const newContent = scriptContent.slice(0, updatedConfigEnd) + newEntry + '\n' + scriptContent.slice(updatedConfigEnd);
     writeFile(PATHS.script, newContent);
     console.log(`${colors.green}✓${colors.reset} Tool added to ${configName}`);
@@ -336,8 +297,6 @@ function addToConfig(configName, key, value) {
 
 /**
  * Add tool to MENU_CONFIG in script.js
- * @param {string} displayName - Display name of the tool
- * @param {string} toolUrl - URL of the tool
  */
 function addToMenuConfig(displayName, toolUrl) {
     addToConfig('MENU_CONFIG', displayName, toolUrl);
@@ -345,8 +304,6 @@ function addToMenuConfig(displayName, toolUrl) {
 
 /**
  * Add tool to URL_ROUTES in script.js
- * @param {string} displayName - Display name of the tool
- * @param {string} productId - Product ID for URL routing
  */
 function addToURLRoutes(displayName, productId) {
     addToConfig('URL_ROUTES', productId, displayName);
@@ -359,7 +316,6 @@ function addToolCardAnimation() {
     const htmlContent = readFile(PATHS.html);
     const cssContent = readFile(PATHS.css);
     
-    // Count existing tool cards in HTML
     const toolCardMatches = htmlContent.match(/class="tool-card"/g);
     const toolCardCount = toolCardMatches ? toolCardMatches.length : 0;
     
@@ -368,7 +324,6 @@ function addToolCardAnimation() {
         return;
     }
     
-    // Find the last animation rule for tool-card:nth-child
     const animationPattern = /\.tool-card:nth-child\((\d+)\)\s*{\s*animation-delay:\s*([\d.]+)s;\s*}/g;
     const matches = [...cssContent.matchAll(animationPattern)];
     
@@ -381,17 +336,14 @@ function addToolCardAnimation() {
     const lastChildIndex = parseInt(lastMatch[1]);
     const lastDelay = parseFloat(lastMatch[2]);
     
-    // Check if we need to add a new rule
     if (toolCardCount > lastChildIndex) {
         const newChildIndex = lastChildIndex + 1;
         const newDelay = (lastDelay + 0.1).toFixed(1);
         const newRule = `.tool-card:nth-child(${newChildIndex}) { animation-delay: ${newDelay}s; }`;
         
-        // Find position to insert (after the last animation rule)
         const lastRuleEnd = lastMatch.index + lastMatch[0].length;
-        
-        // Insert the new rule
         const newContent = cssContent.slice(0, lastRuleEnd) + '\n' + newRule + cssContent.slice(lastRuleEnd);
+        
         writeFile(PATHS.css, newContent);
         console.log(`${colors.green}✓${colors.reset} CSS animation rule added for tool card #${newChildIndex}`);
     } else {
@@ -401,7 +353,6 @@ function addToolCardAnimation() {
 
 /**
  * Display success message with usage instructions
- * @param {object} toolInfo - Tool information
  */
 function displaySuccess(toolInfo) {
     console.log(`\n${colors.bold}${colors.green}✓ Successfully added new tool!${colors.reset}\n`);
@@ -421,7 +372,6 @@ function main() {
     console.log(`\n${colors.bold}${colors.blue}GTM Copilot - Add New Tool${colors.reset}\n`);
     
     try {
-        // Parse arguments
         const toolInfo = parseArguments();
         
         console.log(`Adding tool: ${colors.bold}${toolInfo.displayName}${colors.reset}\n`);
@@ -440,7 +390,6 @@ function main() {
         addToURLRoutes(toolInfo.displayName, toolInfo.productId);
         addToolCardAnimation();
         
-        // Display success message
         displaySuccess(toolInfo);
         
     } catch (error) {
