@@ -10,11 +10,8 @@
     
     /* Typography */
     --font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    --main-title-size: 30px;
-    --section-heading-size: 20px;
     --header-title-size: 18px;
     --body-text-size: 16px;
-    --small-text-size: 14px;
     --legend-text-size: 12px;
     
     /* Layout dimensions */
@@ -42,38 +39,10 @@ body {
 }
 
 /* Global Typography Classes */
-.main-title {
-    font-size: var(--main-title-size);
-    font-weight: 700;
-    color: var(--primary-purple);
-    font-family: var(--font-family);
-}
-
-.section-heading {
-    font-size: var(--section-heading-size);
-    font-weight: 600;
-    color: var(--primary-purple);
-    font-family: var(--font-family);
-}
-
 .header-title {
     font-size: var(--header-title-size);
     font-weight: 700;
     color: var(--primary-purple);
-    font-family: var(--font-family);
-}
-
-.body-text {
-    font-size: var(--body-text-size);
-    font-weight: 400;
-    color: var(--body-text);
-    font-family: var(--font-family);
-}
-
-.small-text {
-    font-size: var(--small-text-size);
-    font-weight: 400;
-    color: var(--body-text);
     font-family: var(--font-family);
 }
 
@@ -316,16 +285,6 @@ body {
     }
 }
 
-@keyframes pulse-dot {
-    0% {
-        transform: scale(1);
-        box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
-    }
-    100% {
-        transform: scale(1.1);
-        box-shadow: 0 0 12px rgba(16, 185, 129, 0.6);
-    }
-}
 
 @keyframes pulse-inner {
     0% {

@@ -69,7 +69,6 @@ class Dashboard {
         this.isSidebarCollapsed = false;
         this.welcomePage = null;
         this.mainContainer = null;
-        this.hasSeenWelcome = false;
         this.loadingScreen = null;
         this.loadingToolName = null;
         
@@ -90,19 +89,25 @@ class Dashboard {
     }
 
     /**
-     * Ensure proper initial state - remove any stray active classes
+     * Set initial active state based on URL or default to no selection
      */
-    ensureProperInitialState() {
-        // Only remove active classes if there's a URL parameter
+    setInitialActiveState() {
         const currentTool = this.getCurrentToolFromURL();
         
         if (currentTool) {
-            // Remove active class from all items first
+            this.switchToMenuItem(currentTool);
+        } else {
+            // No default selection - user should choose from welcome page
+            // Clear any existing active states
             this.removeActiveState();
+            
+            // Ensure iframe is empty
+            if (this.iframe) {
+                this.iframe.src = '';
+            }
+            
+            logger.log('No initial tool selected - user should choose from welcome page');
         }
-        
-        // Then set the correct initial state
-        this.setInitialActiveState();
     }
 
     /**
@@ -196,7 +201,7 @@ class Dashboard {
             // User has a specific tool in URL, show dashboard
             this.showDashboard();
             // Initialize dashboard functionality
-            this.ensureProperInitialState();
+            this.setInitialActiveState();
         } else {
             // No specific tool, show welcome page
             this.showWelcomePage();
@@ -271,7 +276,7 @@ class Dashboard {
         this.showDashboard();
         
         // Initialize dashboard functionality
-        this.ensureProperInitialState();
+        this.setInitialActiveState();
         
         // Switch to the selected tool
         this.switchToMenuItem(toolName);
@@ -582,14 +587,6 @@ class Dashboard {
     }
 
 
-    /**
-     * Public method to update menu configuration
-     * @param {Object} newConfig - New menu configuration object
-     */
-    updateMenuConfig(newConfig) {
-        Object.assign(MENU_CONFIG, newConfig);
-        logger.log('Menu configuration updated');
-    }
 
     /**
      * Show loading screen while iframe loads
@@ -617,24 +614,6 @@ class Dashboard {
         }
     }
 
-    /**
-     * Show loading indicator while iframe loads (legacy method)
-     */
-    showLoadingIndicator() {
-        if (this.iframe) {
-            this.iframe.style.opacity = '0.5';
-            this.iframe.style.transition = 'opacity 0.3s ease';
-        }
-    }
-
-    /**
-     * Hide loading indicator after iframe loads (legacy method)
-     */
-    hideLoadingIndicator() {
-        if (this.iframe) {
-            this.iframe.style.opacity = '1';
-        }
-    }
 
     /**
      * Show error message to user
@@ -694,51 +673,7 @@ class Dashboard {
         logger.warn(`Menu item not found: ${menuText}`);
     }
 
-    /**
-     * Public method to update iframe source programmatically
-     * @param {string} url - The URL to load in the iframe
-     */
-    loadIframeContent(url, toolName = 'Tool') {
-        if (!this.iframe) {
-            logger.error('Iframe element not found');
-            return;
-        }
-        
-        if (!url || typeof url !== 'string') {
-            logger.error('Invalid URL provided');
-            return;
-        }
-        
-        this.showLoadingScreen(toolName);
-        this.iframe.src = url;
-        
-        this.iframe.onload = () => {
-            this.hideLoadingScreen();
-            logger.log(`Iframe loaded successfully: ${url}`);
-        };
-        
-        this.iframe.onerror = () => {
-            this.hideLoadingScreen();
-            logger.error(`Failed to load iframe: ${url}`);
-            this.showErrorMessage('Failed to load content. Please try again.');
-        };
-    }
 
-    /**
-     * Handle initial route from URL parameters
-     */
-    handleInitialRoute() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const product = urlParams.get('product');
-        
-        if (product && URL_ROUTES[product]) {
-            const productName = URL_ROUTES[product];
-            this.switchToMenuItem(productName);
-        } else {
-            // No product parameter - no default selection
-            this.setInitialActiveState();
-        }
-    }
 
     /**
      * Update browser URL to reflect current product
