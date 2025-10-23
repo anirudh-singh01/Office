@@ -26,6 +26,34 @@ const colors = {
 };
 
 /**
+ * Check if file exists
+ * @param {string} filePath - Path to check
+ * @returns {boolean} - True if file exists
+ */
+function fileExists(filePath) {
+    try {
+        return fs.existsSync(filePath);
+    } catch {
+        return false;
+    }
+}
+
+/**
+ * Check if tool exists in HTML
+ * @param {string} toolName - Tool name to check
+ * @returns {boolean} - True if tool exists
+ */
+function toolExists(toolName) {
+    try {
+        const htmlPath = path.join(__dirname, 'index.html');
+        const htmlContent = fs.readFileSync(htmlPath, 'utf8');
+        return htmlContent.includes(`data-tool="${toolName}"`);
+    } catch {
+        return false;
+    }
+}
+
+/**
  * Parse command line arguments
  */
 function parseArguments() {
@@ -41,6 +69,16 @@ function parseArguments() {
     
     const toolName = args.join(' ').trim();
     
+    // Validate input
+    if (!toolName || toolName.length === 0) {
+        throw new Error('Tool name cannot be empty');
+    }
+    
+    // Check if tool exists
+    if (!toolExists(toolName)) {
+        throw new Error(`Tool "${toolName}" not found in the application`);
+    }
+    
     return { toolName };
 }
 
@@ -49,6 +87,10 @@ function parseArguments() {
  * @param {string} filePath - Path to the file to backup
  */
 function createBackup(filePath) {
+    if (!fileExists(filePath)) {
+        throw new Error(`File not found: ${filePath}`);
+    }
+    
     const backupPath = `${filePath}.backup`;
     fs.copyFileSync(filePath, backupPath);
     console.log(`${colors.blue}✓${colors.reset} Backup created: ${backupPath}`);
@@ -60,7 +102,13 @@ function createBackup(filePath) {
  */
 function removeToolCardFromHTML(toolName) {
     const htmlPath = path.join(__dirname, 'index.html');
-    let htmlContent = fs.readFileSync(htmlPath, 'utf8');
+    let htmlContent;
+    
+    try {
+        htmlContent = fs.readFileSync(htmlPath, 'utf8');
+    } catch (error) {
+        throw new Error(`Failed to read HTML file: ${error.message}`);
+    }
     
     // Find and remove the tool card
     const toolCardRegex = new RegExp(
@@ -68,14 +116,21 @@ function removeToolCardFromHTML(toolName) {
         'g'
     );
     
+    // Check if tool exists first
     if (!toolCardRegex.test(htmlContent)) {
         throw new Error(`Tool card "${toolName}" not found in HTML`);
     }
     
+    // Reset regex and perform replacement
+    toolCardRegex.lastIndex = 0;
     htmlContent = htmlContent.replace(toolCardRegex, '');
     
-    fs.writeFileSync(htmlPath, htmlContent, 'utf8');
-    console.log(`${colors.green}✓${colors.reset} Tool card removed from welcome page`);
+    try {
+        fs.writeFileSync(htmlPath, htmlContent, 'utf8');
+        console.log(`${colors.green}✓${colors.reset} Tool card removed from welcome page`);
+    } catch (error) {
+        throw new Error(`Failed to write HTML file: ${error.message}`);
+    }
 }
 
 /**
@@ -84,7 +139,13 @@ function removeToolCardFromHTML(toolName) {
  */
 function removeNavItemFromHTML(toolName) {
     const htmlPath = path.join(__dirname, 'index.html');
-    let htmlContent = fs.readFileSync(htmlPath, 'utf8');
+    let htmlContent;
+    
+    try {
+        htmlContent = fs.readFileSync(htmlPath, 'utf8');
+    } catch (error) {
+        throw new Error(`Failed to read HTML file: ${error.message}`);
+    }
     
     // Find and remove the nav item
     const navItemRegex = new RegExp(
@@ -92,14 +153,21 @@ function removeNavItemFromHTML(toolName) {
         'g'
     );
     
+    // Check if nav item exists first
     if (!navItemRegex.test(htmlContent)) {
         throw new Error(`Navigation item "${toolName}" not found in HTML`);
     }
     
+    // Reset regex and perform replacement
+    navItemRegex.lastIndex = 0;
     htmlContent = htmlContent.replace(navItemRegex, '');
     
-    fs.writeFileSync(htmlPath, htmlContent, 'utf8');
-    console.log(`${colors.green}✓${colors.reset} Navigation item removed from sidebar`);
+    try {
+        fs.writeFileSync(htmlPath, htmlContent, 'utf8');
+        console.log(`${colors.green}✓${colors.reset} Navigation item removed from sidebar`);
+    } catch (error) {
+        throw new Error(`Failed to write HTML file: ${error.message}`);
+    }
 }
 
 /**
@@ -108,7 +176,13 @@ function removeNavItemFromHTML(toolName) {
  */
 function removeFromMenuConfig(toolName) {
     const scriptPath = path.join(__dirname, 'assets', 'js', 'script.js');
-    let scriptContent = fs.readFileSync(scriptPath, 'utf8');
+    let scriptContent;
+    
+    try {
+        scriptContent = fs.readFileSync(scriptPath, 'utf8');
+    } catch (error) {
+        throw new Error(`Failed to read script file: ${error.message}`);
+    }
     
     // Find and remove the entry from MENU_CONFIG
     const menuConfigRegex = new RegExp(
@@ -116,14 +190,21 @@ function removeFromMenuConfig(toolName) {
         'g'
     );
     
+    // Check if tool exists first
     if (!menuConfigRegex.test(scriptContent)) {
         throw new Error(`Tool "${toolName}" not found in MENU_CONFIG`);
     }
     
+    // Reset regex and perform replacement
+    menuConfigRegex.lastIndex = 0;
     scriptContent = scriptContent.replace(menuConfigRegex, '\n');
     
-    fs.writeFileSync(scriptPath, scriptContent, 'utf8');
-    console.log(`${colors.green}✓${colors.reset} Tool removed from MENU_CONFIG`);
+    try {
+        fs.writeFileSync(scriptPath, scriptContent, 'utf8');
+        console.log(`${colors.green}✓${colors.reset} Tool removed from MENU_CONFIG`);
+    } catch (error) {
+        throw new Error(`Failed to write script file: ${error.message}`);
+    }
 }
 
 /**
@@ -132,7 +213,13 @@ function removeFromMenuConfig(toolName) {
  */
 function removeFromURLRoutes(toolName) {
     const scriptPath = path.join(__dirname, 'assets', 'js', 'script.js');
-    let scriptContent = fs.readFileSync(scriptPath, 'utf8');
+    let scriptContent;
+    
+    try {
+        scriptContent = fs.readFileSync(scriptPath, 'utf8');
+    } catch (error) {
+        throw new Error(`Failed to read script file: ${error.message}`);
+    }
     
     // Find and remove the entry from URL_ROUTES
     const urlRoutesRegex = new RegExp(
@@ -140,15 +227,22 @@ function removeFromURLRoutes(toolName) {
         'g'
     );
     
+    // Check if tool exists first
     if (!urlRoutesRegex.test(scriptContent)) {
         console.log(`${colors.yellow}⚠${colors.reset} Tool "${toolName}" not found in URL_ROUTES (may have been removed already)`);
         return;
     }
     
+    // Reset regex and perform replacement
+    urlRoutesRegex.lastIndex = 0;
     scriptContent = scriptContent.replace(urlRoutesRegex, '\n');
     
-    fs.writeFileSync(scriptPath, scriptContent, 'utf8');
-    console.log(`${colors.green}✓${colors.reset} Tool removed from URL_ROUTES`);
+    try {
+        fs.writeFileSync(scriptPath, scriptContent, 'utf8');
+        console.log(`${colors.green}✓${colors.reset} Tool removed from URL_ROUTES`);
+    } catch (error) {
+        throw new Error(`Failed to write script file: ${error.message}`);
+    }
 }
 
 /**
@@ -159,7 +253,13 @@ function cleanupCSSAnimationRules() {
     const cssPath = path.join(__dirname, 'assets', 'css', 'styles.css');
     
     // Count existing tool cards in HTML
-    const htmlContent = fs.readFileSync(htmlPath, 'utf8');
+    let htmlContent;
+    try {
+        htmlContent = fs.readFileSync(htmlPath, 'utf8');
+    } catch (error) {
+        throw new Error(`Failed to read HTML file: ${error.message}`);
+    }
+    
     const toolCardMatches = htmlContent.match(/class="tool-card"/g);
     const toolCardCount = toolCardMatches ? toolCardMatches.length : 0;
     
@@ -169,7 +269,12 @@ function cleanupCSSAnimationRules() {
     }
     
     // Read CSS file
-    let cssContent = fs.readFileSync(cssPath, 'utf8');
+    let cssContent;
+    try {
+        cssContent = fs.readFileSync(cssPath, 'utf8');
+    } catch (error) {
+        throw new Error(`Failed to read CSS file: ${error.message}`);
+    }
     
     // Find all animation rules for tool-card:nth-child
     const animationPattern = /\.tool-card:nth-child\((\d+)\)\s*{\s*animation-delay:\s*[\d.]+s;\s*}\n?/g;
@@ -191,15 +296,23 @@ function cleanupCSSAnimationRules() {
         // Remove rules from toolCardCount+1 to maxIndex
         for (let i = toolCardCount + 1; i <= maxIndex; i++) {
             const rulePattern = new RegExp(`\\.tool-card:nth-child\\(${i}\\)\\s*{\\s*animation-delay:\\s*[\\d.]+s;\\s*}\\n?`, 'g');
+            
+            // Check if rule exists first
             if (rulePattern.test(cssContent)) {
+                // Reset regex and perform replacement
+                rulePattern.lastIndex = 0;
                 cssContent = cssContent.replace(rulePattern, '');
                 removedCount++;
             }
         }
         
         // Write back to CSS file
-        fs.writeFileSync(cssPath, cssContent, 'utf8');
-        console.log(`${colors.green}✓${colors.reset} Cleaned up ${removedCount} unused CSS animation rule(s)`);
+        try {
+            fs.writeFileSync(cssPath, cssContent, 'utf8');
+            console.log(`${colors.green}✓${colors.reset} Cleaned up ${removedCount} unused CSS animation rule(s)`);
+        } catch (error) {
+            throw new Error(`Failed to write CSS file: ${error.message}`);
+        }
     } else {
         console.log(`${colors.blue}ℹ${colors.reset} CSS animation rules are already optimized`);
     }
