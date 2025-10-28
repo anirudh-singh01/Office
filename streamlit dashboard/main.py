@@ -154,6 +154,15 @@ col2.metric("💬 Total Queries", f"{total_queries:,}")
 col3.metric("✅ Feedback Count", f"{feedback_given:,}")
 col4.metric("👍 Feedback %", f"{feedback_pct:.2f}%")
 
+# Show period of data being displayed
+min_shown_date = filtered_df["Date"].min()
+max_shown_date = filtered_df["Date"].max()
+if pd.isna(min_shown_date) or pd.isna(max_shown_date):
+    period_label = "N/A"
+else:
+    period_label = f"{min_shown_date.strftime('%Y-%m-%d')} → {max_shown_date.strftime('%Y-%m-%d')}"
+st.columns(1)[0].metric("📅 Period", period_label)
+
 st.markdown("---")
 
 # ================= Graph 1: Tool Analysis =================
@@ -169,8 +178,8 @@ tool_summary["feedback_pct"] = tool_summary.apply(
     lambda row: (row["feedback_given"] / row["feedback_total"] * 100) if row["feedback_total"] > 0 else 0, axis=1
 )
 
-# Sort tools by total_queries in descending order
-tool_summary = tool_summary.sort_values("total_queries", ascending=False)
+# Sort tools by feedback_pct in descending order
+tool_summary = tool_summary.sort_values("feedback_pct", ascending=False)
 
 fig_tool_analysis = go.Figure()
 fig_tool_analysis.add_trace(go.Bar(
