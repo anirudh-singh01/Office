@@ -169,6 +169,9 @@ tool_summary["feedback_pct"] = tool_summary.apply(
     lambda row: (row["feedback_given"] / row["feedback_total"] * 100) if row["feedback_total"] > 0 else 0, axis=1
 )
 
+# Sort tools by total_queries in descending order
+tool_summary = tool_summary.sort_values("total_queries", ascending=False)
+
 fig_tool_analysis = go.Figure()
 fig_tool_analysis.add_trace(go.Bar(
     x=tool_summary["tool"],
@@ -183,14 +186,6 @@ fig_tool_analysis.add_trace(go.Scatter(
     mode="lines+markers",
     name="Total Queries",
     line=dict(color=synopsys_palette[3], width=3),
-    yaxis="y2"
-))
-fig_tool_analysis.add_trace(go.Scatter(
-    x=tool_summary["tool"],
-    y=tool_summary["unique_users"],
-    mode="lines+markers",
-    name="Unique Users",
-    line=dict(color=synopsys_palette[1], width=3),
     yaxis="y2"
 ))
 fig_tool_analysis.update_layout(
